@@ -41,7 +41,6 @@ const TopNav = (props) => {
 
   // 监听滚动
   useEffect(() => {
-    console.log('CONFIG.NAV_TYPE', CONFIG.NAV_TYPE)
     if (CONFIG.NAV_TYPE === 'autoCollapse') {
       scrollTrigger()
       window.addEventListener('scroll', scrollTrigger)
@@ -101,7 +100,7 @@ const TopNav = (props) => {
 
             {/* 导航栏 */}
             <div id='sticky-nav'>
-                <div className='w-full flex justify-between items-center p-2 bg-black dark:bg-gray-800 lg:bg-gray-300 text-white'>
+                <div className='w-full flex justify-between items-center p-2 bg-black dark:bg-gray-800 text-white'>
                     {/* 左侧LOGO 标题 */}
                     <div className='flex flex-none flex-grow-0'>
                         <div onClick={toggleMenuOpen} className='w-8 cursor-pointer lg:hidden'>
@@ -109,7 +108,7 @@ const TopNav = (props) => {
                         </div>
                     </div>
 
-                    <div className=' max-w-1/2 w-64'>
+                    <div className='min-w-[20%]'>
                         {
                             CONFIG.MENU_SEARCH && 
                             <SearchInput {...props} />
@@ -119,7 +118,7 @@ const TopNav = (props) => {
                     {/* 右侧功能 */}
                     <div className='mr-1 flex justify-end items-center text-sm space-x-4 font-serif dark:text-gray-200'>
                     <DarkModeButton />
-                        <div className="cursor-pointer block lg:hidden" onClick={() => { searchDrawer?.current?.show() }}>
+                        <div className="cursor-pointer hidden" onClick={() => { searchDrawer?.current?.show() }}>
                             <i className="mr-2 fas fa-search" />{locale.NAV.SEARCH}
                         </div>
                     </div>

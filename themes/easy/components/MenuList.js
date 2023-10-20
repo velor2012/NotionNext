@@ -32,21 +32,21 @@ export const MenuList = (props) => {
   }
 
   return (
-        <>
+        <div>
             {/* 大屏模式菜单 */}
             <nav id='nav' data-aos="fade-down"
                 data-aos-duration="500"
                 data-aos-delay="400"
                 data-aos-once="true"
                 data-aos-anchor-placement="top-bottom"
-                className='hidden md:block leading-8 text-gray-500 dark:text-gray-400 font-sans'>
+                className='hidden lg:block leading-8 text-gray-500 dark:text-gray-400 font-sans'>
                 {links.map(link => link && link.show && <MenuItemDrop key={link?.id} link={link} />)}
             </nav>
 
             {/* 移动端菜单 */}
-            <div id='nav-menu-mobile' className='block md:hidden my-auto justify-start bg-white'>
+            <div id='nav-menu-mobile' className='block lg:hidden my-auto justify-start bg-white'>
                 {links?.map(link => link && link.show && <MenuItemCollapse onHeightChange={props.onHeightChange} key={link?.id} link={link} />)}
             </div>
-        </>
+        </div>
   )
 }

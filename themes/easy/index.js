@@ -1,8 +1,7 @@
 import CONFIG from './config'
-import FloatDarkModeButton from './components/FloatDarkModeButton'
 import Footer from './components/Footer'
 import JumpToBottomButton from './components/JumpToBottomButton'
-import JumpToTopButton from './components/JumpToTopButton'
+import JumpToTopButton from './components/MyJumpToTopButton'
 import SideAreaLeft from './components/SideAreaLeft'
 import SideAreaRight from './components/SideAreaRight'
 import TopNav from './components/TopNav'
@@ -75,11 +74,11 @@ const LayoutBase = (props) => {
             <CommonHead meta={meta}/>
             <Style/>
 
-            <div className=' flex-col'>
+            <div className='min-w-full max-w-full md:min-w-[750px] lg:min-w-[950px] xl:min-w-[1150px]  flex-col'>
 
 
                 {/* 移动端顶部导航栏 */}
-                <TopNav className= {...props} />
+                <TopNav {...props} />
 
                 <>{headerSlot}</>
 
@@ -94,7 +93,7 @@ const LayoutBase = (props) => {
                     <SideAreaLeft targetRef={targetRef} {...props} />
 
                     {/* 中央内容 */}
-                    <section id='container-inner' className={`${CONFIG.NAV_TYPE !== 'normal' ? 'mt-24' : ''} lg:max-w-3xl xl:max-w-4xl   md:mt-0 min-h-screen relative z-10`} ref={targetRef}>
+                    <section id='container-inner' className={`w-[50rem] max-w-full md:mt-0 min-h-screen relative z-10`} ref={targetRef}>
                         <Transition
                             show={!onLoading}
                             appear={true}
@@ -115,11 +114,10 @@ const LayoutBase = (props) => {
                 </main>
 
                 {/* 右下角悬浮 */}
-                <div ref={floatButtonGroup} className='right-8 bottom-12 lg:right-2 fixed justify-end z-20 font-sans'>
+                <div ref={floatButtonGroup} className='right-8 bottom-12 lg:right-8 fixed justify-end z-20 font-sans'>
                     <div className={(showRightFloat ? 'animate__animated ' : 'hidden') + ' animate__fadeInUp rounded-md glassmorphism justify-center duration-500  animate__faster flex space-x-2 items-center cursor-pointer '}>
                         <JumpToTopButton percent={percent} />
                         <JumpToBottomButton />
-                        <FloatDarkModeButton />
                         {floatSlot}
                     </div>
                 </div>
