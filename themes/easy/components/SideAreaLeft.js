@@ -10,7 +10,7 @@ import Card from './Card'
 import CONFIG from '../config'
 import BLOG from '@/blog.config'
 import Live2D from '@/components/Live2D'
-
+import { motion } from 'framer-motion'
 /**
  * 侧边平铺
  * @param tags
@@ -24,12 +24,34 @@ const SideAreaLeft = props => {
   const { post, slot, postCount } = props
   const { locale } = useGlobal()
   const showToc = post && post.toc && post.toc.length > 1
-  return <aside id='left' className={(BLOG.LAYOUT_SIDEBAR_REVERSE ? 'ml-4' : 'mr-4') + ' hidden lg:block flex-col w-60 z-20 relative'}>
 
-        <section
+  const variants = {
+    show: {
+      x: 0,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.07,
+        delayChildren:  0.5,
+        staggerDirection: 1,
+      }
+    },
+    hidden: {
+      x: -1000,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.05,
+        delayChildren:  0.5,
+        staggerDirection: -1
+      }
+    }
+  }
+
+  return <motion.aside initial="hidden" animate="show"  variants={variants} id='left' className={(BLOG.LAYOUT_SIDEBAR_REVERSE ? 'ml-4' : 'mr-4') + ' hidden lg:block flex-col w-60 z-20 relative'}>
+
+        <motion.section
             className='w-60'>
             {/* 菜单 */}
-            <section className='shadow hidden lg:block mb-5 pb-4 bg-white dark:bg-hexo-black-gray hover:shadow-xl duration-200'>
+            <section variants={variants} className='shadow hidden lg:block mb-5 pb-4 bg-white dark:bg-hexo-black-gray hover:shadow-xl duration-200'>
                 <Logo className='h-32' {...props} />
                 <div className='pt-2 px-2 font-sans'>
                     <MenuList allowCollapse={true} {...props} />
@@ -40,9 +62,9 @@ const SideAreaLeft = props => {
 
             </section>
 
-        </section>
+        </motion.section>
 
-        <div className='sticky top-4 hidden lg:block'>
+        <motion.div  variants={variants} className='sticky top-4 hidden lg:block'>
             <Card>
                 <Tabs>
                     {showToc && (
@@ -67,12 +89,12 @@ const SideAreaLeft = props => {
                 </Tabs>
             </Card>
 
-            <div className='flex justify-center'>
+            <motion.div  variants={variants} className='flex justify-center'>
                 {slot}
                 <Live2D />
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
 
-    </aside>
+    </motion.aside>
 }
 export default SideAreaLeft
