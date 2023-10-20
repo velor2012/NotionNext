@@ -17,8 +17,8 @@ const Collapse = props => {
        * @param {*} param0
        */
       updateCollapseHeight: ({ height, increase }) => {
-          ref.current.style.height = ref.current.scrollHeight
-          if(!increase) return ;
+        ref.current.style.height = ref.current.scrollHeight
+        if(!increase) return ;
         ref.current.style.height = 'auto'
       }
     }
