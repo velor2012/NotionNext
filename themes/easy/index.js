@@ -25,7 +25,7 @@ import { Transition } from '@headlessui/react'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import CommonHead from '@/components/CommonHead'
-
+import {   motion } from "framer-motion";
 /**
  * 基础布局 采用左中右三栏布局，移动端使用顶部导航栏
  * @returns {JSX.Element}
@@ -93,21 +93,12 @@ const LayoutBase = (props) => {
                     <SideAreaLeft targetRef={targetRef} {...props} />
 
                     {/* 中央内容 */}
-                    <section id='container-inner' className={`w-[50rem] max-w-full md:mt-0 min-h-screen relative z-10`} ref={targetRef}>
-                        <Transition
-                            show={!onLoading}
-                            appear={true}
-                            enter="transition ease-in-out duration-700 transform order-first"
-                            enterFrom="opacity-0 translate-y-16"
-                            enterTo="opacity-100"
-                            leave="transition ease-in-out duration-300 transform"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0 -translate-y-16"
-                            unmount={false}
-                        >
-                            {children}
-                        </Transition>
-                    </section>
+                    <motion.section id='container-inner'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className={`w-[50rem] max-w-full md:mt-0 min-h-screen relative z-10`} ref={targetRef}>
+                        {children}
+                    </motion.section>
 
                     {/* 右侧栏样式 */}
                     {CONFIG.RIGHT_BAR && <SideAreaRight targetRef={targetRef} slot={rightAreaSlot} {...props} />}
