@@ -26,6 +26,8 @@ import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import CommonHead from '@/components/CommonHead'
 import {   motion } from "framer-motion";
+import  * as CustomPages from './pages/pages'
+import CustomPageLayout from './pages'
 /**
  * 基础布局 采用左中右三栏布局，移动端使用顶部导航栏
  * @returns {JSX.Element}
@@ -38,6 +40,7 @@ const LayoutBase = (props) => {
   const floatButtonGroup = useRef(null)
   const [showRightFloat, switchShow] = useState(false)
   const [percent, changePercent] = useState(0) // 页面阅读百分比
+  const router = useRouter()
 
   const scrollListener = () => {
     const targetRef = document.getElementById('wrapper')
@@ -336,5 +339,7 @@ export {
   Layout404,
   LayoutCategoryIndex,
   LayoutPostList,
-  LayoutTagIndex
+  LayoutTagIndex,
+  CustomPages,
+  CustomPageLayout
 }

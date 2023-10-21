@@ -3,7 +3,7 @@ import BLOG from '@/blog.config'
 import { getQueryParam, getQueryVariable } from '../lib/utils'
 import dynamic from 'next/dynamic'
 import getConfig from 'next/config'
-import * as ThemeComponents from '@theme-components'
+import * as ThemeComponents from './index'
 // 所有主题在next.config.js中扫描
 export const { THEMES = [] } = getConfig().publicRuntimeConfig
 
@@ -15,11 +15,8 @@ export const { THEMES = [] } = getConfig().publicRuntimeConfig
  */
 export const getGlobalLayoutByTheme = (themeQuery) => {
     const layout = getLayoutNameByPath(-1)
-    if (themeQuery !== BLOG.THEME) {
-      return dynamic(() => import(`@/themes/${themeQuery}`).then(m => m[layout]), { ssr: true })
-    } else {
-      return ThemeComponents[layout]
-    }
+    const components = ThemeComponents[themeQuery.toUpperCase()]
+    return components[layout]
   }
 
 /**
@@ -31,11 +28,26 @@ export const getGlobalLayoutByTheme = (themeQuery) => {
 export const getLayoutByTheme = (router) => {
   const themeQuery = getQueryParam(router.asPath, 'theme') || BLOG.THEME
   const layout = getLayoutNameByPath(router.pathname)
-  if (themeQuery !== BLOG.THEME) {
-    return dynamic(() => import(`@/themes/${themeQuery}`).then(m => m[layout]), { ssr: true })
-  } else {
-    return ThemeComponents[layout]
-  }
+  const components = ThemeComponents[themeQuery.toUpperCase()]
+  return components[layout]
+}
+
+/**
+ * 获取所有的自定义页面
+ * @param {*}router
+ * @returns
+ */
+export const getAllCustomPages = (router)=>{
+    const themeQuery = getQueryParam(router.asPath, 'theme') || BLOG.THEME
+    const components = ThemeComponents[themeQuery.toUpperCase()]
+    const res = []
+    if (components && components.CustomPages) {
+        const customConfigs = components.CustomPages
+        for (const key in customConfigs) {
+            res.push(key)
+      }
+    }
+    return res
 }
 
 /**
@@ -67,6 +79,8 @@ export const getLayoutNameByPath = (path) => {
       return 'LayoutTagIndex'
     case '/category':
       return 'LayoutCategoryIndex'
+    case '/custom/[slug]':
+        return 'CustomPageLayout'
     default:
       return 'LayoutSlug'
   }
