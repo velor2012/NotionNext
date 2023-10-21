@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { getLayoutByTheme, getAllCustomPages } from '@/themes/theme'
 import { useEffect } from 'react'
-
+import { getGlobalData } from '@/lib/notion/getNotionData'
 /**
  * 404
  * @param {*} props
@@ -24,5 +24,15 @@ const CustomPage = props => {
   }
   const Layout = getLayoutByTheme(router)
   return <Layout {...p} />
+}
+export async function getStaticPaths() {
+  const paths = []
+  return { paths, fallback: true }
+}
+export async function getStaticProps({ params: { slug } }) {
+  const props = (await getGlobalData({ from: 'custom' })) || {}
+  return {
+    props
+  }
 }
 export default CustomPage
