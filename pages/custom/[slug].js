@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import { getLayoutByTheme, getAllCustomPages } from '@/themes/theme'
-import { getGlobalData } from '@/lib/notion/getNotionData'
 import { useEffect } from 'react'
 
 /**
@@ -13,23 +12,17 @@ const CustomPage = props => {
   const router = useRouter()
   const paths = getAllCustomPages(router)
   useEffect(() => {
-    if (paths && props.customPath && !paths.includes(props.customPath)) {
+    if (paths && router.query.slug && !paths.includes(router.query.slug)) {
       router.push('/404').then(() => {
         console.warn('找不到页面', router.asPath)
       })
     }
   })
+  const p = {
+    customPath: router.query.slug,
+    ...props
+  }
   const Layout = getLayoutByTheme(router)
-  return <Layout {...props} />
-}
-
-export async function getStaticPaths() {
-  const paths = []
-  return { paths, fallback: true }
-}
-export async function getStaticProps({ params: { slug } }) {
-  const props = (await getGlobalData({ from: 'custom' })) || {}
-  props.customPath = slug
-  return { props }
+  return <Layout {...p} />
 }
 export default CustomPage
