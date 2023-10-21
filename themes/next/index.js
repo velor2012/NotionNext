@@ -26,7 +26,8 @@ import { Transition } from '@headlessui/react'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import CommonHead from '@/components/CommonHead'
-
+import  * as CustomPages from './pages/pages'
+import CustomPageLayout from './pages'
 /**
  * 基础布局 采用左中右三栏布局，移动端使用顶部导航栏
  * @returns {JSX.Element}
@@ -341,5 +342,7 @@ export {
   Layout404,
   LayoutCategoryIndex,
   LayoutPostList,
-  LayoutTagIndex
+  LayoutTagIndex,
+  CustomPageLayout,
+  CustomPages
 }

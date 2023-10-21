@@ -25,7 +25,8 @@ import { Transition } from '@headlessui/react'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import CommonHead from '@/components/CommonHead'
-
+import  * as CustomPages from './pages/pages'
+import CustomPageLayout from './pages'
 /**
  * 基础布局
  *
@@ -272,5 +273,7 @@ export {
   Layout404,
   LayoutCategoryIndex,
   LayoutPostList,
-  LayoutTagIndex
+  LayoutTagIndex,
+  CustomPageLayout,
+  CustomPages
 }
