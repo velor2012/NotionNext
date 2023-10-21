@@ -38,7 +38,7 @@ const MyApp = ({ Component, pageProps }) => {
       const Layout = getGlobalLayoutByTheme(queryParam)
       return <Layout {...props} />
     },
-    [queryParam]
+    [queryParam.asPath]
   )
 
   // 自定义样式css和js引入
