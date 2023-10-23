@@ -1,7 +1,7 @@
 import CONFIG from './config'
 import Footer from './components/Footer'
 import JumpToBottomButton from './components/JumpToBottomButton'
-import JumpToTopButton from './components/MyJumpToTopButton'
+import JumpToTopButton from './components/JumpToTopButton'
 import SideAreaLeft from './components/SideAreaLeft'
 import SideAreaRight from './components/SideAreaRight'
 import TopNav from './components/TopNav'
@@ -28,6 +28,11 @@ import CommonHead from '@/components/CommonHead'
 import {   motion } from "framer-motion";
 import  * as CustomPages from './pages/pages'
 import CustomPageLayout from './pages'
+import NProgress from 'nprogress'
+import LoadingComponent from './components/LoadingCover'
+NProgress.configure({
+    template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+  })
 /**
  * 基础布局 采用左中右三栏布局，移动端使用顶部导航栏
  * @returns {JSX.Element}

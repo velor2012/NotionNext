@@ -58,7 +58,7 @@ const Stroke = props => {
   }, [props])
 
   return (
-    <path d={computedPath} ref={myRef} style={st}
+    <path className={props.className ? props.className : ""} d={computedPath} ref={myRef} style={st}
         >
         </path>
   )
