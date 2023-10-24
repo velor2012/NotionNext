@@ -24,7 +24,7 @@ import BlogListBar from './components/BlogListBar'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import CommonHead from '@/components/CommonHead'
-import {   motion } from "framer-motion";
+import {   motion, LayoutGroup } from "framer-motion";
 import  * as CustomPages from './pages/pages'
 import CustomPageLayout from './pages'
 import NProgress from 'nprogress'
@@ -103,7 +103,9 @@ const LayoutBase = (props) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     className={`w-[50rem] max-w-full md:mt-0 min-h-screen relative z-10`} ref={targetRef}>
-                                {children}
+                        <LayoutGroup id="1">
+                            {children}
+                        </LayoutGroup>
                     </motion.section>
 
                     {/* 右侧栏样式 */}
@@ -143,7 +145,7 @@ const LayoutIndex = (props) => {
  * @returns
  */
 const LayoutPostList = (props) => {
-  return <div >
+  return <motion.div layoutId="arrow">
 
         <BlogListBar {...props} />
 
@@ -151,7 +153,7 @@ const LayoutPostList = (props) => {
           ? <BlogPostListScroll {...props} showSummary={true} />
           : <BlogPostListPage {...props} />
         }
-    </div>
+    </motion.div>
 }
 
 /**
@@ -177,7 +179,7 @@ const LayoutSearch = (props) => {
   }, [])
 
   return (
-        <div >
+        <motion.div laylayoutId="arrow"out>
             <StickyBar>
                 <div className="p-4 dark:text-gray-200">
                     <i className="mr-1 fas fa-search" />{' '}
@@ -190,7 +192,7 @@ const LayoutSearch = (props) => {
                   : <BlogPostListPage {...props} />
                 }
             </div>
-        </div>
+        </motion.div>
   )
 }
 
@@ -213,7 +215,7 @@ const Layout404 = props => {
     }, 3000)
   }, [])
 
-  return <div>
+  return <motion.div layoutId="arrow">
         <div className='md:-mt-20 text-black w-full h-screen text-center justify-center content-center items-center flex flex-col'>
             <div className='dark:text-gray-200'>
                 <h2 className='inline-block border-r-2 border-gray-600 mr-2 px-3 py-2 align-top'><i className='mr-2 fas fa-spinner animate-spin' />404</h2>
@@ -222,7 +224,7 @@ const Layout404 = props => {
                 </div>
             </div>
         </div>
-    </div>
+    </motion.div>
 }
 
 /**
@@ -234,7 +236,7 @@ const LayoutArchive = (props) => {
   const { archivePosts } = props
 
   return (
-        <div>
+        <motion.div layoutId="arrow">
             <div className="mb-10 pb-20 bg-white md:p-12 p-3 dark:bg-hexo-black-gray shadow-md min-h-full">
                 {Object.keys(archivePosts).map(archiveTitle => (
                     <BlogPostArchive
@@ -244,7 +246,7 @@ const LayoutArchive = (props) => {
                     />
                 ))}
             </div>
-        </div>
+        </motion.div>
   )
 }
 
@@ -267,7 +269,7 @@ const LayoutSlug = (props) => {
       setFloatSlot(floatSlot)
   },[])
   return (
-        <div>
+        <motion.div layoutId="arrow">
 
             {post && !lock && <ArticleDetail {...props} />}
 
@@ -278,7 +280,7 @@ const LayoutSlug = (props) => {
                 <TocDrawer post={post} cRef={drawerRight} targetRef={targetRef} />
             </div>}
 
-        </div>
+        </motion.div>
   )
 }
 
@@ -291,7 +293,7 @@ const LayoutCategoryIndex = (props) => {
   const { categoryOptions } = props
   const { locale } = useGlobal()
   return (
-        <div {...props}>
+        <motion.div layoutId="arrow">    
             <div className='bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
                 <div className='dark:text-gray-200 mb-5'>
                     <i className='mr-4 fas faTh' />{locale.COMMON.CATEGORY}:
@@ -313,7 +315,7 @@ const LayoutCategoryIndex = (props) => {
                     })}
                 </div>
             </div>
-        </div>
+        </motion.div>
   )
 }
 
@@ -325,7 +327,7 @@ const LayoutCategoryIndex = (props) => {
 const LayoutTagIndex = (props) => {
   const { tagOptions } = props
   const { locale } = useGlobal()
-  return <div>
+  return <motion.div layoutId="arrow">
         <div className='bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
             <div className='dark:text-gray-200 mb-5'><i className='fas fa-tags mr-4' />{locale.COMMON.TAGS}:</div>
             <div id='tags-list' className='duration-200 flex flex-wrap'>
@@ -334,7 +336,7 @@ const LayoutTagIndex = (props) => {
                 })}
             </div>
         </div>
-    </div>
+    </motion.div>
 }
 
 export {
