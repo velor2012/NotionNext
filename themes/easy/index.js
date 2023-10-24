@@ -41,13 +41,10 @@ NProgress.configure({
 const LayoutBase = (props) => {
   const { children, headerSlot, rightAreaSlot, siteInfo, meta } = props
 //   const { onLoading } = useGlobal()
-const { onLoading } = useGlobal()
   const targetRef = useRef(null)
   const floatButtonGroup = useRef(null)
   const [showRightFloat, switchShow] = useState(false)
   const [percent, changePercent] = useState(0) // 页面阅读百分比
-  const router = useRouter()
-
   const scrollListener = () => {
     const targetRef = document.getElementById('wrapper')
     const clientHeight = targetRef?.clientHeight
@@ -116,9 +113,9 @@ const { onLoading } = useGlobal()
                 {/* 右下角悬浮 */}
                 <div ref={floatButtonGroup} className='right-8 bottom-12 lg:right-8 fixed justify-end z-20 font-sans'>
                     <div className={(showRightFloat ? 'animate__animated ' : 'hidden') + ' animate__fadeInUp rounded-md glassmorphism justify-center duration-500  animate__faster flex space-x-2 items-center cursor-pointer '}>
+                            <RightDownFloatSlot/>
                             <JumpToTopButton percent={percent} />
                             <JumpToBottomButton />
-                            <RightDownFloatSlot/>
                     </div>
                 </div>
                     
@@ -260,13 +257,13 @@ const LayoutSlug = (props) => {
   const { post, lock, validPassword } = props
   const drawerRight = useRef(null)
   const targetRef = isBrowser ? document.getElementById('article-wrapper') : null
-  const floatSlot = <div className='block lg:hidden'>
-        <TocDrawerButton onClick={() => {
-          drawerRight?.current?.handleSwitchVisible()
-        }} />
-    </div>
   const { setFloatSlot } = useTheme()
   useEffect(()=>{
+    const floatSlot = <div className='block lg:hidden'>
+    <TocDrawerButton {...props} onClick={() => {
+        drawerRight?.current?.handleSwitchVisible()
+        }} />
+    </div>
       setFloatSlot(floatSlot)
   },[])
   return (
@@ -291,10 +288,10 @@ const LayoutSlug = (props) => {
  * @returns
  */
 const LayoutCategoryIndex = (props) => {
-  const { allPosts, categoryOptions } = props
+  const { categoryOptions } = props
   const { locale } = useGlobal()
   return (
-        <div totalPosts={allPosts} {...props}>
+        <div {...props}>
             <div className='bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
                 <div className='dark:text-gray-200 mb-5'>
                     <i className='mr-4 fas faTh' />{locale.COMMON.CATEGORY}:
