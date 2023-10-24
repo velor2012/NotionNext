@@ -21,7 +21,6 @@ import { useRouter } from 'next/router'
 import ArticleDetail from './components/ArticleDetail'
 import Link from 'next/link'
 import BlogListBar from './components/BlogListBar'
-import { Transition } from '@headlessui/react'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import CommonHead from '@/components/CommonHead'
@@ -29,7 +28,8 @@ import {   motion } from "framer-motion";
 import  * as CustomPages from './pages/pages'
 import CustomPageLayout from './pages'
 import NProgress from 'nprogress'
-import LoadingComponent from './components/LoadingCover'
+import {useTheme, ThemeContextProvider } from './lib/themeContextProvider'
+import RightDownFloatSlot from './components/RightDownFloatSlot'
 NProgress.configure({
     template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
   })
@@ -39,8 +39,9 @@ NProgress.configure({
  * @constructor
  */
 const LayoutBase = (props) => {
-  const { children, headerSlot, floatSlot, rightAreaSlot, siteInfo, meta } = props
-  const { onLoading } = useGlobal()
+  const { children, headerSlot, rightAreaSlot, siteInfo, meta } = props
+//   const { onLoading } = useGlobal()
+const { onLoading } = useGlobal()
   const targetRef = useRef(null)
   const floatButtonGroup = useRef(null)
   const [showRightFloat, switchShow] = useState(false)
@@ -75,6 +76,7 @@ const LayoutBase = (props) => {
   }, [showRightFloat])
 
   return (
+    <ThemeContextProvider>
         <div id='theme-next' className=' w-screen flex flex-col items-center'>
 
             {/* SEO相关 */}
@@ -104,7 +106,7 @@ const LayoutBase = (props) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     className={`w-[50rem] max-w-full md:mt-0 min-h-screen relative z-10`} ref={targetRef}>
-                        {children}
+                                {children}
                     </motion.section>
 
                     {/* 右侧栏样式 */}
@@ -114,9 +116,9 @@ const LayoutBase = (props) => {
                 {/* 右下角悬浮 */}
                 <div ref={floatButtonGroup} className='right-8 bottom-12 lg:right-8 fixed justify-end z-20 font-sans'>
                     <div className={(showRightFloat ? 'animate__animated ' : 'hidden') + ' animate__fadeInUp rounded-md glassmorphism justify-center duration-500  animate__faster flex space-x-2 items-center cursor-pointer '}>
-                        <JumpToTopButton percent={percent} />
-                        <JumpToBottomButton />
-                        {floatSlot}
+                            <JumpToTopButton percent={percent} />
+                            <JumpToBottomButton />
+                            <RightDownFloatSlot/>
                     </div>
                 </div>
                     
@@ -124,6 +126,7 @@ const LayoutBase = (props) => {
             {/* 页脚 */}
             <Footer title={siteInfo?.title} />
         </div>
+    </ThemeContextProvider>
   )
 }
 
@@ -262,9 +265,12 @@ const LayoutSlug = (props) => {
           drawerRight?.current?.handleSwitchVisible()
         }} />
     </div>
-
+  const { setFloatSlot } = useTheme()
+  useEffect(()=>{
+      setFloatSlot(floatSlot)
+  },[])
   return (
-        <div floatSlot={floatSlot}>
+        <div>
 
             {post && !lock && <ArticleDetail {...props} />}
 

@@ -31,7 +31,6 @@ const SideAreaLeft = props => {
       transition: {
         duration: 0.5,
         staggerChildren: 0.07,
-        delayChildren:  0.5,
         staggerDirection: 1,
       }
     },
@@ -40,7 +39,6 @@ const SideAreaLeft = props => {
       transition: {
         duration: 0.5,
         staggerChildren: 0.05,
-        delayChildren:  0.5,
         staggerDirection: -1
       }
     }

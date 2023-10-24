@@ -10,6 +10,7 @@ import BLOG from '@/blog.config'
 import dynamic from 'next/dynamic'
 import Announcement from './Announcement'
 import LatestPostsGroup from './LatestPostsGroup'
+import {   motion } from "framer-motion";
 const NextRecentComments = dynamic(() => import('./NextRecentComments'))
 
 /**
@@ -28,9 +29,29 @@ const SideAreaRight = (props) => {
   const router = useRouter()
   const announcementVisible = notice && Object.keys(notice).length > 0
 
-  return (<aside id='right' className={(BLOG.LAYOUT_SIDEBAR_REVERSE ? 'mr-4' : 'ml-4') + ' space-y-4 hidden xl:block flex-col w-60 relative z-10'}>
+  const variants = {
+    show: {
+      x: 0,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.07,
+        staggerDirection: 1,
+      }
+    },
+    hidden: {
+      x: 1000,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.05,
+        staggerDirection: -1
+      }
+    }
+  }
 
-        {CONFIG.RIGHT_AD && <Card className='mb-2'>
+  return (<motion.aside id='right' initial="hidden" animate="show"  variants={variants}
+            className={(BLOG.LAYOUT_SIDEBAR_REVERSE ? 'mr-4' : 'ml-4') + ' space-y-4 hidden xl:block flex-col w-60 relative z-10'}>
+
+        {CONFIG.RIGHT_AD && <Card  variants={variants} className='mb-2'>
             {/* 展示广告  */}
             <ins
                 className='adsbygoogle'
@@ -45,7 +66,7 @@ const SideAreaRight = (props) => {
 
         <div className="sticky top-0 space-y-4 w-full">
 
-            {announcementVisible && <Card>
+            {announcementVisible && <Card variants={variants} className='mb-2'>
                 <Announcement post={notice} />
             </Card>}
 
@@ -54,7 +75,7 @@ const SideAreaRight = (props) => {
 
             {/* 分类  */}
             {CONFIG.RIGHT_CATEGORY_LIST && router.asPath !== '/category' && categoryOptions && (
-                <Card>
+                <Card variants={variants} className='mb-2'>
                     <div className='text-sm px-2 flex flex-nowrap justify-between font-light'>
                         <div className='pb-2 text-gray-600 dark:text-gray-300'><i className='mr-2 fas fa-th-list' />{locale.COMMON.CATEGORY}</div>
                         <Link
@@ -71,7 +92,7 @@ const SideAreaRight = (props) => {
             )}
 
             {CONFIG.RIGHT_TAG_LIST && router.asPath !== '/tag' && tagOptions && (
-                <Card>
+                <Card  variants={variants}>
                     <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
                         <div className="text-gray-600 dark:text-gray-200">
                             <i className="mr-2 fas fa-tag" />
@@ -93,7 +114,7 @@ const SideAreaRight = (props) => {
                 </Card>
             )}
 
-            {BLOG.COMMENT_WALINE_SERVER_URL && BLOG.COMMENT_WALINE_RECENT && <Card>
+            {BLOG.COMMENT_WALINE_SERVER_URL && BLOG.COMMENT_WALINE_RECENT && <Card  variants={variants}>
                 <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
                     <div className="text-gray-600 dark:text-gray-200">
                         <i className="mr-2 fas fa-tag" />
@@ -106,7 +127,7 @@ const SideAreaRight = (props) => {
             </Card>}
 
         </div>
-    </aside>
+    </motion.aside>
   )
 }
 export default SideAreaRight
