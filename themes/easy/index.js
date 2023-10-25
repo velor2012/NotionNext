@@ -30,9 +30,21 @@ import CustomPageLayout from './pages'
 import NProgress from 'nprogress'
 import {useTheme, ThemeContextProvider } from './lib/themeContextProvider'
 import RightDownFloatSlot from './components/RightDownFloatSlot'
-NProgress.configure({
-    template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
-  })
+const variants = {
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.07,
+        staggerDirection: 1
+      }
+    },
+    hidden: {
+        opacity: 0,
+    },
+    exit:{
+        opacity: 0
+    }
+  }
 /**
  * 基础布局 采用左中右三栏布局，移动端使用顶部导航栏
  * @returns {JSX.Element}
@@ -100,12 +112,8 @@ const LayoutBase = (props) => {
 
                     {/* 中央内容 */}
                     <motion.section id='container-inner'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
                     className={`w-[50rem] max-w-full md:mt-0 min-h-screen relative z-10`} ref={targetRef}>
-                        <LayoutGroup id="1">
-                            {children}
-                        </LayoutGroup>
+                        {children}
                     </motion.section>
 
                     {/* 右侧栏样式 */}
@@ -145,7 +153,7 @@ const LayoutIndex = (props) => {
  * @returns
  */
 const LayoutPostList = (props) => {
-  return <motion.div layoutId="arrow">
+  return <motion.div initial="hidden" animate="show" variants={variants} exit="exit">
 
         <BlogListBar {...props} />
 
@@ -179,7 +187,7 @@ const LayoutSearch = (props) => {
   }, [])
 
   return (
-        <motion.div laylayoutId="arrow"out>
+        <motion.div layinitial="hidden" animate="show" variants={variants} exit="exit"out>
             <StickyBar>
                 <div className="p-4 dark:text-gray-200">
                     <i className="mr-1 fas fa-search" />{' '}
@@ -215,7 +223,7 @@ const Layout404 = props => {
     }, 3000)
   }, [])
 
-  return <motion.div layoutId="arrow">
+  return <motion.div initial="hidden" animate="show" variants={variants} exit="exit">
         <div className='md:-mt-20 text-black w-full h-screen text-center justify-center content-center items-center flex flex-col'>
             <div className='dark:text-gray-200'>
                 <h2 className='inline-block border-r-2 border-gray-600 mr-2 px-3 py-2 align-top'><i className='mr-2 fas fa-spinner animate-spin' />404</h2>
@@ -236,7 +244,7 @@ const LayoutArchive = (props) => {
   const { archivePosts } = props
 
   return (
-        <motion.div layoutId="arrow">
+        <motion.div initial="hidden" animate="show" variants={variants} exit="exit">
             <div className="mb-10 pb-20 bg-white md:p-12 p-3 dark:bg-hexo-black-gray shadow-md min-h-full">
                 {Object.keys(archivePosts).map(archiveTitle => (
                     <BlogPostArchive
@@ -269,7 +277,7 @@ const LayoutSlug = (props) => {
       setFloatSlot(floatSlot)
   },[])
   return (
-        <motion.div layoutId="arrow">
+        <motion.div initial="hidden" animate="show" variants={variants} exit="exit">
 
             {post && !lock && <ArticleDetail {...props} />}
 
@@ -293,7 +301,7 @@ const LayoutCategoryIndex = (props) => {
   const { categoryOptions } = props
   const { locale } = useGlobal()
   return (
-        <motion.div layoutId="arrow">    
+        <motion.div initial="hidden" animate="show" variants={variants} exit="exit">    
             <div className='bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
                 <div className='dark:text-gray-200 mb-5'>
                     <i className='mr-4 fas faTh' />{locale.COMMON.CATEGORY}:
@@ -327,7 +335,7 @@ const LayoutCategoryIndex = (props) => {
 const LayoutTagIndex = (props) => {
   const { tagOptions } = props
   const { locale } = useGlobal()
-  return <motion.div layoutId="arrow">
+  return <motion.div initial="hidden" animate="show" variants={variants} exit="exit">
         <div className='bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
             <div className='dark:text-gray-200 mb-5'><i className='fas fa-tags mr-4' />{locale.COMMON.TAGS}:</div>
             <div id='tags-list' className='duration-200 flex flex-wrap'>

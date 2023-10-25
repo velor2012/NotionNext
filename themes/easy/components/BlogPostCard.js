@@ -11,11 +11,37 @@ import NotionIcon from '@/components/NotionIcon'
 import TwikooCommentCount from '@/components/TwikooCommentCount'
 import { formatDateFmt } from '@/lib/formatDate'
 
+import { motion, LayoutGroup, AnimatePresence } from 'framer-motion'
 const BlogPostCard = ({ post, showSummary }) => {
   const { locale } = useGlobal()
   const showPreview = CONFIG.POST_LIST_PREVIEW && post.blockMap
+  // TODO: 优化动画
+  const variants = {
+    show: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.07,
+        staggerDirection: 1
+      }
+    },
+    hidden: {
+      x: -200,
+      opacity: 0,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1
+      }
+    }
+  }
+
   return (
-    <Card className="w-full">
+    <Card
+      initial="hidden"
+      whileInView="show"
+      variants={variants}
+      className="w-full"
+    >
       <div
         key={post.id}
         className="flex flex-col-reverse justify-between duration-300"
@@ -28,58 +54,67 @@ const BlogPostCard = ({ post, showSummary }) => {
             data-aos-duration="500"
             data-aos-once="true"
             data-aos-anchor-placement="top-bottom"
-            className={`cursor-pointer text-3xl ${showPreview ? 'text-center' : ''
-              } leading-tight text-gray-700 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400`}>
-
-            <NotionIcon icon={post.pageIcon} /> <span className='menu-link'>{post.title}</span>
-
+            className={`cursor-pointer text-3xl ${
+              showPreview ? 'text-center' : ''
+            } leading-tight text-gray-700 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400`}
+          >
+            <NotionIcon icon={post.pageIcon} />{' '}
+            <span className="menu-link">{post.title}</span>
           </Link>
 
-          <div data-aos="fade-down"
-                data-aos-duration="500"
-                data-aos-delay="100"
-                data-aos-once="true"
-                data-aos-anchor-placement="top-bottom"
-                className={`flex mt-2 items-center ${showPreview ? 'justify-center' : 'justify-start'} flex-wrap dark:text-gray-500 text-gray-400 `}>
-
+          <div
+            data-aos="fade-down"
+            data-aos-duration="500"
+            data-aos-delay="100"
+            data-aos-once="true"
+            data-aos-anchor-placement="top-bottom"
+            className={`flex mt-2 items-center ${
+              showPreview ? 'justify-center' : 'justify-start'
+            } flex-wrap dark:text-gray-500 text-gray-400 `}
+          >
             <div>
               {post.category && (
                 <>
                   <Link
                     href={`/category/${post.category}`}
                     passHref
-                    className="hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer font-light text-sm transform">
-
+                    className="hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer font-light text-sm transform"
+                  >
                     <i className="mr-1 fas fa-folder" />
-                    <span className='menu-link'>{post.category}</span>
-
+                    <span className="menu-link">{post.category}</span>
                   </Link>
                   <span className="mx-2">|</span>
                 </>
               )}
-                <Link
-                    href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
-                    passHref
-                    className="hover:text-blue-500 dark:hover:text-blue-400 font-light cursor-pointer text-sm leading-4 mr-3">
-                    <span className='menu-link'>{post.date?.start_date}</span>
-                </Link>
+              <Link
+                href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
+                passHref
+                className="hover:text-blue-500 dark:hover:text-blue-400 font-light cursor-pointer text-sm leading-4 mr-3"
+              >
+                <span className="menu-link">{post.date?.start_date}</span>
+              </Link>
             </div>
-            <TwikooCommentCount post={post} className='hover:text-blue-500 dark:hover:text-blue-400 hover:underline text-sm'/>
+            <TwikooCommentCount
+              post={post}
+              className="hover:text-blue-500 dark:hover:text-blue-400 hover:underline text-sm"
+            />
 
             <div className="hover:text-blue-500 dark:hover:text-blue-400  md:flex-nowrap flex-wrap md:justify-start inline-block">
-                {post.tagItems?.map(tag => (
-                  <TagItemMini key={tag.name} tag={tag} />
-                ))}
+              {post.tagItems?.map(tag => (
+                <TagItemMini key={tag.name} tag={tag} />
+              ))}
             </div>
           </div>
 
           {(!showPreview || showSummary) && !post.results && (
-            <p data-aos="fade-down"
-                data-aos-duration="500"
-                data-aos-delay="100"
-                data-aos-once="true"
-                data-aos-anchor-placement="top-bottom"
-                className="mt-4 mb-12 text-gray-700 dark:text-gray-300 text-sm font-light leading-7">
+            <p
+              data-aos="fade-down"
+              data-aos-duration="500"
+              data-aos-delay="100"
+              data-aos-once="true"
+              data-aos-anchor-placement="top-bottom"
+              className="mt-4 mb-12 text-gray-700 dark:text-gray-300 text-sm font-light leading-7"
+            >
               {post.summary}
             </p>
           )}
@@ -94,11 +129,14 @@ const BlogPostCard = ({ post, showSummary }) => {
           )}
 
           {showPreview && post?.blockMap && (
-            <div data-aos="fade-down"
-            data-aos-duration="500"
-            data-aos-delay="100"
-            data-aos-once="true"
-            data-aos-anchor-placement="top-bottom"className="overflow-ellipsis truncate">
+            <div
+              data-aos="fade-down"
+              data-aos-duration="500"
+              data-aos-delay="100"
+              data-aos-once="true"
+              data-aos-anchor-placement="top-bottom"
+              className="overflow-ellipsis truncate"
+            >
               <NotionPage post={post} />
             </div>
           )}
@@ -106,11 +144,10 @@ const BlogPostCard = ({ post, showSummary }) => {
           <div className="text-right border-t pt-8 border-dashed">
             <Link
               href={`${BLOG.SUB_PATH}/${post.slug}`}
-              className="hover:bg-opacity-100 hover:underline transform duration-300 p-3 text-white bg-gray-800 cursor-pointer">
-
+              className="hover:bg-opacity-100 hover:underline transform duration-300 p-3 text-white bg-gray-800 cursor-pointer"
+            >
               {locale.COMMON.ARTICLE_DETAIL}
               <i className="ml-1 fas fa-angle-right" />
-
             </Link>
           </div>
         </div>
@@ -119,7 +156,7 @@ const BlogPostCard = ({ post, showSummary }) => {
           <Link href={`${BLOG.SUB_PATH}/${post.slug}`} passHref legacyBehavior>
             <div className="h-72 w-full relative duration-200 cursor-pointer transform overflow-hidden">
               <Image
-                className="hover:scale-105 transform duration-500"
+                className={`hover:scale-105 transform duration-500 ${post.id}-img`}
                 src={post?.pageCoverThumbnail}
                 alt={post.title}
                 layout="fill"

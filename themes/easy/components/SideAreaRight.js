@@ -53,6 +53,9 @@ const SideAreaRight = props => {
         staggerChildren: 0.05,
         staggerDirection: -1
       }
+    },
+    exit:{
+        opacity: 0
     }
   }
 
@@ -66,10 +69,11 @@ const SideAreaRight = props => {
         (BLOG.LAYOUT_SIDEBAR_REVERSE ? 'mr-4' : 'ml-4') +
         ' space-y-4 hidden xl:block flex-col w-60 relative z-10'
       }
+      exit="exit"
     >
-      <LayoutGroup>
+      <LayoutGroup id="sideAreaRight">
         {CONFIG.RIGHT_AD && (
-          <Card layout variants={variants} className="mb-2">
+          <Card  layout variants={variants} className="mb-2">
             {/* 展示广告  */}
             <ins
               className="adsbygoogle"
@@ -86,13 +90,13 @@ const SideAreaRight = props => {
         <div className="sticky top-0 space-y-4 w-full">
           <AnimatePresence>
             {announcementVisible && (
-              <Card layout variants={variants} className="mb-2">
+              <Card key={1} layout variants={variants} exit="exit" className="mb-2">
                 <Announcement post={notice} />
               </Card>
             )}
 
             {CONFIG.RIGHT_LATEST_POSTS && (
-              <Card layout>
+              <Card key={2} layout>
                 <LatestPostsGroup latestPosts={latestPosts} />
               </Card>
             )}
@@ -102,7 +106,7 @@ const SideAreaRight = props => {
             {CONFIG.RIGHT_CATEGORY_LIST &&
               router.asPath !== '/category' &&
               categoryOptions && (
-                <Card layout variants={variants} className="mb-2">
+                <Card key={3} layout variants={variants} exit="exit" className="mb-2">
                   <div className="text-sm px-2 flex flex-nowrap justify-between font-light">
                     <div className="pb-2 text-gray-600 dark:text-gray-300">
                       <i className="mr-2 fas fa-th-list" />
@@ -127,7 +131,7 @@ const SideAreaRight = props => {
             {CONFIG.RIGHT_TAG_LIST &&
               router.asPath !== '/tag' &&
               tagOptions && (
-                <Card layout variants={variants}>
+                <Card key={4} layout variants={variants} exit="exit">
                   <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
                     <div className="text-gray-600 dark:text-gray-200">
                       <i className="mr-2 fas fa-tag" />
@@ -149,7 +153,7 @@ const SideAreaRight = props => {
               )}
 
             {BLOG.COMMENT_WALINE_SERVER_URL && BLOG.COMMENT_WALINE_RECENT && (
-              <Card variants={variants}>
+              <Card key={5} layout variants={variants} exit="exit">
                 <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
                   <div className="text-gray-600 dark:text-gray-200">
                     <i className="mr-2 fas fa-tag" />
