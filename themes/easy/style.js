@@ -33,6 +33,28 @@ const Style = () => {
       color: #4e80ee;
     }
 
+    // 菜单下划线动画
+    #theme-next .article-link {
+      text-decoration: none;
+      background-image: linear-gradient(white, white);
+      background-repeat: no-repeat;
+      background-position: bottom center;
+      background-size: 0 2px;
+      transition: background-size 100ms ease-in-out;
+    }
+    #theme-next .article-link:hover {
+      background-size: 100% 2px;
+      color: white;
+    }
+    
+    .processBar{
+        position: absolute;
+  
+        top: 50%;
+        left: 50%;
+        
+        transform: translate(-50%, -50%);
+    }
   `}</style>
 }
 

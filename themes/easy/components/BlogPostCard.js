@@ -10,7 +10,6 @@ import NotionPage from '@/components/NotionPage'
 import NotionIcon from '@/components/NotionIcon'
 import TwikooCommentCount from '@/components/TwikooCommentCount'
 import { formatDateFmt } from '@/lib/formatDate'
-
 import { motion, LayoutGroup, AnimatePresence } from 'framer-motion'
 const BlogPostCard = ({ post, showSummary }) => {
   const { locale } = useGlobal()
@@ -32,7 +31,15 @@ const BlogPostCard = ({ post, showSummary }) => {
         staggerChildren: 0.05,
         staggerDirection: -1
       }
-    }
+    },
+    hiddenRight: {
+        x: 200,
+        opacity: 0,
+        transition: {
+          staggerChildren: 0.05,
+          staggerDirection: -1
+        }
+      }
   }
 
   return (
@@ -47,27 +54,28 @@ const BlogPostCard = ({ post, showSummary }) => {
         className="flex flex-col-reverse justify-between duration-300"
       >
         <div className="lg:p-8 p-4 flex flex-col w-full">
-          <Link
-            href={`${BLOG.SUB_PATH}/${post.slug}`}
-            passHref
-            data-aos="fade-down"
-            data-aos-duration="500"
-            data-aos-once="true"
-            data-aos-anchor-placement="top-bottom"
-            className={`cursor-pointer text-3xl ${
-              showPreview ? 'text-center' : ''
-            } leading-tight text-gray-700 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400`}
-          >
-            <NotionIcon icon={post.pageIcon} />{' '}
-            <span className="menu-link">{post.title}</span>
-          </Link>
+            <motion.div             
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={variants}>
+                <Link
+                    href={`${BLOG.SUB_PATH}/${post.slug}`}
+                    passHref
+                    className={`cursor-pointer text-3xl ${
+                    showPreview ? 'text-center' : ''
+                    } leading-tight text-gray-700 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-400`}
+                >
+                    <NotionIcon icon={post.pageIcon} />{' '}
+                    <span className="menu-link">{post.title}</span>
+                </Link>
+            </motion.div>
 
-          <div
-            data-aos="fade-down"
-            data-aos-duration="500"
-            data-aos-delay="100"
-            data-aos-once="true"
-            data-aos-anchor-placement="top-bottom"
+          <motion.div
+            initial="hiddenRight"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={variants}
             className={`flex mt-2 items-center ${
               showPreview ? 'justify-center' : 'justify-start'
             } flex-wrap dark:text-gray-500 text-gray-400 `}
@@ -104,19 +112,18 @@ const BlogPostCard = ({ post, showSummary }) => {
                 <TagItemMini key={tag.name} tag={tag} />
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {(!showPreview || showSummary) && !post.results && (
-            <p
-              data-aos="fade-down"
-              data-aos-duration="500"
-              data-aos-delay="100"
-              data-aos-once="true"
-              data-aos-anchor-placement="top-bottom"
+            <motion.p
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={variants}
               className="mt-4 mb-12 text-gray-700 dark:text-gray-300 text-sm font-light leading-7"
             >
               {post.summary}
-            </p>
+            </motion.p>
           )}
 
           {/* 搜索结果 */}
@@ -129,27 +136,29 @@ const BlogPostCard = ({ post, showSummary }) => {
           )}
 
           {showPreview && post?.blockMap && (
-            <div
-              data-aos="fade-down"
-              data-aos-duration="500"
-              data-aos-delay="100"
-              data-aos-once="true"
-              data-aos-anchor-placement="top-bottom"
+            <motion.div
+                initial="hiddenRight"
+                whileInView="show"
+                viewport={{ once: true }}
+                variants={variants}
               className="overflow-ellipsis truncate"
             >
               <NotionPage post={post} />
-            </div>
+            </motion.div>
           )}
 
-          <div className="text-right border-t pt-8 border-dashed">
-            <Link
-              href={`${BLOG.SUB_PATH}/${post.slug}`}
-              className="hover:bg-opacity-100 hover:underline transform duration-300 p-3 text-white bg-gray-800 cursor-pointer"
+          <motion.div
+           className="flex justify-end border-t pt-8 border-dashed">
+                <Link
+                whileHover={{ scale: 1.05}}
+                href={`${BLOG.SUB_PATH}/${post.slug}`}
+                className="hover:bg-opacity-100 hover:scale-105 transform duration-500 rounded-md  p-3 text-white bg-gray-800 cursor-pointer"
             >
-              {locale.COMMON.ARTICLE_DETAIL}
+                <span className="article-link">{locale.COMMON.ARTICLE_DETAIL}</span>
+              
               <i className="ml-1 fas fa-angle-right" />
             </Link>
-          </div>
+          </motion.div>
         </div>
 
         {CONFIG.POST_LIST_COVER && post?.pageCoverThumbnail && (
