@@ -2,6 +2,8 @@ import { useRouter } from 'next/router'
 import { getLayoutByTheme, getAllCustomPages } from '@/themes/theme'
 import { useEffect } from 'react'
 import { getGlobalData } from '@/lib/notion/getNotionData'
+import * as ThemeComponents from 'themes/index'
+import BLOG from '@/blog.config'
 /**
  * 404
  * @param {*} props
@@ -27,6 +29,14 @@ const CustomPage = props => {
 }
 export async function getStaticPaths() {
   const paths = []
+  const components = ThemeComponents[BLOG.THEME.toUpperCase()]
+  if (components && components.CustomPages) {
+    const customConfigs = components.CustomPages
+    for (const key in customConfigs) {
+      paths.push({ params: { slug: key } })
+    }
+  }
+
   return { paths, fallback: true }
 }
 export async function getStaticProps({ params: { slug } }) {
