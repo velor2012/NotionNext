@@ -24,7 +24,7 @@ import BlogListBar from './components/BlogListBar'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import CommonHead from '@/components/CommonHead'
-import {   motion, LayoutGroup } from "framer-motion";
+import {   motion, LayoutGroup, AnimatePresence } from "framer-motion";
 import  * as CustomPages from './pages/pages'
 import CustomPageLayout from './pages'
 import NProgress from 'nprogress'
@@ -47,7 +47,10 @@ const variants = {
         opacity: 0,
     },
     exit:{
-        opacity: 0
+        opacity: 0,
+        transition: {
+            duration: 0.5
+          }
     }
   }
 /**
@@ -96,7 +99,9 @@ const LayoutBase = (props) => {
             {/* SEO相关 */}
             <CommonHead meta={meta}/>
             <Style/>
-            {onLoading && <Loading/>}
+            <AnimatePresence>
+                {onLoading && <Loading variants={variants} exit="exit"/>}
+            </AnimatePresence>
             <div className='min-w-full max-w-full md:min-w-[750px] lg:min-w-[950px] xl:min-w-[1150px]  flex-col'>
 
 

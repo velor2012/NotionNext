@@ -1,9 +1,6 @@
 import { useRouter } from 'next/router'
-import { getLayoutByTheme, getAllCustomPages } from '@/themes/theme'
-import { useEffect } from 'react'
+import { getLayoutByTheme } from '@/themes/theme'
 import { getGlobalData } from '@/lib/notion/getNotionData'
-import * as ThemeComponents from 'themes/index'
-import BLOG from '@/blog.config'
 /**
  * 404
  * @param {*} props
@@ -12,14 +9,6 @@ import BLOG from '@/blog.config'
 const CustomPage = props => {
   // 根据页面路径加载不同Layout文件
   const router = useRouter()
-  const paths = getAllCustomPages(router)
-  useEffect(() => {
-    if (paths && router.query.slug && !paths.includes(router.query.slug)) {
-      router.push('/404').then(() => {
-        console.warn('找不到页面', router.asPath)
-      })
-    }
-  })
   const p = {
     customPath: router.query.slug,
     ...props
@@ -29,13 +18,6 @@ const CustomPage = props => {
 }
 export async function getStaticPaths() {
   const paths = []
-  const components = ThemeComponents[BLOG.THEME.toUpperCase()]
-  if (components && components.CustomPages) {
-    const customConfigs = components.CustomPages
-    for (const key in customConfigs) {
-      paths.push({ params: { slug: key } })
-    }
-  }
 
   return { paths, fallback: true }
 }

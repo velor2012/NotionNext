@@ -40,7 +40,7 @@ const DotTransition = {
   ease: "easeInOut"
 };
 
-export default function ThreeDotsWave() {
+export default function ThreeDotsWave(props) {
 const { isDarkMode } = useGlobal()
 const LoadingDot = {
     display: "block",
@@ -50,7 +50,7 @@ const LoadingDot = {
     borderRadius: "50%"
   };
   return (
-    <motion.div className="processBar">
+    <motion.div {...props} className="processBar z-50">
         <motion.div
         style={{
             paddingTop: "5rem",
