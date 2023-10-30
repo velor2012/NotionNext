@@ -55,7 +55,12 @@ const SideAreaRight = props => {
       }
     },
     exit:{
-        opacity: 0
+        opacity: 0,
+        transition: {
+            duration: 0.5,
+            staggerChildren: 0.05,
+            staggerDirection: -1
+          }
     }
   }
 
@@ -71,18 +76,13 @@ const SideAreaRight = props => {
       }
       exit="exit"
     >
-      <LayoutGroup id="sideAreaRight">
+      {/* <LayoutGroup id="sideAreaRight"> */}
         {CONFIG.RIGHT_AD && (
-          <Card  layout variants={variants} className="mb-2">
+          <Card  variants={variants} className="mb-2">
             {/* 展示广告  */}
             <ins
               className="adsbygoogle"
               style={{ display: 'block' }}
-              data-adtest="on"
-              data-ad-client="ca-pub-2708419466378217"
-              data-ad-slot="8807314373"
-              data-ad-format="auto"
-              data-full-width-responsive="true"
             />
           </Card>
         )}
@@ -90,13 +90,13 @@ const SideAreaRight = props => {
         <div className="sticky top-0 space-y-4 w-full">
           <AnimatePresence>
             {announcementVisible && (
-              <Card key={1} layout variants={variants} exit="exit" className="mb-2">
+              <Card key={1} variants={variants}  className="mb-2">
                 <Announcement post={notice} />
               </Card>
             )}
 
             {CONFIG.RIGHT_LATEST_POSTS && (
-              <Card key={2} layout>
+              <Card key={2}  variants={variants}>
                 <LatestPostsGroup latestPosts={latestPosts} />
               </Card>
             )}
@@ -106,7 +106,7 @@ const SideAreaRight = props => {
             {CONFIG.RIGHT_CATEGORY_LIST &&
               router.asPath !== '/category' &&
               categoryOptions && (
-                <Card key={3} layout variants={variants} exit="exit" className="mb-2">
+                <Card key={3} variants={variants} exit={variants.exit} className="mb-2">
                   <div className="text-sm px-2 flex flex-nowrap justify-between font-light">
                     <div className="pb-2 text-gray-600 dark:text-gray-300">
                       <i className="mr-2 fas fa-th-list" />
@@ -131,7 +131,7 @@ const SideAreaRight = props => {
             {CONFIG.RIGHT_TAG_LIST &&
               router.asPath !== '/tag' &&
               tagOptions && (
-                <Card key={4} layout variants={variants} exit="exit">
+                <Card key={4} variants={variants} exit={variants.exit}>
                   <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
                     <div className="text-gray-600 dark:text-gray-200">
                       <i className="mr-2 fas fa-tag" />
@@ -153,7 +153,7 @@ const SideAreaRight = props => {
               )}
 
             {BLOG.COMMENT_WALINE_SERVER_URL && BLOG.COMMENT_WALINE_RECENT && (
-              <Card key={5} layout variants={variants} exit="exit">
+              <Card key={5} variants={variants} >
                 <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
                   <div className="text-gray-600 dark:text-gray-200">
                     <i className="mr-2 fas fa-tag" />
@@ -167,7 +167,7 @@ const SideAreaRight = props => {
             )}
           </AnimatePresence>
         </div>
-      </LayoutGroup>
+      {/* </LayoutGroup> */}
     </motion.aside>
   )
 }

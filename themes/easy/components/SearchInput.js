@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useGlobal } from '@/lib/global'
 import { useImperativeHandle, useRef, useState } from 'react'
-
+import { motion } from 'framer-motion'
 let lock = false
 
 const SearchInput = ({ currentTag, keyword, cRef }) => {
@@ -60,11 +60,9 @@ const SearchInput = ({ currentTag, keyword, cRef }) => {
     }
   }
 
-  return <div data-aos="fade-down"
-        data-aos-duration="500"
-        data-aos-delay="200"
-        data-aos-once="true"
-        data-aos-anchor-placement="top-bottom"
+  return <motion.div
+        initial={{ y: -200}}
+        animate={{ y: 0, transitionDuration: 0.5}}
         className='flex w-full bg-transparent'>
         <input
             ref={searchInputRef}
@@ -89,7 +87,7 @@ const SearchInput = ({ currentTag, keyword, cRef }) => {
                 <i className='hover:text-black transform duration-200 text-gray-400 cursor-pointer fas fa-times' onClick={cleanSearch} />
             </div>
         )}
-    </div>
+    </motion.div>
 }
 
 export default SearchInput

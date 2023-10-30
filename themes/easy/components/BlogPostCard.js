@@ -10,11 +10,10 @@ import NotionPage from '@/components/NotionPage'
 import NotionIcon from '@/components/NotionIcon'
 import TwikooCommentCount from '@/components/TwikooCommentCount'
 import { formatDateFmt } from '@/lib/formatDate'
-import { motion, LayoutGroup, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 const BlogPostCard = ({ post, showSummary }) => {
   const { locale } = useGlobal()
   const showPreview = CONFIG.POST_LIST_PREVIEW && post.blockMap
-  // TODO: 优化动画
   const variants = {
     show: {
       x: 0,
@@ -150,7 +149,6 @@ const BlogPostCard = ({ post, showSummary }) => {
           <motion.div
            className="flex justify-end border-t pt-8 border-dashed">
                 <Link
-                whileHover={{ scale: 1.05}}
                 href={`${BLOG.SUB_PATH}/${post.slug}`}
                 className="hover:bg-opacity-100 hover:scale-105 transform duration-500 rounded-md  p-3 text-white bg-gray-800 cursor-pointer"
             >

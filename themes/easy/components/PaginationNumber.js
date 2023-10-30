@@ -17,10 +17,6 @@ const PaginationNumber = ({ page, totalPage }) => {
 
   return (
     <div
-        data-aos="fade-down"
-        data-aos-duration="300"
-        data-aos-once="false"
-        data-aos-anchor-placement="top-bottom"
         className="my-5 flex justify-center items-end font-medium text-black hover:shadow-xl duration-200 transition-all bg-white dark:bg-hexo-black-gray dark:text-gray-300 py-3 shadow space-x-2">
         {/* 上一页 */}
         <Link

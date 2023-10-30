@@ -1,13 +1,11 @@
 import InfoCard from './InfoCard'
 import { MenuList } from './MenuList'
-import SearchInput from './SearchInput'
 import Toc from './Toc'
 import { useGlobal } from '@/lib/global'
 import React from 'react'
 import Tabs from '@/components/Tabs'
 import Logo from './Logo'
 import Card from './Card'
-import CONFIG from '../config'
 import BLOG from '@/blog.config'
 import Live2D from '@/components/Live2D'
 import { motion } from 'framer-motion'
@@ -54,16 +52,13 @@ const SideAreaLeft = props => {
                 <div className='pt-2 px-2 font-sans'>
                     <MenuList allowCollapse={true} {...props} />
                 </div>
-                {/* {CONFIG.MENU_SEARCH && <div className='px-2 pt-2 font-sans'>
-                    <SearchInput {...props} />
-                </div>} */}
 
             </section>
 
         </motion.section>
 
-        <motion.div  variants={variants} className='sticky top-4 hidden lg:block'>
-            <Card>
+        <motion.div  className='sticky top-4 hidden lg:block'>
+            <Card variants={variants}>
                 <Tabs>
                     {showToc && (
                         <div key={locale.COMMON.TABLE_OF_CONTENTS} className='dark:text-gray-400 text-gray-600 bg-white dark:bg-hexo-black-gray duration-200'>

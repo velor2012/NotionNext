@@ -69,16 +69,25 @@ const Toc = ({ toc }) => {
           const id = uuidToId(tocItem.id)
           tocIds.push(id)
           return (
-            <a
+            <div
               key={id}
-              href={`#${id}`}
+            //   href={`#${id}`}
+              onClick={()=>{
+                const el = document.getElementById(id)
+                const top = el.getBoundingClientRect().top -
+                document.body.getBoundingClientRect().top
+                window.scrollTo({
+                    top: top,
+                    behavior: 'smooth'
+                })
+              }}
               className={`notion-table-of-contents-item duration-300 transform font-light
               notion-table-of-contents-item-indent-level-${tocItem.indentLevel} `}
             >
               <span style={{ display: 'inline-block', marginLeft: tocItem.indentLevel * 16 }} className={`${activeSection === id && ' font-bold text-red-400 underline'}`}>
                 {tocItem.text}
               </span>
-            </a>
+            </div>
           )
         })}
       </nav>
