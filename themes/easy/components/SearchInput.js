@@ -83,7 +83,7 @@ const SearchInput = ({ currentTag, keyword, cRef }) => {
         </div>
 
         {(showClean &&
-            <div className='-ml-12 cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-800 float-right items-center justify-center py-2'>
+            <div className='-ml-12 cursor-pointer float-right items-center justify-center py-2'>
                 <i className='hover:text-black transform duration-200 text-gray-400 cursor-pointer fas fa-times' onClick={cleanSearch} />
             </div>
         )}

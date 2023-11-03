@@ -46,7 +46,7 @@ export const getLayoutByTheme = (router) => {
 export const getLayoutNameByPath = (path) => {
   switch (path) {
     case -1:
-        return 'LayoutBase'
+      return 'LayoutBase'
     case '/':
       return 'LayoutIndex'
     case '/archive':
