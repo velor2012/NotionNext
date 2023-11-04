@@ -24,13 +24,14 @@ import BlogListBar from './components/BlogListBar'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import CommonHead from '@/components/CommonHead'
-import {   motion, LayoutGroup, AnimatePresence } from "framer-motion";
+import {   motion, useAnimate, AnimatePresence } from "framer-motion";
 import  * as CustomPages from './pages/pages'
 import CustomPageLayout from './pages'
 import NProgress from 'nprogress'
 import {useTheme, ThemeContextProvider } from './lib/themeContextProvider'
 import RightDownFloatSlot from './components/RightDownFloatSlot'
 import Loading from './components/Loading'
+import _404Card from './components/404'
 // 关闭默认的loading样式
 NProgress.configure({
     template: '<div class="bar" role="bar"></div>'
@@ -94,7 +95,10 @@ const LayoutBase = (props) => {
 
   return (
     <ThemeContextProvider>
-        <div id='theme-next' className=' w-screen flex flex-col items-center'>
+        <div id='theme-next' className=' w-screen flex flex-col items-center
+         bg-[#eeedee]
+         dark:bg-black
+        '>
 
             {/* SEO相关 */}
             <CommonHead meta={meta}/>
@@ -223,26 +227,19 @@ const LayoutSearch = (props) => {
 const Layout404 = props => {
   const router = useRouter()
   useEffect(() => {
-    // 延时3秒如果加载失败就返回首页
-    setTimeout(() => {
-      const article = isBrowser && document.getElementById('article-wrapper')
-      if (!article) {
-        router.push('/').then(() => {
-          // console.log('找不到页面', router.asPath)
-        })
-      }
-    }, 3000)
+    // // 延时3秒如果加载失败就返回首页
+    // setTimeout(() => {
+    //   const article = isBrowser && document.getElementById('article-wrapper')
+    //   if (!article) {
+    //     router.push('/').then(() => {
+    //       // console.log('找不到页面', router.asPath)
+    //     })
+    //   }
+    // }, 3000)
   }, [])
 
   return <motion.div >
-        <div className='md:-mt-20 text-black w-full h-screen text-center justify-center content-center items-center flex flex-col'>
-            <div className='dark:text-gray-200'>
-                <h2 className='inline-block border-r-2 border-gray-600 mr-2 px-3 py-2 align-top'><i className='mr-2 fas fa-spinner animate-spin' />404</h2>
-                <div className='inline-block text-left h-32 leading-10 items-center'>
-                    <h2 className='m-0 p-0'>页面无法加载，即将返回首页</h2>
-                </div>
-            </div>
-        </div>
+        <_404Card/>
     </motion.div>
 }
 

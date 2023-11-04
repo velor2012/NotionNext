@@ -7,13 +7,13 @@
 const Style = () => {
   return <style jsx global>{`
 
-    // 底色
+    /* // 底色
     body{
         background-color: #eeedee
     }
     .dark body{
         background-color: black;
-    }
+    } */
 
     .article-padding {
       padding: 40px;

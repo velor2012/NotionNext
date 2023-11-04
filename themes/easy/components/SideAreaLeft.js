@@ -48,7 +48,7 @@ const SideAreaLeft = props => {
         <motion.section
             className='w-60'>
             {/* 菜单 */}
-            <section variants={variants} className='shadow hidden lg:block mb-5 pb-4 bg-white dark:bg-hexo-black-gray hover:shadow-xl duration-200'>
+            <section variants={variants} className=' rounded-md overflow-hidden shadow hidden lg:block mb-5 pb-4 bg-white dark:bg-hexo-black-gray hover:shadow-xl duration-200'>
                 <Logo className='h-32' {...props} />
                 <div className='pt-2 px-2 font-sans'>
                     <MenuList allowCollapse={true} {...props} />
