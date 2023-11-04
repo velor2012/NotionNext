@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { useGlobal } from '@/lib/global'
-
+import { motion } from 'framer-motion'
 const TagItem = ({ tag, selected }) => {
   const { locale } = useGlobal()
   if (!tag) {
@@ -17,7 +17,11 @@ const TagItem = ({ tag, selected }) => {
         duration-200 mr-1 my-1 px-2 py-1 text-sm whitespace-nowrap 
          hover:bg-gray-200 dark:hover:bg-gray-800 `}>
         <div className='text-gray-600 dark:text-gray-300 dark:hover:text-white'>
-          {selected && <i className='fas fa-tag mr-1'/>} {`${tag.name} `} {tag.count ? `(${tag.count})` : ''}
+          {selected && 
+          <motion.i 
+          layoutId="TagItemTag"
+          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          className='fas fa-tag mr-1'/>} {`${tag.name} `} {tag.count ? `(${tag.count})` : ''}
         </div>
       </li>
     </Link>
