@@ -14,7 +14,7 @@ import CONFIG from '../config'
 import NotionIcon from '@/components/NotionIcon'
 import LazyImage from '@/components/LazyImage'
 import { formatDateFmt } from '@/lib/formatDate'
-
+import { motion } from 'framer-motion'
 /**
  *
  * @param {*} param0
@@ -30,11 +30,8 @@ export default function ArticleDetail(props) {
         <div id="article-wrapper"
             className="shadow md:hover:shadow-2xl overflow-x-auto flex-grow mx-auto w-screen md:w-full ">
             <div itemScope itemType="https://schema.org/Movie"
-                data-aos="fade-down"
-                data-aos-duration="300"
-                data-aos-once="true"
-                data-aos-anchor-placement="top-bottom"
-                className="subpixel-antialiased overflow-y-hidden py-10 px-5 lg:pt-24 md:px-24  dark:border-gray-700 bg-white dark:bg-hexo-black-gray article-padding"
+                
+                className=" rounded-md subpixel-antialiased overflow-y-hidden py-10 px-5 lg:pt-24 md:px-24  dark:border-gray-700 bg-white dark:bg-hexo-black-gray article-padding"
             >
 
                 {showArticleInfo && <header>
@@ -95,14 +92,13 @@ export default function ArticleDetail(props) {
 
                     <section className="flex justify-between">
                         {/* 分类 */}
-                        {post.category && <>
+                        {post.category && 
                             <div className="cursor-pointer my-auto text-md mr-2 hover:text-black dark:hover:text-white border-b dark:text-gray-500 border-dashed">
-                                <Link href={`/category/${post.category}`} passHref legacyBehavior>
+                                <Link key={post.category} href={`/category/${post.category}`}>
                                     <><i className="mr-1 far fa-folder-open" /> {post.category}</>
                                 </Link>
                             </div>
-
-                        </>}
+                        }
 
                         {/* 标签列表 */}
                         {post?.type === 'Post' && (

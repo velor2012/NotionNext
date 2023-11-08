@@ -81,7 +81,6 @@ export const MenuList = props => {
       {/* 大屏模式菜单 */}
       <nav
         id="nav"
-        data-aos-anchor-placement="top-bottom"
         className="hidden lg:block leading-8 text-gray-500 dark:text-gray-400 font-sans"
       >
         <motion.ul variants={variants}>

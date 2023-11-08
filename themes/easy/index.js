@@ -253,7 +253,7 @@ const LayoutArchive = (props) => {
 
   return (
         <motion.div >
-            <div className="mb-10 pb-20 bg-white md:p-12 p-3 dark:bg-hexo-black-gray shadow-md min-h-full">
+            <div className=" rounded-md mb-10 pb-20 bg-white md:p-12 p-3 dark:bg-hexo-black-gray shadow-md min-h-full">
                 {Object.keys(archivePosts).map(archiveTitle => (
                     <BlogPostArchive
                         key={archiveTitle}
@@ -310,7 +310,7 @@ const LayoutCategoryIndex = (props) => {
   const { locale } = useGlobal()
   return (
         <motion.div >    
-            <div className='bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
+            <div className=' rounded-md  bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
                 <div className='dark:text-gray-200 mb-5'>
                     <i className='mr-4 fas faTh' />{locale.COMMON.CATEGORY}:
                 </div>
@@ -344,7 +344,7 @@ const LayoutTagIndex = (props) => {
   const { tagOptions } = props
   const { locale } = useGlobal()
   return <motion.div >
-        <div className='bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
+        <div className='rounded-md bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
             <div className='dark:text-gray-200 mb-5'><i className='fas fa-tags mr-4' />{locale.COMMON.TAGS}:</div>
             <div id='tags-list' className='duration-200 flex flex-wrap'>
                 {tagOptions.map(tag => {

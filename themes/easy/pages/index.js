@@ -17,7 +17,7 @@ const Layout = props => {
     )
     return (
         <>
-        {children && children(customPath)}
+        {children && children(props)}
         </>
     )
 }

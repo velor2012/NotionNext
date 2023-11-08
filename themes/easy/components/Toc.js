@@ -3,6 +3,23 @@ import throttle from 'lodash.throttle'
 import { uuidToId } from 'notion-utils'
 import Progress from './Progress'
 // import { cs } from 'react-notion-x'
+import { motion } from 'framer-motion'
+const variants = {
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.07,
+        delayChildren: 0.2
+      }
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1
+      }
+    }
+  }
 
 /**
  * 目录导航组件
@@ -59,7 +76,11 @@ const Toc = ({ toc }) => {
     return <></>
   }
 
-  return <div className='px-3'>
+  return <motion.div
+  initial="hidden"
+  animate="show"
+  variants={variants}
+  className='px-3'>
     <div className='w-full pb-1'>
       <Progress />
     </div>
@@ -69,8 +90,9 @@ const Toc = ({ toc }) => {
           const id = uuidToId(tocItem.id)
           tocIds.push(id)
           return (
-            <div
+            <motion.div
               key={id}
+              variants={variants}
             //   href={`#${id}`}
               onClick={()=>{
                 const el = document.getElementById(id)
@@ -87,12 +109,12 @@ const Toc = ({ toc }) => {
               <span style={{ display: 'inline-block', marginLeft: tocItem.indentLevel * 16 }} className={`${activeSection === id && ' font-bold text-red-400 underline'}`}>
                 {tocItem.text}
               </span>
-            </div>
+            </motion.div>
           )
         })}
       </nav>
     </div>
-  </div>
+  </motion.div>
 }
 
 export default Toc

@@ -6,7 +6,6 @@
 import { useGlobal } from '@/lib/global'
 import InfoCard from '../components/InfoCard'
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
 const LayoutAboutBlog = (props) => {
  const { locale, postCount } = useGlobal()
  return <div>
