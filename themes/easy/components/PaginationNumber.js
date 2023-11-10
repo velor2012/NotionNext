@@ -17,7 +17,7 @@ const PaginationNumber = ({ page, totalPage }) => {
 
   return (
     <div
-        className="my-5 flex justify-center items-end font-medium text-black hover:shadow-xl duration-200 transition-all bg-white dark:bg-hexo-black-gray dark:text-gray-300 py-3 shadow space-x-2">
+        className=" rounded-md my-5 flex justify-center items-end font-medium text-black hover:shadow-xl duration-200 transition-all bg-white dark:bg-hexo-black-gray dark:text-gray-300 py-3 shadow space-x-2">
         {/* 上一页 */}
         <Link
           href={{
@@ -68,9 +68,9 @@ function getPageElement(pagePrefix, page, currentPage) {
       passHref
       className={
           (page + '' === currentPage + ''
-            ? 'font-bold bg-gray-500 dark:bg-gray-400 text-white '
-            : 'hover:border-t-2 duration-200 transition-all border-white hover:border-gray-400 ') +
-          ' border-white  dark:hover:border-gray-400 cursor-pointer w-8 h-8 justify-center flex items-center font-light hover:font-bold'
+            ? 'font-bold bg-gray-400 dark:bg-gray-800 text-white '
+            : 'hover:border-t-2 duration-200 transition-all border-white hover:border-gray-800 ') +
+          ' rounded-sm border-white  dark:hover:border-gray-800 cursor-pointer w-8 h-8 justify-center flex items-center font-light hover:font-bold'
       }>
 
       {page}

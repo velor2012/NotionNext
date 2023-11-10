@@ -4,7 +4,7 @@ import CONFIG from '../config'
 import BLOG from '@/blog.config'
 import { MenuItemDrop } from './MenuItemDrop'
 import { MenuItemCollapse } from './MenuItemCollapse'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 export const MenuList = props => {
   const { postCount, customNav, customMenu } = props
   const { locale } = useGlobal()
@@ -83,11 +83,13 @@ export const MenuList = props => {
         id="nav"
         className="hidden lg:block leading-8 text-gray-500 dark:text-gray-400 font-sans"
       >
-        <motion.ul variants={variants}>
-          {links.map(
-            link =>
-              link && link.show && <MenuItemDrop key={link?.id} link={link} />
-          )}
+        <motion.ul initial="hidden" animate="show" variants={variants}>
+            <AnimatePresence>
+                {links.map(
+                    link =>
+                    link && link.show && <MenuItemDrop key={link?.id} link={link} />
+                )}
+            </AnimatePresence>
         </motion.ul>
       </nav>
 

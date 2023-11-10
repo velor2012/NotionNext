@@ -30,7 +30,7 @@ const CategoryList = ({ currentCategory, categoryOptions }) => {
                     <motion.span
                     layoutId="bubble"
                     className="absolute inset-0 z-0 bg-gray-500 dark:hover:bg-gray-900 dark:bg-gray-500 dark:border-gray-800 mix-blend-lighten"
-                    style={{ borderRadius: 12 }}
+                    style={{ borderRadius: 12, scale: 1.02 }}
                     transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                     />
                 )}
