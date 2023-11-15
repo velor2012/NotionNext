@@ -10,6 +10,7 @@ const CONFIG = {
   POST_LIST_SUMMARY: false, // 显示用户自定义摘要，有预览时优先只展示预览
 
   POST_HEADER_IMAGE_VISIBLE: true, // 文章详情页是否显示封面图
+  AVATAR_BORDER_URL: 'https://i.ibb.co/d6gFgtv/Pngtree-circle-flower-frame-7580680.png', // 博主头像的边框
 
   // 右侧组件
   RIGHT_BAR: true, // 是否显示右侧栏
