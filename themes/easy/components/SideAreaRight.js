@@ -26,7 +26,7 @@ const NextRecentComments = dynamic(() => import('./NextRecentComments'))
 const SideAreaRight = props => {
   const {
     tagOptions,
-    currentTag,
+    tag,
     slot,
     categoryOptions,
     currentCategory,
@@ -147,7 +147,7 @@ const SideAreaRight = props => {
                     </Link>
                   </div>
                   <div className="px-2 pt-2">
-                    <TagGroups tags={tagOptions} currentTag={currentTag} />
+                    <TagGroups tags={tagOptions} currentTag={tag} />
                   </div>
                 </Card>
               )}

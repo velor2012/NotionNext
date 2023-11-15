@@ -92,7 +92,7 @@ const LayoutBase = (props) => {
     document.addEventListener('scroll', scrollListener)
     return () => document.removeEventListener('scroll', scrollListener)
   }, [showRightFloat])
-
+debugger
   return (
     <ThemeContextProvider>
         <div id='theme-next' className=' w-screen flex flex-col items-center

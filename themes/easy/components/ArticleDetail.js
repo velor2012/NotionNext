@@ -28,10 +28,10 @@ export default function ArticleDetail(props) {
 
   return (
         <div id="article-wrapper"
-            className="shadow md:hover:shadow-2xl overflow-x-auto flex-grow mx-auto w-screen md:w-full ">
+            className="rounded-md shadow md:hover:shadow-2xl overflow-x-auto flex-grow mx-auto w-screen md:w-full ">
             <div itemScope itemType="https://schema.org/Movie"
                 
-                className=" rounded-md subpixel-antialiased overflow-y-hidden py-10 px-5 lg:pt-24 md:px-24  dark:border-gray-700 bg-white dark:bg-hexo-black-gray article-padding"
+                className="subpixel-antialiased overflow-y-hidden py-10 px-5 lg:pt-24 md:px-24  dark:border-gray-700 bg-white dark:bg-hexo-black-gray article-padding"
             >
 
                 {showArticleInfo && <header>

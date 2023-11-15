@@ -17,7 +17,7 @@ const PaginationNumber = ({ page, totalPage }) => {
 
   return (
     <div
-        className=" rounded-md my-5 flex justify-center items-end font-medium text-black hover:shadow-xl duration-200 transition-all bg-white dark:bg-hexo-black-gray dark:text-gray-300 py-3 shadow space-x-2">
+        className=" my-5 flex justify-center items-end font-medium text-black duration-200 transition-all  dark:text-gray-300 py-3 space-x-2">
         {/* 上一页 */}
         <Link
           href={{
@@ -32,7 +32,7 @@ const PaginationNumber = ({ page, totalPage }) => {
             <div
                 rel="prev"
                 className={`${currentPage === 1 ? 'invisible' : 'block'
-                    } hover:border-t-2 border-white  hover:border-gray-400 dark:hover:border-gray-400 w-8 h-8 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold`}
+                    } rounded-md bg-white hover:border-t-2 border-white  hover:border-gray-400 dark:hover:border-gray-400 w-8 h-8 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold`}
             >
                 <i className="fas fa-angle-left" />
             </div>
@@ -51,7 +51,7 @@ const PaginationNumber = ({ page, totalPage }) => {
             <div
                 rel="next"
                 className={`${+showNext ? 'block' : 'invisible'
-                    } hover:border-t-2 border-white  hover:border-gray-400 dark:hover:border-gray-400 w-8 h-8 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold`}
+                    } rounded-md bg-white  hover:border-t-2 border-white  hover:border-gray-400 dark:hover:border-gray-400 w-8 h-8 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold`}
             >
                 <i className="fas fa-angle-right" />
             </div>
@@ -69,8 +69,8 @@ function getPageElement(pagePrefix, page, currentPage) {
       className={
           (page + '' === currentPage + ''
             ? 'font-bold bg-gray-400 dark:bg-gray-800 text-white '
-            : 'hover:border-t-2 duration-200 transition-all border-white hover:border-gray-800 ') +
-          ' rounded-sm border-white  dark:hover:border-gray-800 cursor-pointer w-8 h-8 justify-center flex items-center font-light hover:font-bold'
+            : ' bg-white hover:border-t-2 duration-200 transition-all border-white hover:border-gray-800 ') +
+          ' rounded-md border-white  dark:hover:border-gray-800 cursor-pointer w-8 h-8 justify-center flex items-center font-light hover:font-bold'
       }>
 
       {page}
