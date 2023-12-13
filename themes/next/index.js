@@ -8,7 +8,6 @@ import SideAreaRight from './components/SideAreaRight'
 import TopNav from './components/TopNav'
 import { useGlobal } from '@/lib/global'
 import { useEffect, useRef, useState } from 'react'
-import BLOG from '@/blog.config'
 import BlogPostListScroll from './components/BlogPostListScroll'
 import BlogPostListPage from './components/BlogPostListPage'
 import StickyBar from './components/StickyBar'
@@ -28,13 +27,15 @@ import replaceSearchResult from '@/components/Mark'
 import CommonHead from '@/components/CommonHead'
 import  * as CustomPages from './pages/pages'
 import CustomPageLayout from './pages'
+import { siteConfig } from '@/lib/config'
+
 /**
  * 基础布局 采用左中右三栏布局，移动端使用顶部导航栏
  * @returns {JSX.Element}
  * @constructor
  */
 const LayoutBase = (props) => {
-  const { children, headerSlot, floatSlot, rightAreaSlot, siteInfo, meta } = props
+  const { children, headerSlot, floatSlot, rightAreaSlot, meta } = props
   const { onLoading } = useGlobal()
   const targetRef = useRef(null)
   const floatButtonGroup = useRef(null)
@@ -84,12 +85,12 @@ const LayoutBase = (props) => {
             <div className='h-0.5 w-full bg-gray-700 dark:bg-gray-600 hidden lg:block' />
 
             {/* 主区 */}
-            <main id='wrapper' className={(BLOG.LAYOUT_SIDEBAR_REVERSE ? 'flex-row-reverse' : '') + ' next relative flex justify-center flex-1 pb-12'}>
+            <main id='wrapper' className={(JSON.parse(siteConfig('LAYOUT_SIDEBAR_REVERSE')) ? 'flex-row-reverse' : '') + ' next relative flex justify-center flex-1 pb-12'}>
                 {/* 左侧栏样式 */}
                 <SideAreaLeft targetRef={targetRef} {...props} />
 
                 {/* 中央内容 */}
-                <section id='container-inner' className={`${CONFIG.NAV_TYPE !== 'normal' ? 'mt-24' : ''} lg:max-w-3xl xl:max-w-4xl flex-grow md:mt-0 min-h-screen w-full relative z-10`} ref={targetRef}>
+                <section id='container-inner' className={`${siteConfig('NEXT_NAV_TYPE', null, CONFIG) !== 'normal' ? 'mt-24' : ''} lg:max-w-3xl xl:max-w-4xl flex-grow md:mt-0 min-h-screen w-full relative z-10`} ref={targetRef}>
                     <Transition
                         show={!onLoading}
                         appear={true}
@@ -106,7 +107,7 @@ const LayoutBase = (props) => {
                 </section>
 
                 {/* 右侧栏样式 */}
-                {CONFIG.RIGHT_BAR && <SideAreaRight targetRef={targetRef} slot={rightAreaSlot} {...props} />}
+                {siteConfig('NEXT_RIGHT_BAR', null, CONFIG) && <SideAreaRight targetRef={targetRef} slot={rightAreaSlot} {...props} />}
             </main>
 
             {/* 右下角悬浮 */}
@@ -120,7 +121,7 @@ const LayoutBase = (props) => {
             </div>
 
             {/* 页脚 */}
-            <Footer title={siteInfo?.title} />
+            <Footer title={siteConfig('TITLE')} />
         </div>
   )
 }
@@ -145,7 +146,7 @@ const LayoutPostList = (props) => {
 
         <BlogListBar {...props} />
 
-        {BLOG.POST_LIST_STYLE !== 'page'
+        {siteConfig('POST_LIST_STYLE') !== 'page'
           ? <BlogPostListScroll {...props} showSummary={true} />
           : <BlogPostListPage {...props} />
         }
@@ -183,7 +184,7 @@ const LayoutSearch = (props) => {
                 </div>
             </StickyBar>
             <div className="md:mt-5">
-                {BLOG.POST_LIST_STYLE !== 'page'
+                {siteConfig('POST_LIST_STYLE') !== 'page'
                   ? <BlogPostListScroll {...props} showSummary={true} />
                   : <BlogPostListPage {...props} />
                 }
@@ -292,7 +293,7 @@ const LayoutCategoryIndex = (props) => {
                     <i className='mr-4 fas faTh' />{locale.COMMON.CATEGORY}:
                 </div>
                 <div id='category-list' className='duration-200 flex flex-wrap'>
-                    {categoryOptions.map(category => {
+                    {categoryOptions?.map(category => {
                       return (
                             <Link
                                 key={category.name}

@@ -1,5 +1,5 @@
-import React from 'react'
-import BLOG from '@/blog.config'
+import { useEffect, useState } from 'react'
+import { siteConfig } from '@/lib/config'
 import Link from 'next/link'
 import { RecentComments } from '@waline/client'
 
@@ -13,7 +13,7 @@ const NextRecentComments = (props) => {
   const [onLoading, changeLoading] = React.useState(true)
   React.useEffect(() => {
     RecentComments({
-      serverURL: BLOG.COMMENT_WALINE_SERVER_URL,
+      serverURL: siteConfig('COMMENT_WALINE_SERVER_URL'),
       count: 5
     }).then(({ comments }) => {
       changeLoading(false)
