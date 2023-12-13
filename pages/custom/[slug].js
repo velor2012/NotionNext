@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { getLayoutByTheme } from '@/themes/theme'
 import { getGlobalData } from '@/lib/notion/getNotionData'
+import { siteConfig } from '@/lib/config'
 /**
  * 404
  * @param {*} props
@@ -8,8 +9,7 @@ import { getGlobalData } from '@/lib/notion/getNotionData'
  */
 const CustomPage = props => {
   // 根据页面路径加载不同Layout文件
-  const router = useRouter()
-  const Layout = getLayoutByTheme(router)
+  const Layout = getLayoutByTheme({ theme: siteConfig('THEME'), router: useRouter() })
   return <Layout {...props} />
 }
 export async function getStaticPaths() {
