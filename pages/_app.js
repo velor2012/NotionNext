@@ -17,7 +17,7 @@ import { getQueryParam } from '../lib/utils'
 
 // 各种扩展插件 这个要阻塞引入
 import ExternalPlugins from '@/components/ExternalPlugins'
-import { CUSTOM_EXTERNAL_CSS, CUSTOM_EXTERNAL_JS, IMG_SHADOW } from '@/blog.config'
+import { CUSTOM_EXTERNAL_CSS, CUSTOM_EXTERNAL_JS, IMG_SHADOW, THEME } from '@/blog.config'
 
 const MyApp = ({ Component, pageProps }) => {
   /**
@@ -27,7 +27,7 @@ const MyApp = ({ Component, pageProps }) => {
    */
   const route = useRouter()
   const queryParam = useMemo(() => {
-    return getQueryParam(route.asPath, 'theme') || BLOG.THEME
+    return getQueryParam(route.asPath, 'theme') || THEME
   }, [route])
 
   const GLayout = useCallback(
