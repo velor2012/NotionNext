@@ -10,7 +10,6 @@ import 'aos/dist/aos.css' // You can also use <link> for styles
 
 import { GlobalContextProvider } from '@/lib/global'
 import { isBrowser, loadExternalResource } from '@/lib/utils'
-import BLOG from '@/blog.config'
 import { getGlobalLayoutByTheme } from '@/themes/theme'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo } from 'react'
