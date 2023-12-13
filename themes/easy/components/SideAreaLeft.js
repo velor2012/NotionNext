@@ -7,7 +7,7 @@ import React from 'react'
 import Tabs from './Tabs'
 import Logo from './Logo'
 import Card from './Card'
-import BLOG from '@/blog.config'
+import { siteConfig } from '@/lib/config'
 import Live2D from '@/components/Live2D'
 import { motion } from 'framer-motion'
 /**
@@ -43,7 +43,7 @@ const SideAreaLeft = props => {
     }
   }
 
-  return <motion.aside initial="hidden" animate="show"  variants={variants} id='left' className={(BLOG.LAYOUT_SIDEBAR_REVERSE ? 'ml-4' : 'mr-4') + ' hidden lg:block flex-col w-60 z-20 relative'}>
+  return <motion.aside initial="hidden" animate="show"  variants={variants} id='left' className={(JSON.parse(siteConfig('LAYOUT_SIDEBAR_REVERSE')) ? 'ml-4' : 'mr-4') + ' hidden lg:block flex-col w-60 z-20 relative'}>
 
         <motion.section
             className='w-60'>

@@ -7,7 +7,6 @@ import SideAreaRight from './components/SideAreaRight'
 import TopNav from './components/TopNav'
 import { useGlobal } from '@/lib/global'
 import { useEffect, useRef, useState } from 'react'
-import BLOG from '@/blog.config'
 import BlogPostListScroll from './components/BlogPostListScroll'
 import BlogPostListPage from './components/BlogPostListPage'
 import StickyBar from './components/StickyBar'
@@ -32,6 +31,7 @@ import {useTheme, ThemeContextProvider } from './lib/themeContextProvider'
 import RightDownFloatSlot from './components/RightDownFloatSlot'
 import Loading from './components/Loading'
 import _404Card from './components/404'
+import { siteConfig } from '@/lib/config'
 // 关闭默认的loading样式
 NProgress.configure({
     template: '<div class="bar" role="bar"></div>'
@@ -120,7 +120,7 @@ debugger
 
 
                 {/* 主区 */}
-                <main id='wrapper' className={(BLOG.LAYOUT_SIDEBAR_REVERSE ? 'flex-row-reverse' : '') + ' w-full next relative flex justify-between flex-1 pb-12'}>
+                <main id='wrapper' className={(JSON.parse(siteConfig('LAYOUT_SIDEBAR_REVERSE')) ? 'flex-row-reverse' : '') + ' w-full next relative flex justify-between flex-1 pb-12'}>
                     {/* 左侧栏样式 */}
                     <SideAreaLeft targetRef={targetRef} {...props} />
 
@@ -172,7 +172,7 @@ const LayoutPostList = (props) => {
 
         <BlogListBar {...props} />
 
-        {BLOG.POST_LIST_STYLE !== 'page'
+        {siteConfig('POST_LIST_STYLE') !== 'page'
           ? <BlogPostListScroll {...props} showSummary={true} />
           : <BlogPostListPage {...props} />
         }
@@ -210,7 +210,7 @@ const LayoutSearch = (props) => {
                 </div>
             </StickyBar>
             <div className="md:mt-5">
-                {BLOG.POST_LIST_STYLE !== 'page'
+                {siteConfig('POST_LIST_STYLE') !== 'page'
                   ? <BlogPostListScroll {...props} showSummary={true} />
                   : <BlogPostListPage {...props} />
                 }

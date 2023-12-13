@@ -1,7 +1,7 @@
 import React from 'react'
 import { useGlobal } from '@/lib/global'
 import CONFIG from '../config'
-import BLOG from '@/blog.config'
+import { siteConfig } from '@/lib/config'
 import { MenuItemDrop } from './MenuItemDrop'
 import { MenuItemCollapse } from './MenuItemCollapse'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -27,14 +27,14 @@ export const MenuList = props => {
       icon: 'fas fa-th',
       name: locale.COMMON.CATEGORY,
       to: '/category',
-      show: CONFIG.MENU_CATEGORY
+      show: siteConfig('MENU_CATEGORY', null, CONFIG)
     },
     {
       id: 3,
       icon: 'fas fa-tag',
       name: locale.COMMON.TAGS,
       to: '/tag',
-      show: CONFIG.MENU_TAG
+      show: siteConfig('MENU_TAG', null, CONFIG)
     },
     {
       id: 4,
@@ -42,7 +42,7 @@ export const MenuList = props => {
       name: locale.NAV.ARCHIVE,
       to: '/archive',
       slot: archiveSlot,
-      show: CONFIG.MENU_ARCHIVE
+      show: siteConfig('MENU_ARCHIVE', null, CONFIG)
     }
   ]
 
@@ -52,7 +52,7 @@ export const MenuList = props => {
   }
 
   // 如果 开启自定义菜单，则覆盖Page生成的菜单
-  if (BLOG.CUSTOM_MENU) {
+  if (siteConfig('CUSTOM_MENU')) {
     links = customMenu
   }
 

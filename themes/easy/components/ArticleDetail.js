@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import { siteConfig } from '@/lib/config'
 import BlogAround from './BlogAround'
 import Comment from '@/components/Comment'
 import RecommendPosts from './RecommendPosts'
@@ -14,7 +14,6 @@ import CONFIG from '../config'
 import NotionIcon from '@/components/NotionIcon'
 import LazyImage from '@/components/LazyImage'
 import { formatDateFmt } from '@/lib/formatDate'
-import { motion } from 'framer-motion'
 /**
  *
  * @param {*} param0
@@ -22,7 +21,7 @@ import { motion } from 'framer-motion'
  */
 export default function ArticleDetail(props) {
   const { post, recommendPosts, prev, next } = props
-  const url = BLOG.LINK + useRouter().asPath
+  const url = siteConfig('LINK') + useRouter().asPath
   const { locale } = useGlobal()
   const showArticleInfo = CONFIG.ARTICLE_INFO
 
@@ -85,7 +84,7 @@ export default function ArticleDetail(props) {
                     <ShareBar post={post} />
 
                     {/* 版权声明 */}
-                    {post?.type === 'Post' && <ArticleCopyright author={BLOG.AUTHOR} url={url} />}
+                    {post?.type === 'Post' && <ArticleCopyright author={siteConfig('AUTHOR')} url={url} />}
 
                     {/* 推荐文章 */}
                     {post?.type === 'Post' && <RecommendPosts currentPost={post} recommendPosts={recommendPosts} />}

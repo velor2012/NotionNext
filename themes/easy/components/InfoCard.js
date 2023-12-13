@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import { siteConfig } from '@/lib/config'
 import LazyImage from '@/components/LazyImage'
 import Router from 'next/router'
 import React from 'react'
@@ -23,7 +23,7 @@ const InfoCard = (props) => {
                     }
                 } : {}}
             className=' relative z-10'>
-                <LazyImage src={siteInfo?.icon} className='rounded-full' width={120} alt={BLOG.AUTHOR}/>
+                <LazyImage src={siteInfo?.icon} className='rounded-full' width={120} alt={siteConfig('AUTHOR')}/>
             </motion.div>
             {
             bgUrl && (
@@ -38,12 +38,12 @@ const InfoCard = (props) => {
                     }
                 } : {}}
                 className=' scale-150 absolute z-0 bottom-0'>
-                    <LazyImage src={bgUrl} className=' w-full h-full rounded-full' width={120} alt={BLOG.AUTHOR}/>
+                    <LazyImage src={bgUrl} className=' w-full h-full rounded-full' width={120} alt={siteConfig('AUTHOR')}/>
                 </motion.div>
             )}
         </motion.div>
-        <div className='text-2xl font-serif dark:text-white py-2 hover:scale-105 transform duration-200'>{BLOG.AUTHOR}</div>
-        <div className='font-light dark:text-white py-2 hover:scale-105 transform duration-200 text-center'>{BLOG.BIO}</div>
+        <div className='text-2xl font-serif dark:text-white py-2 hover:scale-105 transform duration-200'>{siteConfig('AUTHOR')}</div>
+        <div className='font-light dark:text-white py-2 hover:scale-105 transform duration-200 text-center'>{siteConfig('BIO')}</div>
         <SocialButton/>
     </div>
   </>

@@ -6,7 +6,7 @@ import CategoryGroup from './CategoryGroup'
 import TagGroups from './TagGroups'
 import CONFIG from '../config'
 import { useRouter } from 'next/router'
-import BLOG from '@/blog.config'
+import { siteConfig } from '@/lib/config'
 import dynamic from 'next/dynamic'
 import Announcement from './Announcement'
 import LatestPostsGroup from './LatestPostsGroup'
@@ -71,13 +71,13 @@ const SideAreaRight = props => {
       animate="show"
       variants={variants}
       className={
-        (BLOG.LAYOUT_SIDEBAR_REVERSE ? 'mr-4' : 'ml-4') +
+        (JSON.parse(siteConfig('LAYOUT_SIDEBAR_REVERSE')) ? 'mr-4' : 'ml-4') +
         ' space-y-4 hidden xl:block flex-col w-60 relative z-10'
       }
       exit="exit"
     >
       {/* <LayoutGroup id="sideAreaRight"> */}
-        {CONFIG.RIGHT_AD && (
+        {siteConfig('RIGHT_AD', null, CONFIG) && (
           <Card  variants={variants} className="mb-2">
             {/* 展示广告  */}
             <ins
@@ -95,7 +95,7 @@ const SideAreaRight = props => {
               </Card>
             )}
 
-            {CONFIG.RIGHT_LATEST_POSTS && (
+            {siteConfig('RIGHT_LATEST_POSTS', null, CONFIG) && (
               <Card key={2}  variants={variants}>
                 <LatestPostsGroup latestPosts={latestPosts} />
               </Card>
@@ -103,7 +103,7 @@ const SideAreaRight = props => {
             {slot}
 
             {/* 分类  */}
-            {CONFIG.RIGHT_CATEGORY_LIST &&
+            {siteConfig('RIGHT_CATEGORY_LIST', null, CONFIG) &&
               router.asPath !== '/category' &&
               categoryOptions && (
                 <Card key={3} variants={variants} exit={variants.exit} className="mb-2">
@@ -128,7 +128,7 @@ const SideAreaRight = props => {
                 </Card>
               )}
 
-            {CONFIG.RIGHT_TAG_LIST &&
+            {siteConfig('RIGHT_TAG_LIST', null, CONFIG) &&
               router.asPath !== '/tag' &&
               tagOptions && (
                 <Card key={4} variants={variants} exit={variants.exit}>
@@ -152,7 +152,7 @@ const SideAreaRight = props => {
                 </Card>
               )}
 
-            {BLOG.COMMENT_WALINE_SERVER_URL && BLOG.COMMENT_WALINE_RECENT && (
+            {siteConfig('COMMENT_WALINE_SERVER_URL') && siteConfig('COMMENT_WALINE_RECENT') && (
               <Card key={5} variants={variants} >
                 <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
                   <div className="text-gray-600 dark:text-gray-200">
