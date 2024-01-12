@@ -2,6 +2,9 @@ import { useRouter } from 'next/router'
 import { useGlobal } from '@/lib/global'
 import { useImperativeHandle, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useTheme } from '../lib/themeContextProvider'
+import { siteConfig } from '@/lib/config'
+import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
 let lock = false
 
 const SearchInput = ({ currentTag, keyword, cRef }) => {
@@ -9,6 +12,7 @@ const SearchInput = ({ currentTag, keyword, cRef }) => {
   const [onLoading, setLoadingState] = useState(false)
   const router = useRouter()
   const searchInputRef = useRef()
+  const { searchModal } = useTheme()
   useImperativeHandle(cRef, () => {
     return {
       focus: () => {
@@ -16,6 +20,15 @@ const SearchInput = ({ currentTag, keyword, cRef }) => {
       }
     }
   })
+
+    // 展示搜索框
+    const toggleShowSearchInput = () => {
+        if (siteConfig('ALGOLIA_APP_ID')) {
+            debugger
+            searchModal.current.openSearch()
+        }
+    }
+
   const handleSearch = () => {
     const key = searchInputRef.current.value
     if (key && key !== '') {
@@ -74,6 +87,7 @@ const SearchInput = ({ currentTag, keyword, cRef }) => {
             onCompositionUpdate={lockSearchInput}
             onCompositionEnd={unLockSearchInput}
             onChange={e => updateSearchKey(e.target.value)}
+            onClick={toggleShowSearchInput}
             defaultValue={keyword || ''}
         />
 
@@ -87,6 +101,9 @@ const SearchInput = ({ currentTag, keyword, cRef }) => {
                 <i className='hover:text-black transform duration-200 text-gray-400 cursor-pointer fas fa-times' onClick={cleanSearch} />
             </div>
         )}
+
+        {/* 搜索框 */}
+        <AlgoliaSearchModal cRef={searchModal}/>
     </motion.div>
 }
 

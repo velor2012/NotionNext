@@ -8,11 +8,11 @@ import { Transition } from '@headlessui/react'
 import Link from 'next/link'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
-import  * as CustomPages from './pages/pages'
-import CustomPageLayout from './pages'
 import dynamic from 'next/dynamic'
 import NotionPage from '@/components/NotionPage'
 import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
+import  * as CustomPages from './pages/pages'
+import CustomPageLayout from './pages'
 
 // 主题组件
 const BlogListScroll = dynamic(() => import('./components/BlogListScroll'), { ssr: false });
@@ -122,9 +122,9 @@ const LayoutIndex = props => {
  */
 const LayoutPostList = props => {
   return (
-        <div {...props}>
+        <LayoutBase {...props}>
             {siteConfig('POST_LIST_STYLE') === 'page' ? <BlogListPage {...props} /> : <BlogListScroll {...props} />}
-        </div>
+        </LayoutBase>
   )
 }
 
@@ -163,11 +163,11 @@ const LayoutSearch = props => {
 const LayoutArchive = props => {
   const { archivePosts } = props
   return (
-        <div {...props}>
+        <LayoutBase {...props}>
             <div className="mb-10 pb-20 md:py-12 p-3  min-h-screen w-full">
                 {Object.keys(archivePosts).map(archiveTitle => <BlogArchiveItem key={archiveTitle} archiveTitle={archiveTitle} archivePosts={archivePosts} />)}
             </div>
-        </div>
+        </LayoutBase>
   )
 }
 
@@ -181,7 +181,7 @@ const LayoutSlug = props => {
   const { fullWidth } = useGlobal()
 
   return (
-        <div {...props}>
+        <LayoutBase {...props}>
 
             {lock && <ArticleLock validPassword={validPassword} />}
 
@@ -210,7 +210,7 @@ const LayoutSlug = props => {
 
             </div>
 
-        </div>
+        </LayoutBase>
   )
 }
 
@@ -220,9 +220,9 @@ const LayoutSlug = props => {
  * @returns
  */
 const Layout404 = (props) => {
-  return <div {...props}>
+  return <LayoutBase {...props}>
         404 Not found.
-    </div>
+    </LayoutBase>
 }
 
 /**
@@ -233,7 +233,7 @@ const Layout404 = (props) => {
 const LayoutCategoryIndex = props => {
   const { categoryOptions } = props
   return (
-        <div {...props}>
+        <LayoutBase {...props}>
             <div id='category-list' className='duration-200 flex flex-wrap'>
                 {categoryOptions?.map(category => {
                   return (
@@ -250,7 +250,7 @@ const LayoutCategoryIndex = props => {
                   )
                 })}
             </div>
-        </div>
+        </LayoutBase>
   )
 }
 
@@ -262,7 +262,7 @@ const LayoutCategoryIndex = props => {
 const LayoutTagIndex = (props) => {
   const { tagOptions } = props
   return (
-        <div {...props}>
+        <LayoutBase {...props}>
             <div id='tags-list' className='duration-200 flex flex-wrap'>
                 {tagOptions.map(tag => {
                   return (
@@ -278,13 +278,12 @@ const LayoutTagIndex = (props) => {
                   )
                 })}
             </div>
-        </div>
+        </LayoutBase>
   )
 }
 
 export {
   CONFIG as THEME_CONFIG,
-  LayoutBase,
   LayoutIndex,
   LayoutSearch,
   LayoutArchive,

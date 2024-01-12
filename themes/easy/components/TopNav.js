@@ -32,7 +32,6 @@ const TopNav = (props) => {
         nav && nav.classList.replace('top-0', '-top-40')
         windowTop = scrollS
     } else {
-        debugger
       const nav = document.querySelector('#sticky-nav')
       nav && nav.classList.replace('-top-40', 'top-0')
       windowTop = scrollS

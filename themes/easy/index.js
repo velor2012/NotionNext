@@ -32,6 +32,7 @@ import RightDownFloatSlot from './components/RightDownFloatSlot'
 import Loading from './components/Loading'
 import _404Card from './components/404'
 import { siteConfig } from '@/lib/config'
+import WarpSearchModal from './components/WarpSearchModal'
 // 关闭默认的loading样式
 NProgress.configure({
     template: '<div class="bar" role="bar"></div>'
@@ -92,7 +93,7 @@ const LayoutBase = (props) => {
     document.addEventListener('scroll', scrollListener)
     return () => document.removeEventListener('scroll', scrollListener)
   }, [showRightFloat])
-debugger
+
   return (
     <ThemeContextProvider>
         <div id='theme-next' className=' w-screen flex flex-col items-center
@@ -145,6 +146,9 @@ debugger
                 </div>
                     
             </div>
+
+            <WarpSearchModal></WarpSearchModal>
+
             {/* 页脚 */}
             <Footer title={siteInfo?.title} />
         </div>
