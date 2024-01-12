@@ -94,7 +94,7 @@ const TopNav = (props) => {
     </>
 
   return (
-        <div id='top-nav' className={`${CONFIG.NAV_TYPE !== 'normal' ? 'sticky' : 'relative'} w-full top-0 z-50 transform duration-500`}>
+        <div id='top-nav' className={`${CONFIG.NAV_TYPE !== 'normal' ? 'sticky' : 'relative'} w-full top-0 z-20 transform duration-500`}>
             <SearchDrawer cRef={searchDrawer} slot={searchDrawerSlot} />
 
             {/* 导航栏 */}

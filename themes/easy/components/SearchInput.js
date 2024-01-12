@@ -4,7 +4,6 @@ import { useImperativeHandle, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTheme } from '../lib/themeContextProvider'
 import { siteConfig } from '@/lib/config'
-import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
 let lock = false
 
 export default function SearchInput({ currentTag, keyword, cRef }){
@@ -13,6 +12,7 @@ export default function SearchInput({ currentTag, keyword, cRef }){
   const router = useRouter()
   const searchInputRef = useRef()
   const { searchModal } = useTheme()
+  const USE_ALGOLIA = siteConfig('ALGOLIA_APP_ID')
   useImperativeHandle(cRef, () => {
     return {
       focus: () => {
@@ -20,12 +20,10 @@ export default function SearchInput({ currentTag, keyword, cRef }){
       }
     }
   })
-
+  
     // 展示搜索框
-    const toggleShowSearchInput = () => {
-        debugger
-        if (siteConfig('ALGOLIA_APP_ID')) {
-            debugger
+    const toggleShowAlgoliaSearchInput = () => {
+        if (USE_ALGOLIA) {
             searchModal.current.openSearch()
         }
     }
@@ -88,7 +86,7 @@ export default function SearchInput({ currentTag, keyword, cRef }){
             onCompositionUpdate={lockSearchInput}
             onCompositionEnd={unLockSearchInput}
             onChange={e => updateSearchKey(e.target.value)}
-            onClick={toggleShowSearchInput}
+            onClick={toggleShowAlgoliaSearchInput}
             defaultValue={keyword || ''}
         />
 
@@ -103,8 +101,6 @@ export default function SearchInput({ currentTag, keyword, cRef }){
             </div>
         )}
 
-        {/* 搜索框 */}
-        <AlgoliaSearchModal cRef={searchModal}/>
     </motion.div>
 }
 

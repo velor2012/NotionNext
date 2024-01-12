@@ -32,7 +32,7 @@ import RightDownFloatSlot from './components/RightDownFloatSlot'
 import Loading from './components/Loading'
 import _404Card from './components/404'
 import { siteConfig } from '@/lib/config'
-import WarpSearchModal from './components/WarpSearchModal'
+import AlgoliaSearchInput from './components/AlgoliaSearchInput'
 // 关闭默认的loading样式
 NProgress.configure({
     template: '<div class="bar" role="bar"></div>'
@@ -147,8 +147,8 @@ const LayoutBase = (props) => {
                     
             </div>
 
-            <WarpSearchModal></WarpSearchModal>
-
+            {/* 搜索框 */}
+            <AlgoliaSearchInput/>
             {/* 页脚 */}
             <Footer title={siteInfo?.title} />
         </div>
