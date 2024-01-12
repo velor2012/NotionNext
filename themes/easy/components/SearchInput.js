@@ -7,7 +7,7 @@ import { siteConfig } from '@/lib/config'
 import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
 let lock = false
 
-const SearchInput = ({ currentTag, keyword, cRef }) => {
+export default function SearchInput({ currentTag, keyword, cRef }){
   const { locale } = useGlobal()
   const [onLoading, setLoadingState] = useState(false)
   const router = useRouter()
@@ -23,6 +23,7 @@ const SearchInput = ({ currentTag, keyword, cRef }) => {
 
     // 展示搜索框
     const toggleShowSearchInput = () => {
+        debugger
         if (siteConfig('ALGOLIA_APP_ID')) {
             debugger
             searchModal.current.openSearch()
@@ -107,4 +108,3 @@ const SearchInput = ({ currentTag, keyword, cRef }) => {
     </motion.div>
 }
 
-export default SearchInput
