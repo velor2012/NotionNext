@@ -1,5 +1,5 @@
 import CONFIG from './config'
-import { useEffect } from 'react'
+import { createContext, useContext, useEffect, useRef } from 'react'
 import { isBrowser } from '@/lib/utils'
 import { useGlobal } from '@/lib/global'
 import { AdSlot } from '@/components/GoogleAdsense'
@@ -12,7 +12,7 @@ import  * as CustomPages from './pages/pages'
 import CustomPageLayout from './pages'
 import dynamic from 'next/dynamic'
 import NotionPage from '@/components/NotionPage'
-// const NotionPage = dynamic(() => import('@/components/NotionPage'), { ssr: false });
+import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
 
 // 主题组件
 const BlogListScroll = dynamic(() => import('./components/BlogListScroll'), { ssr: false });
@@ -33,6 +33,10 @@ const CommonHead = dynamic(() => import('@/components/CommonHead'), { ssr: false
 const WWAds = dynamic(() => import('@/components/WWAds'), { ssr: false });
 const BlogListPage = dynamic(() => import('./components/BlogListPage'), { ssr: false })
 
+// 主题全局状态
+const ThemeGlobalSimple = createContext()
+export const useSimpleGlobal = () => useContext(ThemeGlobalSimple)
+
 /**
  * 基础布局
  *
@@ -41,9 +45,11 @@ const BlogListPage = dynamic(() => import('./components/BlogListPage'), { ssr: f
  */
 const LayoutBase = props => {
   const { children, slotTop, meta } = props
-  const { onLoading } = useGlobal()
+  const { onLoading, fullWidth } = useGlobal()
+  const searchModal = useRef(null)
 
   return (
+    <ThemeGlobalSimple.Provider value={{ searchModal }}>
         <div id='theme-simple' className='min-h-screen flex flex-col dark:text-gray-300  bg-white dark:bg-black'>
             {/* SEO相关 */}
             <CommonHead meta={meta}/>
@@ -78,9 +84,11 @@ const LayoutBase = props => {
                     <AdSlot type='native' />
                 </div>
 
-                <div id='right-sidebar' className="hidden xl:block flex-none sticky top-8 w-96 border-l dark:border-gray-800 pl-12 border-gray-100">
-                    <SideBar {...props} />
-                </div>
+              {fullWidth
+                ? null
+                : <div id='right-sidebar' className="hidden xl:block flex-none sticky top-8 w-96 border-l dark:border-gray-800 pl-12 border-gray-100">
+              <SideBar {...props} />
+              </div>}
 
             </div>
 
@@ -88,9 +96,13 @@ const LayoutBase = props => {
                 <JumpToTopButton />
             </div>
 
+              {/* 搜索框 */}
+              <AlgoliaSearchModal cRef={searchModal} {...props}/>
+
             <Footer {...props} />
 
         </div>
+    </ThemeGlobalSimple.Provider>
   )
 }
 
@@ -138,7 +150,9 @@ const LayoutSearch = props => {
     }
   }, [])
 
-  return <LayoutPostList {...props} slotTop={<SearchInput {...props} />} />
+  const slotTop = siteConfig('ALGOLIA_APP_ID') ? null : <SearchInput {...props} />
+
+  return <LayoutPostList {...props} slotTop={slotTop} />
 }
 
 /**
@@ -164,13 +178,14 @@ const LayoutArchive = props => {
  */
 const LayoutSlug = props => {
   const { post, lock, validPassword, prev, next } = props
+  const { fullWidth } = useGlobal()
 
   return (
         <div {...props}>
 
             {lock && <ArticleLock validPassword={validPassword} />}
 
-            <div id="article-wrapper" className="px-2 xl:max-w-4xl 2xl:max-w-6xl ">
+            <div id="article-wrapper" className={`px-2  ${fullWidth ? '' : 'xl:max-w-4xl 2xl:max-w-6xl'}`}>
 
                 {/* 文章信息 */}
                 <ArticleInfo post={post} />
