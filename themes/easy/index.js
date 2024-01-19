@@ -1,38 +1,41 @@
 import CONFIG from './config'
-import Footer from './components/Footer'
-import JumpToBottomButton from './components/JumpToBottomButton'
-import JumpToTopButton from './components/JumpToTopButton'
-import SideAreaLeft from './components/SideAreaLeft'
-import SideAreaRight from './components/SideAreaRight'
-import TopNav from './components/TopNav'
 import { useGlobal } from '@/lib/global'
-import { useEffect, useRef, useState } from 'react'
-import BlogPostListScroll from './components/BlogPostListScroll'
-import BlogPostListPage from './components/BlogPostListPage'
-import StickyBar from './components/StickyBar'
+import { useEffect, useRef, useState, lazy, Suspense } from 'react'
 import { isBrowser } from '@/lib/utils'
-import TocDrawerButton from './components/TocDrawerButton'
-import TocDrawer from './components/TocDrawer'
-import { ArticleLock } from './components/ArticleLock'
-import BlogPostArchive from './components/BlogPostArchive'
-import TagItem from './components/TagItem'
 import { useRouter } from 'next/router'
-import ArticleDetail from './components/ArticleDetail'
 import Link from 'next/link'
-import BlogListBar from './components/BlogListBar'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
-import CommonHead from '@/components/CommonHead'
-import {   motion, useAnimate, AnimatePresence } from "framer-motion";
+import {   motion, AnimatePresence } from "framer-motion";
 import  * as CustomPages from './pages/pages'
 import CustomPageLayout from './pages'
 import NProgress from 'nprogress'
 import {useTheme, ThemeContextProvider } from './lib/themeContextProvider'
-import RightDownFloatSlot from './components/RightDownFloatSlot'
-import Loading from './components/Loading'
-import _404Card from './components/404'
 import { siteConfig } from '@/lib/config'
-import AlgoliaSearchInput from './components/AlgoliaSearchInput'
+import dynamic from 'next/dynamic'
+
+const _404Card = dynamic(() => import('./components/404'), { ssr: false })
+const TopNav = dynamic(() => import('./components/TopNav'), { ssr: false })
+const JumpToTopButton = dynamic(() => import('./components/JumpToTopButton'), { ssr: false })
+const JumpToBottomButton = dynamic(() => import('./components/JumpToBottomButton'), { ssr: false })
+const RightDownFloatSlot = dynamic(() => import('./components/RightDownFloatSlot'), { ssr: false })
+const Footer = dynamic(() => import('./components/Footer'), { ssr: false })
+const AlgoliaSearchInput = dynamic(() => import('./components/AlgoliaSearchInput'), { ssr: false })
+const CommonHead = dynamic(() => import('@/components/CommonHead'), { ssr: false })
+const BlogListBar = dynamic(() => import('./components/BlogListBar'), { ssr: false })
+const Loading = dynamic(() => import('./components/Loading'), { ssr: false })
+const SideAreaLeft = dynamic(() => import('./components/SideAreaLeft'), { ssr: false })
+const SideAreaRight = dynamic(() => import('./components/SideAreaRight'), { ssr: false })
+const BlogPostListScroll = dynamic(() => import('./components/BlogPostListScroll'), { ssr: false })
+const BlogPostListPage = dynamic(() => import('./components/BlogPostListPage'), { ssr: false })
+const StickyBar = dynamic(() => import('./components/StickyBar'), { ssr: false })
+const TocDrawerButton = dynamic(() => import('./components/TocDrawerButton'), { ssr: false })
+const TocDrawer = dynamic(() => import('./components/TocDrawer'), { ssr: false })
+const BlogPostArchive = dynamic(() => import('./components/BlogPostArchive'), { ssr: false })
+const TagItem = dynamic(() => import('./components/TagItem'), { ssr: false })
+const ArticleLock = dynamic(() => import('./components/ArticleLock'), { ssr: false })
+const ArticleDetail = dynamic(() => import('./components/ArticleDetail'), { ssr: false })
+
 // 关闭默认的loading样式
 NProgress.configure({
     template: '<div class="bar" role="bar"></div>'
