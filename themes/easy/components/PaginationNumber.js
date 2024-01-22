@@ -32,7 +32,7 @@ const PaginationNumber = ({ page, totalPage }) => {
             <div
                 rel="prev"
                 className={`${currentPage === 1 ? 'invisible' : 'block'
-                    } rounded-md bg-white hover:border-t-2 border-white  hover:border-gray-400 dark:hover:border-gray-400 w-8 h-8 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold`}
+                    } rounded-md bg-white hover:border-t-2 border-white  hover:border-gray-400 w-8 h-8 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold`}
             >
                 <i className="fas fa-angle-left" />
             </div>

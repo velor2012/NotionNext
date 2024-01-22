@@ -68,6 +68,11 @@ export default function AlgoliaSearchModal({ cRef }) {
             className: 'text-blue-600 border-b border-dashed'
           }
         })
+        // 遍历doms
+        for (const dom of doms) {
+            dom.classList.remove('hidden')
+        }
+
       }, 150)
     } catch (error) {
       console.error('Algolia search error:', error)
@@ -112,13 +117,13 @@ export default function AlgoliaSearchModal({ cRef }) {
       <div
         className={`${
           isModalOpen ? 'opacity-100' : 'invisible opacity-0 translate-y-10'
-        } flex flex-col justify-between w-full min-h-[10rem] max-w-xl dark:bg-hexo-black-gray dark:border-gray-800 bg-white dark:bg- p-5 rounded-lg z-50 shadow border hover:border-blue-600 duration-300 transition-all `}
+        } flex flex-col justify-between w-full min-h-[10rem] max-w-xl dark:bg-hexo-black-gray dark:border-gray-800 bg-white dark:bg- p-5 rounded-lg z-50 shadow border hover:border-gray-600 duration-300 transition-all `}
       >
         <div className="flex justify-between items-center">
-          <div className="text-2xl text-blue-600 font-bold">搜索</div>
+          <div className="text-2xl dark:text-white text-hexo-black-gray font-bold">搜索</div>
           <div>
             <i
-              className="text-gray-600 fa-solid fa-xmark p-1 cursor-pointer hover:text-blue-600"
+              className="text-gray-400 fa-solid fa-xmark p-1 cursor-pointer hover:text-gray-800 dark:hover:text-white hover:rotate-90 hover:scale-125 transform duration-200"
               onClick={closeModal}
             ></i>
           </div>
@@ -128,7 +133,7 @@ export default function AlgoliaSearchModal({ cRef }) {
           type="text"
           placeholder="在这里输入搜索关键词..."
           onChange={e => handleInputChange(e)}
-          className="text-black dark:text-gray-200 bg-gray-50 dark:bg-gray-600 outline-blue-500 w-full px-4 my-2 py-1 mb-4 border rounded-md"
+          className="text-black dark:text-gray-200 bg-gray-50 dark:bg-gray-600  outline-gray-700 w-full px-4 my-2 py-1 mb-4 border rounded-md"
         />
 
         {/* 标签组 */}
@@ -138,7 +143,7 @@ export default function AlgoliaSearchModal({ cRef }) {
 
         <ul>
           {searchResults.map(result => (
-            <li key={result.objectID} className="replace my-2">
+            <li key={result.objectID} className="replace hidden my-2">
               <a
                 href={`${siteConfig('SUB_PATH', '')}/${result.slug}`}
                 onClick={closeModal}
@@ -215,7 +220,7 @@ function Pagination(props) {
     const selected = page === i
     pagesElement.push(getPageElement(i, selected, switchPage))
   }
-  return <div className='flex space-x-1 w-full justify-center py-1'>
+  return <div className='flex space-x-1 w-full justify-center py-1 '>
         {pagesElement.map(p => p)}
   </div>
 }
@@ -226,7 +231,7 @@ function Pagination(props) {
  * @param {*} selected
  */
 function getPageElement(i, selected, switchPage) {
-  return <div onClick={() => switchPage(i)} className={`${selected ? 'font-bold text-white bg-blue-600 rounded' : 'hover:text-blue-600 hover:font-bold'} text-center cursor-pointer  w-6 h-6 `}>
+  return <div onClick={() => switchPage(i)} className={`${selected ? 'font-bold text-black border-t-2 border-gray-400' : 'hover:text-black hover:font-bold'} rounded-md bg-white hover:border-t-2 border-white  hover:border-gray-400 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold  w-6 h-6 `}>
     {i + 1}
   </div>
 }
