@@ -55,62 +55,12 @@ const Style = () => {
       background-position: bottom center;
       background-size: 0 2px;
       transition: background-size 100ms ease-in-out;
+      padding-bottom: 4px;
     }
 
     .replace a:hover {
       background-size: 100% 2px;
       /* color: blue; */
-    }
-
-    .water-box {
-        /* 小圆角 */
-        border-radius: 4px;
-        /* 简单定位 */
-        position: relative;
-        /* 显示层级最上面 */
-        z-index: 0;
-        padding: 3px 3px;
-        /* 超出部分要隐藏 */
-        overflow: hidden;
-        
-        &:hover ::before {
-            content: "";
-
-            /* 宽高要超过父级默认的大小 */
-            width: 200%;
-            height: 400%;
-            /* 基础背景颜色 */
-            background-color: #404040;
-            /* conic-gradient 围绕中心点旋转的渐变 */
-            background-image: conic-gradient(transparent, white, transparent 30%);
-
-            /* 定位到中间 */
-            position: absolute;
-            left: -50%;
-            top: -150%;
-            /* 显示层级最底层 */
-            z-index: -2;
-
-            /* 旋转整个灯光渐变这一层 */
-            animation: rotate 5s linear infinite;
-        }
-        &:hover ::after {
-            content: "";
-            /* 往内撑开盒子宽高，正好小一圈当做边框 */
-            inset: 2px;
-            background: white;
-            border-radius: 2px;
-
-            position: absolute;
-            /* 显示层级中间，盖住最后一层的灯光 */
-            z-index: -1;
-        }
-    }
-
-    @keyframes rotate {
-        100% {
-            transform: rotate(360deg);
-        }
     }
 
     .processBar{

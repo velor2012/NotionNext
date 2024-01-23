@@ -65,7 +65,7 @@ export default function AlgoliaSearchModal({ cRef }) {
           search: query,
           target: {
             element: 'span',
-            className: 'text-blue-600 border-b border-dashed'
+            className: 'text-blue-600 border-b border-dashed border-blue-600'
           }
         })
         // 遍历doms
