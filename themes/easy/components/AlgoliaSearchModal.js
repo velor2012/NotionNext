@@ -144,13 +144,13 @@ export default function AlgoliaSearchModal({ cRef }) {
         <ul>
           {searchResults.map(result => (
             <li key={result.objectID} className="replace hidden my-2">
-              <a
+              <Link
                 href={`${siteConfig('SUB_PATH', '')}/${result.slug}`}
                 onClick={closeModal}
                 className="font-bold text-black dark:text-gray-200"
               >
                 {result.title}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
