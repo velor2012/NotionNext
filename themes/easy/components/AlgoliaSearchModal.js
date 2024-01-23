@@ -117,7 +117,7 @@ export default function AlgoliaSearchModal({ cRef }) {
       <div
         className={`${
           isModalOpen ? 'opacity-100' : 'invisible opacity-0 translate-y-10'
-        } flex flex-col justify-between w-full min-h-[10rem] max-w-xl dark:bg-hexo-black-gray dark:border-gray-800 bg-white dark:bg- p-5 rounded-lg z-50 shadow border hover:border-gray-600 duration-300 transition-all `}
+        } flex flex-col justify-between w-full min-h-[10rem] max-w-xl dark:bg-hexo-black-gray dark:border-gray-800 bg-white p-5 rounded-lg z-50 shadow border hover:border-gray-600 duration-300 transition-all `}
       >
         <div className="flex justify-between items-center">
           <div className="text-2xl dark:text-white text-hexo-black-gray font-bold">搜索</div>
@@ -147,7 +147,7 @@ export default function AlgoliaSearchModal({ cRef }) {
               <a
                 href={`${siteConfig('SUB_PATH', '')}/${result.slug}`}
                 onClick={closeModal}
-                className="font-bold hover:text-blue-600 text-black dark:text-gray-200"
+                className="font-bold text-black dark:text-gray-200"
               >
                 {result.title}
               </a>
@@ -194,8 +194,8 @@ function TagGroups({closeModal}) {
                         key={index}
                         href={`/tag/${encodeURIComponent(tag.name)}`}
                         onClick={closeModal}
-                        className={'cursor-pointer inline-block whitespace-nowrap'}>
-                        <div className={' flex items-center text-black dark:text-gray-300 hover:bg-blue-600 dark:hover:bg-yellow-600 hover:scale-110 hover:text-white rounded-lg px-2 py-0.5 duration-150 transition-all'}>
+                        className={'cursor-pointer inline-block whitespace-nowrap water-box mr-2 hover:scale-110 transition-all duration-100'}>
+                        <div className={' flex items-center text-black dark:text-gray-300 rounded-lg px-2 py-0.5 duration-150 transition-all'}>
                             <div className='text-lg'>{tag.name} </div>{tag.count ? <sup className='relative ml-1'>{tag.count}</sup> : <></>}
                         </div>
 
@@ -231,7 +231,7 @@ function Pagination(props) {
  * @param {*} selected
  */
 function getPageElement(i, selected, switchPage) {
-  return <div onClick={() => switchPage(i)} className={`${selected ? 'font-bold text-black border-t-2 border-gray-400' : 'hover:text-black hover:font-bold'} rounded-md bg-white hover:border-t-2 border-white  hover:border-gray-400 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold  w-6 h-6 `}>
+  return <div onClick={() => switchPage(i)} className={`${selected ? 'font-bold text-black border-t-2 border-gray-400' : 'hover:text-black hover:font-bold'} rounded-md bg-hexo-background-gray hover:border-t-2 border-white  hover:border-gray-400 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold  w-6 h-6 `}>
     {i + 1}
   </div>
 }
