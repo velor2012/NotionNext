@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useGlobal } from '@/lib/global'
 import throttle from 'lodash/throttle'
 import { siteConfig } from '@/lib/config'
-
+import { motion } from 'framer-motion'
 /**
  * 结合 Algolia 实现的弹出式搜索框
  * 打开方式 cRef.current.openSearch()
@@ -186,7 +186,8 @@ function TagGroups({closeModal}) {
   const { tagOptions } = useGlobal()
   //  获取tagOptions数组前十个
   const firstTenTags = tagOptions?.slice(0, 10)
-
+  // 初始化数组,元素个数等于firstTenTags个数
+  const [displayArrs, setArr] = useState(new Array(firstTenTags?.length).fill(false));
   return <div id='tags-group' className='dark:border-gray-700 space-y-2'>
             {
                 firstTenTags?.map((tag, index) => {
@@ -194,9 +195,25 @@ function TagGroups({closeModal}) {
                         key={index}
                         href={`/tag/${encodeURIComponent(tag.name)}`}
                         onClick={closeModal}
-                        className={'cursor-pointer inline-block whitespace-nowrap water-box mr-2 hover:scale-110 transition-all duration-100'}>
-                        <div className={' flex items-center text-black dark:text-gray-300 rounded-lg px-2 py-0.5 duration-150 transition-all'}>
-                            <div className='text-lg'>{tag.name} </div>{tag.count ? <sup className='relative ml-1'>{tag.count}</sup> : <></>}
+                        className={'cursor-pointer inline-block whitespace-nowrap mr-2 transition-all duration-100'}>
+                        <div className={' flex items-center text-black dark:text-gray-300 rounded-lg px-2 py-0.5 duration-150 transition-all relative'}>
+                            { displayArrs[index] &&
+                                <motion.div
+                                layoutId='TagItemTag'
+                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                className=' border-[#f7ecde] rounded-md absolute top-0 left-0 w-full h-full z-[-1] bg-[#f7ecde]'>
+
+                                </motion.div>
+                            }
+                            <div className='z-0 flex items-center'
+                                onMouseEnter={() => {
+                                    let arrs = new Array(firstTenTags?.length).fill(false)
+                                    arrs[index] = true;
+                                    setArr(arrs);
+                                }}
+                            >
+                                <div className='text-lg'>{tag.name} </div>{tag.count ? <sup className='relative ml-1'>{tag.count}</sup> : <></>}
+                            </div>
                         </div>
 
                     </Link>
