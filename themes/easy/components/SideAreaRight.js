@@ -87,7 +87,7 @@ const SideAreaRight = props => {
           </Card>
         )}
 
-        <div className="sticky top-0 space-y-4 w-full">
+        <div className="sticky top-14 space-y-4 w-full">
           <AnimatePresence>
             {announcementVisible && (
               <Card key={1} variants={variants}  className="mb-2">

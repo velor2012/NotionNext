@@ -1,9 +1,7 @@
 import { useGlobal } from '@/lib/global'
 import { saveDarkModeToCookies } from '@/themes/theme'
-import CONFIG from '../config'
-import { siteConfig } from '@/lib/config'
 
-const DarkModeButton = () => {
+const DarkModeButton = (props) => {
   const { isDarkMode, updateDarkMode } = useGlobal()
   // 用户手动设置主题
   const handleChangeDarkMode = () => {
@@ -15,7 +13,7 @@ const DarkModeButton = () => {
     htmlElement.classList?.add(newStatus ? 'dark' : 'light')
   }
 
-  return <div className='z-10 duration-200 text-lg cursor-pointer py-1.5 px-1'>
+  return <div className={`${props.className || ''} z-10 duration-200 text-lg cursor-pointer py-1.5 px-1`}>
     <i id='darkModeButton' className={`hover:scale-125 transform duration-200 fas ${isDarkMode ? 'fa-sun' : 'fa-moon'}`}
        onClick={handleChangeDarkMode} />
   </div>

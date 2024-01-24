@@ -9,8 +9,9 @@ const ThemeContext = createContext()
  * @constructor
  */
 export function ThemeContextProvider(props) {
-  const [FloatSlot, setFloatSlot] = useState(<></>) // 默认语言
-  const [searchModal, setSearchModal] = useState(useRef(null)) // 默认语言
+  const [FloatSlot, setFloatSlot] = useState(<></>) // 右下角浮动按钮
+  const [searchModal, setSearchModal] = useState(useRef(null)) // 搜索框对象
+  const [isShowLogo, setIsShowLogo] = useState(false) // 显示logo（网站名）
 
 
   return (
@@ -18,7 +19,9 @@ export function ThemeContextProvider(props) {
             FloatSlot,
             setFloatSlot,
             searchModal, 
-            setSearchModal
+            setSearchModal,
+            isShowLogo,
+            setIsShowLogo
         }}>
             {props.children}
         </ThemeContext.Provider>

@@ -58,7 +58,7 @@ const SideAreaLeft = props => {
 
         </motion.section>
 
-        <motion.div  className='sticky top-4 hidden lg:block'>
+        <motion.div  className='sticky top-14 hidden lg:block'>
             <Card variants={variants}>
                 <Tabs>
                     {showToc && (
@@ -67,14 +67,14 @@ const SideAreaLeft = props => {
                         </div>
                     )}
 
-                    <div key={locale.NAV.ABOUT} className='mb-5 bg-white dark:bg-hexo-black-gray duration-200 py-6'>
+                    <div key='about'className='mb-5 bg-white dark:bg-hexo-black-gray duration-200 py-6'>
                         <InfoCard {...props} />
                         <>
                             <div className='mt-2 text-center dark:text-gray-300 font-light text-xs'>
                                 <span className='px-1 '>
-                                    <strong className='font-medium'>{postCount}</strong>{locale.COMMON.POSTS}</span>
+                                    <strong className='font-medium mr-1'>{postCount}</strong>{locale.COMMON.POSTS}</span>
                                 <span className='px-1 busuanzi_container_site_uv hidden'>
-                                    | <strong className='pl-1 busuanzi_value_site_uv font-medium' />{locale.COMMON.VISITORS}</span>
+                                    | <strong className='pl-1 busuanzi_value_site_uv font-medium mr-1' />{locale.COMMON.VISITORS}</span>
                                 {/* <span className='px-1 busuanzi_container_site_pv hidden'>
                 | <strong className='pl-1 busuanzi_value_site_pv font-medium'/>{locale.COMMON.VIEWS}</span> */}
                             </div>

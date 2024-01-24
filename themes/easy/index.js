@@ -141,7 +141,7 @@ const LayoutBase = (props) => {
 
                 {/* 右下角悬浮 */}
                 <div ref={floatButtonGroup} className='right-8 bottom-12 lg:right-8 fixed justify-end z-20 font-sans'>
-                    <div className={(showRightFloat ? 'animate__animated ' : 'hidden') + ' animate__fadeInUp rounded-md glassmorphism justify-center duration-500  animate__faster flex space-x-2 items-center cursor-pointer '}>
+                    <div className={(showRightFloat ? 'animate__animated ' : 'hidden') + ' animate__fadeInUp rounded-md justify-center duration-500  animate__faster flex space-x-2 items-center cursor-pointer '}>
                             <RightDownFloatSlot/>
                             <JumpToTopButton percent={percent} />
                             <JumpToBottomButton />

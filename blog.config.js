@@ -48,6 +48,7 @@ const BLOG = {
   // 字体CSS 例如 https://npm.elemecdn.com/lxgw-wenkai-webfont@1.6.0/style.css
   FONT_URL: [
     // 'https://npm.elemecdn.com/lxgw-wenkai-webfont@1.6.0/style.css',
+    'https://at.alicdn.com/t/c/font_2570074_7l7862embmm.css?spm=a313x.manage_type_myprojects.i1.9.2a843a81cH5CLe&file=font_2570074_7l7862embmm.css',
     'https://fonts.googleapis.com/css?family=Bitter&display=swap',
     'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&display=swap',
     'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300&display=swap'
