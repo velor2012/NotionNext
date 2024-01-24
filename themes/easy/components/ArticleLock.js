@@ -8,7 +8,7 @@ import { useEffect, useRef } from 'react'
  * @param validPassword(bool) 回调函数，校验正确回调入参为true
  * @returns
  */
-export default  ArticleLock = (props) => {
+const  ArticleLock = (props) => {
   const { validPassword } = props
   const { locale } = useGlobal()
 
@@ -28,7 +28,7 @@ export default  ArticleLock = (props) => {
     // 选中密码输入框并将其聚焦
     passwordInputRef.current.focus()
   }, [])
-
+debugger
   return (
     <div id='article-wrapper' className="shadow md:hover:shadow-2xl overflow-x-auto flex-grow mx-auto w-screen md:w-full  py-10 px-5 lg:pt-24 md:px-24 min-h-screen dark:border-gray-700 bg-white dark:bg-gray-800 duration-200">
       <div className="w-full flex justify-center items-center h-96 font-sans">
@@ -58,3 +58,5 @@ export default  ArticleLock = (props) => {
     </div>
   )
 }
+
+export default ArticleLock
