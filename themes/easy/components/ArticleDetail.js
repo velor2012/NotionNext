@@ -14,6 +14,8 @@ import CONFIG from '../config'
 import NotionIcon from '@/components/NotionIcon'
 import LazyImage from '@/components/LazyImage'
 import { formatDateFmt } from '@/lib/formatDate'
+import { motion } from 'framer-motion'
+import { useTheme } from '../lib/themeContextProvider'
 /**
  *
  * @param {*} param0
@@ -23,6 +25,8 @@ export default function ArticleDetail(props) {
   const { post, recommendPosts, prev, next } = props
   const url = siteConfig('LINK') + useRouter().asPath
   const { locale } = useGlobal()
+  const { setIsShowTitle } = useTheme()
+
   const showArticleInfo = CONFIG.ARTICLE_INFO
 
   return (
@@ -42,9 +46,12 @@ export default function ArticleDetail(props) {
                     )}
 
                     {/* title */}
-                    <div className=" text-center font-bold text-3xl text-black dark:text-white font-serif pt-6">
+                    <motion.div 
+                    onViewportEnter={() => setIsShowTitle(false)}
+                    onViewportLeave={() => setIsShowTitle(true)}
+                    className=" text-center font-bold text-3xl text-black dark:text-white font-serif pt-6">
                         <NotionIcon icon={post.pageIcon} />{post.title}
-                    </div>
+                    </motion.div>
 
                     {/* meta */}
                     <section className="mt-2 text-gray-400 dark:text-gray-400 font-light leading-7 text-sm">

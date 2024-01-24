@@ -5,7 +5,7 @@ import { useTheme } from '../lib/themeContextProvider'
 
 const Logo = props => {
   const { siteInfo, className } = props
-  const { isShowLogo, setIsShowLogo } = useTheme()
+  const { setIsShowLogo } = useTheme()
   const variants = {
     show: {
       x: 0,

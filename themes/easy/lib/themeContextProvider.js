@@ -12,6 +12,7 @@ export function ThemeContextProvider(props) {
   const [FloatSlot, setFloatSlot] = useState(<></>) // 右下角浮动按钮
   const [searchModal, setSearchModal] = useState(useRef(null)) // 搜索框对象
   const [isShowLogo, setIsShowLogo] = useState(false) // 显示logo（网站名）
+  const [isShowTitle, setIsShowTitle] = useState(false) // 显示logo（网站名）
 
 
   return (
@@ -21,7 +22,9 @@ export function ThemeContextProvider(props) {
             searchModal, 
             setSearchModal,
             isShowLogo,
-            setIsShowLogo
+            setIsShowLogo,
+            isShowTitle,
+            setIsShowTitle
         }}>
             {props.children}
         </ThemeContext.Provider>

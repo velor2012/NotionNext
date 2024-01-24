@@ -25,7 +25,7 @@ const TopNav = (props) => {
   const MENU_SEARCH = siteConfig('MENU_SEARCH')
   const NAV_TYPE = siteConfig('NAV_TYPE')
 
-  const { isShowLogo } = useTheme()
+  const { isShowLogo, isShowTitle } = useTheme()
 
   const scrollTrigger = useCallback(throttle(() => {
     const scrollS = window.scrollY
@@ -72,7 +72,7 @@ const TopNav = (props) => {
                         opacity: isShowLogo ? 1 : 0,
                         y: isShowLogo ? 0 : -100,
                     }}
-                    className='hidden lg:block font-serif text-xl text-white ml-6'> {siteInfo?.title}</motion.div>
+                    className='hidden lg:block font-serif text-xl text-white ml-12'> {siteInfo?.title}</motion.div>
 
                     <div className='flex flex-none flex-grow-0 lg:hidden'>
                         <div onClick={toggleMenuOpen} className='w-8 cursor-pointer'>
@@ -86,17 +86,17 @@ const TopNav = (props) => {
                             <SearchInput {...props} />
                         }
                         {
-                            post &&
+                            post && !!post.title &&
                             <motion.div
                             initial={{
                                 opacity: 0,
                                 y: -100,
                             }}
                             animate={{
-                                opacity: isShowLogo ? 1 : 0,
-                                y: isShowLogo ? 0 : -100,
+                                opacity: isShowTitle ? 1 : 0,
+                                y: isShowTitle ? 0 : -100,
                             }}
-                            className='font-serif text-xl text-white text-center'> {post?.title}</motion.div>
+                            className='font-serif text-xl text-white text-center'> {post.title}</motion.div>
                         }
                     </div>
 
