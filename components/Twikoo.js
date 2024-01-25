@@ -12,9 +12,10 @@ import { useEffect } from 'react'
 const Twikoo = ({ isDarkMode }) => {
   const envId = siteConfig('COMMENT_TWIKOO_ENV_ID')
   const el = siteConfig('COMMENT_TWIKOO_ELEMENT_ID', '#twikoo')
-
+  const twikooCDNURL = siteConfig('COMMENT_TWIKOO_CDN_URL')
   const lang = siteConfig('LANG')
-  useEffect(() => {
+  useEffect(async () => {
+    await loadExternalResource(twikooCDNURL, 'js')
     const twikoo = window?.twikoo
     if (typeof twikoo !== 'undefined' && twikoo && typeof twikoo.init === 'function') {
       twikoo.init({
