@@ -18,12 +18,7 @@ const Twikoo = ({ isDarkMode }) => {
     try {
       await loadExternalResource(twikooCDNURL, 'js')
       const twikoo = window?.twikoo
-      if (
-        typeof twikoo !== 'undefined' &&
-        twikoo &&
-        typeof twikoo.init === 'function'
-      ) {
-        console.log('twikoo init')
+        console.log('twikoo init', twikoo)
         twikoo.init({
           envId: envId, // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
           el: el, // 容器元素
@@ -31,7 +26,7 @@ const Twikoo = ({ isDarkMode }) => {
           // region: 'ap-guangzhou', // 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
           // path: location.pathname, // 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
         })
-      }
+      
     } catch (error) {
       console.error('twikoo 加载失败', error)
     }
