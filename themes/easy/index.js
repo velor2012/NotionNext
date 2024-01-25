@@ -13,6 +13,7 @@ import NProgress from 'nprogress'
 import {useTheme, ThemeContextProvider } from './lib/themeContextProvider'
 import { siteConfig } from '@/lib/config'
 import dynamic from 'next/dynamic'
+import BlogPostArchiveList from './components/BlogPostArchiveList'
 
 const _404Card = dynamic(() => import('./components/404'), { ssr: false })
 const TopNav = dynamic(() => import('./components/TopNav'), { ssr: false })
@@ -256,19 +257,10 @@ const Layout404 = props => {
  * @returns
  */
 const LayoutArchive = (props) => {
-  const { archivePosts } = props
 
   return (
         <motion.div >
-            <div className=" rounded-md mb-10 pb-20 bg-white md:p-12 p-3 dark:bg-hexo-black-gray shadow-md min-h-full">
-                {Object.keys(archivePosts).map(archiveTitle => (
-                    <BlogPostArchive
-                        key={archiveTitle}
-                        posts={archivePosts[archiveTitle]}
-                        archiveTitle={archiveTitle}
-                    />
-                ))}
-            </div>
+        <BlogPostArchiveList {...props} />
         </motion.div>
   )
 }
