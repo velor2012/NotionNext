@@ -1,6 +1,6 @@
 import { siteConfig } from '@/lib/config'
 import { loadExternalResource } from '@/lib/utils'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * Giscus评论 @see https://giscus.app/zh-CN
@@ -42,12 +42,9 @@ const Twikoo = ({ isDarkMode }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const twikoo = window?.twikoo
-      if (
-        isInit
-      ) {
+      if (isInit) {
         console.log('twioo init! clear interval')
-        clearInterval(interval) 
+        clearInterval(interval)
       } else {
         loadTwikoo()
       }
