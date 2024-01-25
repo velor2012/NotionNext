@@ -1,5 +1,5 @@
 import { siteConfig } from '@/lib/config'
-// import { loadExternalResource } from '@/lib/utils'
+import { loadExternalResource } from '@/lib/utils'
 import { useEffect } from 'react'
 
 /**
