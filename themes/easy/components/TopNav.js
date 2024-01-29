@@ -9,6 +9,7 @@ import { siteConfig } from '@/lib/config'
 import TranslateButton from './TranslateButton'
 import { motion } from 'framer-motion'
 import { useTheme } from '../lib/themeContextProvider'
+import TopNavCustomButtons from './TopNavCustomButtons'
 
 let windowTop = 0
 
@@ -103,7 +104,7 @@ const TopNav = (props) => {
                     {/* 右侧功能 */}
                     <div className='mr-1 flex justify-end items-center text-sm space-x-4 font-serif dark:text-gray-200'>
                         <AlgoliaSearchButton/>
-                        <AlgoliaSearchButton/>
+                        <TopNavCustomButtons/>
                         <DarkModeButton />
                         <TranslateButton className='hidden md:block'/>
                     </div>

@@ -31,6 +31,7 @@ function useUmami(){
         const timer = setInterval(()=>{
             loadStat()
         }, 1000 * 30)
+        loadStat()
         return ()=>{
             clearInterval(timer)
         }
