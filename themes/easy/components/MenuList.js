@@ -85,10 +85,7 @@ export const MenuList = props => {
       >
         <motion.ul initial="hidden" animate="show" variants={variants}>
             <AnimatePresence>
-                {links.map(
-                    link =>
-                    link && link.show && <MenuItemDrop key={link?.id} link={link} />
-                )}
+                {links.map((link, index) => link && link.show && <MenuItemDrop key={index} link={link} />)}
             </AnimatePresence>
         </motion.ul>
       </nav>
@@ -98,17 +95,7 @@ export const MenuList = props => {
         id="nav-menu-mobile"
         className="block lg:hidden my-auto justify-start bg-white"
       >
-        {links?.map(
-          link =>
-            link &&
-            link.show && (
-              <MenuItemCollapse
-                onHeightChange={props.onHeightChange}
-                key={link?.id}
-                link={link}
-              />
-            )
-        )}
+        {links?.map((link, index) => link && link.show && <MenuItemCollapse onHeightChange={props.onHeightChange} key={index} link={link} />)}
       </div>
     </motion.div>
   )

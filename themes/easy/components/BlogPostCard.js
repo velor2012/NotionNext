@@ -14,7 +14,7 @@ import { siteConfig } from '@/lib/config'
 
 const BlogPostCard = ({ post, showSummary }) => {
   const { locale } = useGlobal()
-  const showPreview = CONFIG.POST_LIST_PREVIEW && post.blockMap
+  const showPreview = siteConfig('NEXT_POST_LIST_PREVIEW', null, CONFIG) && post.blockMap
   const variants = {
     show: {
       x: 0,

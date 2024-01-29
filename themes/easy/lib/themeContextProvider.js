@@ -1,4 +1,5 @@
-import { createContext, useContext, useRef, useState } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
+import useUmami from './useUmami'
 
 const ThemeContext = createContext()
 
@@ -13,8 +14,8 @@ export function ThemeContextProvider(props) {
   const [searchModal, setSearchModal] = useState(useRef(null)) // 搜索框对象
   const [isShowLogo, setIsShowLogo] = useState(false) // 显示logo（网站名）
   const [isShowTitle, setIsShowTitle] = useState(false) // 显示logo（网站名）
-
-
+  const { activeNum } = useUmami()
+  
   return (
         <ThemeContext.Provider value={{
             FloatSlot,
@@ -24,11 +25,14 @@ export function ThemeContextProvider(props) {
             isShowLogo,
             setIsShowLogo,
             isShowTitle,
-            setIsShowTitle
+            setIsShowTitle,
+            activeNum
         }}>
             {props.children}
         </ThemeContext.Provider>
   )
 }
+
+
 
 export const useTheme = () => useContext(ThemeContext)

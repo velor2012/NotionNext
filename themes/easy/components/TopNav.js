@@ -103,6 +103,7 @@ const TopNav = (props) => {
                     {/* 右侧功能 */}
                     <div className='mr-1 flex justify-end items-center text-sm space-x-4 font-serif dark:text-gray-200'>
                         <AlgoliaSearchButton/>
+                        <AlgoliaSearchButton/>
                         <DarkModeButton />
                         <TranslateButton className='hidden md:block'/>
                     </div>

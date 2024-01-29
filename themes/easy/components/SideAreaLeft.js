@@ -20,7 +20,7 @@ import { motion } from 'framer-motion'
  * @constructor
  */
 const SideAreaLeft = props => {
-  const { post, slot, postCount } = props
+  const { post, slot } = props
   const { locale } = useGlobal()
   const showToc = post && post.toc && post.toc.length > 1
 
@@ -67,18 +67,8 @@ const SideAreaLeft = props => {
                         </div>
                     )}
 
-                    <div key='about'className='mb-5 bg-white dark:bg-hexo-black-gray duration-200 py-6'>
+                    <div key='about'className='bg-white dark:bg-hexo-black-gray duration-200 py-6'>
                         <InfoCard {...props} />
-                        <>
-                            <div className='mt-2 text-center dark:text-gray-300 font-light text-xs'>
-                                <span className='px-1 '>
-                                    <strong className='font-medium mr-1'>{postCount}</strong>{locale.COMMON.POSTS}</span>
-                                <span className='px-1 busuanzi_container_site_uv hidden'>
-                                    | <strong className='pl-1 busuanzi_value_site_uv font-medium mr-1' />{locale.COMMON.VISITORS}</span>
-                                {/* <span className='px-1 busuanzi_container_site_pv hidden'>
-                | <strong className='pl-1 busuanzi_value_site_pv font-medium'/>{locale.COMMON.VIEWS}</span> */}
-                            </div>
-                        </>
                     </div>
                 </Tabs>
             </Card>

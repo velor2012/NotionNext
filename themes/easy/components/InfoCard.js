@@ -5,8 +5,12 @@ import React from 'react'
 import SocialButton from './SocialButton'
 import { motion } from 'framer-motion'
 import CONFIG from '../config'
+import { useTheme } from '../lib/themeContextProvider'
+import { useGlobal } from '@/lib/global'
 const InfoCard = (props) => {
-  const { siteInfo } = props
+  const { siteInfo, postCount } = props
+  const { activeNum } = useTheme()
+  const { locale } = useGlobal()
   const [isHover, setIsHover] = React.useState(false)
   const bgUrl = CONFIG.AVATAR_BORDER_URL
   return <>
@@ -45,6 +49,21 @@ const InfoCard = (props) => {
         <div className='text-2xl font-serif dark:text-white py-2 hover:scale-105 transform duration-200'>{siteConfig('AUTHOR')}</div>
         <div className='font-light dark:text-white py-2 hover:scale-105 transform duration-200 text-center'>{siteConfig('BIO')}</div>
         <SocialButton/>
+
+        {/* statistic data */}
+        <div className='mt-2 text-center dark:text-gray-300 font-light text-xs'>
+            <span className='px-1 '>
+                <strong className='font-medium mr-1'>{postCount}</strong>{locale.COMMON.POSTS}</span>
+            <span className='px-1 busuanzi_container_site_uv hidden'>
+                | <strong className='pl-1 busuanzi_value_site_uv font-medium mr-1' />{locale.COMMON.VISITORS}</span>
+            {/* <span className='px-1 busuanzi_container_site_pv hidden'>
+| <strong className='pl-1 busuanzi_value_site_pv font-medium'/>{locale.COMMON.VIEWS}</span> */}
+        </div>
+
+        <div className='mt-2 ml-2 h-6 bg-red flex justify-center items-center text-xs'>
+            <span className=' mr-2 leading-[16px] block bg-repeat bg-green-400 bg-origin-padding bg-left-top bg-clip-border rounded-b bg-auto bg-scroll w-[10px] h-[10px] rounded-t'/>
+            在线人数： {activeNum}
+        </div>
     </div>
   </>
 }
