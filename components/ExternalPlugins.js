@@ -275,7 +275,7 @@ const ExternalPlugin = (props) => {
 
         {/* umami 统计 */}
         {UMAMI_SITE_ID && (
-            <script defer src={`${UMAMI_HOST_URL || "https://eu.umami.is/script.js"}`} data-website-id={`${UMAMI_SITE_ID}`}></script>
+            <script defer src={`${UMAMI_HOST_URL || 'https://eu.umami.is/script.js'}`} data-website-id={`${UMAMI_SITE_ID}`}></script>
         )}
 
     </>
