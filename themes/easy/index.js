@@ -22,7 +22,6 @@ const JumpToBottomButton = dynamic(() => import('./components/JumpToBottomButton
 const RightDownFloatSlot = dynamic(() => import('./components/RightDownFloatSlot'), { ssr: false })
 const Footer = dynamic(() => import('./components/Footer'), { ssr: false })
 const AlgoliaSearchInput = dynamic(() => import('./components/AlgoliaSearchInput'), { ssr: false })
-const CommonHead = dynamic(() => import('@/components/CommonHead'), { ssr: false })
 const BlogListBar = dynamic(() => import('./components/BlogListBar'), { ssr: false })
 const Loading = dynamic(() => import('./components/Loading'), { ssr: false })
 const SideAreaLeft = dynamic(() => import('./components/SideAreaLeft'), { ssr: false })
@@ -104,9 +103,6 @@ const LayoutBase = (props) => {
          bg-[#eeedee]
          dark:bg-black
         '>
-
-            {/* SEO相关 */}
-            <CommonHead meta={meta}/>
             <Style/>
             <AnimatePresence>
                 {onLoading && <Loading variants={variants} exit="exit"/>}
