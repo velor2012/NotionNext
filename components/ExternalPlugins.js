@@ -71,6 +71,8 @@ const ExternalPlugin = (props) => {
   const ANALYTICS_BAIDU_ID = siteConfig('ANALYTICS_BAIDU_ID')
   const ANALYTICS_CNZZ_ID = siteConfig('ANALYTICS_CNZZ_ID')
   const ANALYTICS_GOOGLE_ID = siteConfig('ANALYTICS_GOOGLE_ID')
+  const UMAMI_SITE_ID = siteConfig('UMAMI_SITE_ID')
+  const UMAMI_HOST_URL = siteConfig('UMAMI_HOST_URL')
   const MATOMO_HOST_URL = siteConfig('MATOMO_HOST_URL')
   const MATOMO_SITE_ID = siteConfig('MATOMO_SITE_ID')
   const ANALYTICS_51LA_ID = siteConfig('ANALYTICS_51LA_ID')
@@ -282,6 +284,11 @@ const ExternalPlugin = (props) => {
               })();
             `
             }} />
+        )}
+
+        {/* umami 统计 */}
+        {UMAMI_SITE_ID && (
+            <script defer src={`${UMAMI_HOST_URL || 'https://eu.umami.is/script.js'}`} data-website-id={`${UMAMI_SITE_ID}`}></script>
         )}
 
     </>
