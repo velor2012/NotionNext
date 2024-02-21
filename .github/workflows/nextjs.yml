@@ -58,7 +58,7 @@ jobs:
       - name: Create env file
         run: |
           touch .env
-          echo ${{ vars.MY_ENV }} >> .env
+          echo "${{ vars.MY_ENV }}" >> .env
       - name: Restore cache
         uses: actions/cache@v4
         with:
