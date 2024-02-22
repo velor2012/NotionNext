@@ -23,8 +23,6 @@ import Link from 'next/link'
 import BlogListBar from './components/BlogListBar'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
-import  * as CustomPages from './pages/pages'
-import CustomPageLayout from './pages'
 import { siteConfig } from '@/lib/config'
 import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
 import Announcement from './components/Announcement'
@@ -354,7 +352,5 @@ export {
   Layout404,
   LayoutCategoryIndex,
   LayoutPostList,
-  LayoutTagIndex,
-  CustomPageLayout,
-  CustomPages
+  LayoutTagIndex
 }

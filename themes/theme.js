@@ -37,13 +37,18 @@ export const getLayoutByTheme = ({ router, theme }) => {
       setTimeout(() => {
         checkThemeDOM()
       }, 500);
-      return m[layoutName]
+      if (layoutName in m) {
+        return m[layoutName]
+      } else
+      return m['Layout404']
     }), { ssr: true })
   } else {
     setTimeout(() => {
       checkThemeDOM()
     }, 100);
-    return ThemeComponents[layoutName]
+    if(layoutName in ThemeComponents) {
+      return ThemeComponents[layoutName]
+    }else return ThemeComponents['Layout404']
   }
 }
 
