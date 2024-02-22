@@ -146,6 +146,7 @@ const NotionPage = ({ post, className }) => {
       recordMap={post.blockMap}
       mapPageUrl={mapPageUrl}
       mapImageUrl={mapImgUrl}
+      previewImages={true}
       components={{
         Code,
         Collection,

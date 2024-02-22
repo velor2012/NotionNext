@@ -7,6 +7,8 @@ import Link from 'next/link'
 import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import {   motion, AnimatePresence } from "framer-motion";
+import  * as CustomPages from './pages/pages'
+import CustomPageLayout from './pages'
 import NProgress from 'nprogress'
 import {useTheme, ThemeContextProvider } from './lib/themeContextProvider'
 import { siteConfig } from '@/lib/config'
@@ -358,5 +360,7 @@ export {
   Layout404,
   LayoutCategoryIndex,
   LayoutPostList,
-  LayoutTagIndex
+  LayoutTagIndex,
+  CustomPages,
+  CustomPageLayout
 }
