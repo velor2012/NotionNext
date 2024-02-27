@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/config'
 const TopNavCustomButtons = props => {
   const TopNavCustomButtonsStr = siteConfig('TopNavCustomButtons')
   try {
-    debugger
+    
     let arr = JSON.parse(TopNavCustomButtonsStr)
 
     return arr.map((item, idx) => (
