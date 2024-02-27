@@ -17,7 +17,7 @@ function useUmami(){
         if(shareToken == "" || shareToken == undefined){
             const res = await axios.get(`/umami/api/share/${UMAMI_SHARE_ID}`)
             shareToken = res.data.token
-            console.log(res.data.token)
+            // console.log(res.data.token)
         }
         // console.log(`shareToken: ${shareToken}`)
         if(shareToken == "" || shareToken == undefined) return
