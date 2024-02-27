@@ -19,7 +19,7 @@ function useUmami(){
             shareToken = res.data.token
             console.log(res.data.token)
         }
-        console.log(`shareToken: ${shareToken}`)
+        // console.log(`shareToken: ${shareToken}`)
         if(shareToken == "" || shareToken == undefined) return
         axios.get(`${UMAMI_ANALYTICS_URL}/api/websites/${UMAMI_SITE_ID}/active`,
         {
@@ -30,7 +30,7 @@ function useUmami(){
         ).then(res=>{
             if( res.data){
                 setActiveNum(res.data.x)
-                console.log(`在线人数：${res.data.x}`)
+                // console.log(`在线人数：${res.data.x}`)
             }
             return res.data
         }).catch(err=>{
@@ -42,7 +42,7 @@ function useUmami(){
         //  30秒刷新一次
         const timer = setInterval(async ()=>{
             await loadStat()
-        }, 1000 * 20)
+        }, 1000 * 30)
         await loadStat()
         return ()=>{
             clearInterval(timer)
