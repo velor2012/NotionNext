@@ -81,7 +81,9 @@ const ExternalPlugin = (props) => {
   const CLARITY_ID = siteConfig('CLARITY_ID')
   const IMG_SHADOW = siteConfig('IMG_SHADOW')
   const ANIMATE_CSS_URL = siteConfig('ANIMATE_CSS_URL')
-
+  const UMAMI_SITE_ID = siteConfig('UMAMI_SITE_ID')
+  const UMAMI_HOST_URL = siteConfig('UMAMI_HOST_URL')
+  
   // 自定义样式css和js引入
   if (isBrowser) {
     // 初始化AOS动画
@@ -290,6 +292,10 @@ const ExternalPlugin = (props) => {
             }} />
         )}
 
+        {/* umami 统计 */}
+        {UMAMI_SITE_ID && (
+            <script defer src={`${UMAMI_HOST_URL || 'https://eu.umami.is/script.js'}`} data-website-id={`${UMAMI_SITE_ID}`}></script>
+        )}
     </>
 }
 
