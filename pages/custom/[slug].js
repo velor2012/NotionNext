@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { getLayoutByTheme } from '@/themes/theme'
-import { getGlobalData } from '@/lib/notion/getNotionData'
+import { getGlobalData } from '@/lib/db/getSiteData'
 import { siteConfig } from '@/lib/config'
 /**
  * 404
