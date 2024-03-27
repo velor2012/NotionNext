@@ -11,7 +11,7 @@ const CustomePageWatch = (props) => {
  const { locale, postCount } = useGlobal()
  const iframeRef = useRef(null)
 
-const url = 'https://watch.cwy666.eu.org'
+const url = 'https://velor2012.gitee.io/probe/'
  return <div>
     <motion.div 
         key={locale.NAV.ABOUT} className='bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>

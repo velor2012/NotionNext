@@ -99,7 +99,7 @@ const LayoutBase = (props) => {
 
   return (
     <ThemeContextProvider>
-        <div id='theme-next' className=' w-screen flex flex-col items-center
+        <div id='theme-next' className='flex flex-col items-center
          bg-[#eeedee]
          dark:bg-black
         '>
