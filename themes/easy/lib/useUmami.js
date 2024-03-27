@@ -38,12 +38,12 @@ function useUmami(){
             return 0
         })
     }
-    useEffect(async ()=>{
+    useEffect(()=>{
         //  30秒刷新一次
         const timer = setInterval(async ()=>{
             await loadStat()
         }, 1000 * 30)
-        await loadStat()
+        loadStat()
         return ()=>{
             clearInterval(timer)
         }

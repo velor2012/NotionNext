@@ -1,2 +1,2 @@
-import blog from "./blog";
-export { blog };
+import watch from "./watch";
+export { watch };
