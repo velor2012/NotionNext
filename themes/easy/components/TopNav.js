@@ -23,8 +23,8 @@ const TopNav = (props) => {
   const collapseRef = useRef(null)
 
   const USE_ALGOLIA = siteConfig('ALGOLIA_APP_ID')
-  const MENU_SEARCH = siteConfig('MENU_SEARCH')
-  const NAV_TYPE = siteConfig('NAV_TYPE')
+  const MENU_SEARCH = siteConfig('NEXT_MENU_SEARCH')
+  const NEXT_NAV_TYPE = siteConfig('NEXT_NAV_TYPE')
 
   const { isShowLogo, isShowTitle } = useTheme()
 
@@ -43,12 +43,12 @@ const TopNav = (props) => {
 
   // 监听滚动
   useEffect(() => {
-    if (NAV_TYPE === 'autoCollapse') {
+    if (NEXT_NAV_TYPE === 'autoCollapse') {
       scrollTrigger()
       window.addEventListener('scroll', scrollTrigger)
     }
     return () => {
-      NAV_TYPE === 'autoCollapse' && window.removeEventListener('scroll', scrollTrigger)
+      NEXT_NAV_TYPE === 'autoCollapse' && window.removeEventListener('scroll', scrollTrigger)
     }
   }, [])
 
@@ -59,7 +59,7 @@ const TopNav = (props) => {
   }
 
   return (
-        <div id='top-nav' className={`${NAV_TYPE !== 'normal' ? 'sticky' : 'relative'} w-full top-0 z-[25] transform duration-500`}>
+        <div id='top-nav' className={`${NEXT_NAV_TYPE !== 'normal' ? 'sticky' : 'relative'} w-full top-0 z-[25] transform duration-500`}>
             {/* 导航栏 */}
             <div id='sticky-nav'>
                 <div className='w-full flex justify-between items-center p-1 bg-black dark:bg-gray-800 text-white rounded-b-sm'>

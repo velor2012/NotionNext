@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/config'
 
 export default function ArticleCopyright ({ author, url }) {
   const { locale } = useGlobal()
-  if (!siteConfig('ARTICLE_COPYRIGHT', null, CONFIG)) {
+  if (!siteConfig('NEXT_ARTICLE_COPYRIGHT', null, CONFIG)) {
     return <></>
   }
   return (

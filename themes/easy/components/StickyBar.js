@@ -13,7 +13,7 @@ let windowTop = 0
 const StickyBar = ({ children }) => {
   // 滚动页面时导航条样式调整
   const scrollTrigger = useCallback(throttle(() => {
-    if (CONFIG.NAV_TYPE === 'normal') {
+    if (CONFIG.NEXT_NAV_TYPE === 'normal') {
       return
     }
     const scrollS = window.scrollY

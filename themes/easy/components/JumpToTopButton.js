@@ -2,7 +2,7 @@ import { useGlobal } from '@/lib/global'
 import React, { useMemo } from 'react'
 import CONFIG from '../config'
 import Stroke from '../lib/getStroke'
-
+import { siteConfig } from '@/lib/config'
 /**
  * 跳转到网页顶部
  * 当屏幕下滑500像素后会出现该控件
@@ -18,8 +18,8 @@ const JumpToTopButton = ({ showPercent = true, percent }) => {
   const p = useMemo(()=>{
     return pathTotalLength *(1 -  percent / 100 )
   }, [percent, pathTotalLength])
-
-  if (!CONFIG.WIDGET_TO_TOP) {
+  
+  if (!siteConfig('NEXT_WIDGET_TO_TOP', null, CONFIG)) {
     return <></>
   }
   return (
@@ -33,7 +33,7 @@ const JumpToTopButton = ({ showPercent = true, percent }) => {
                     height={32}
                     strokeWidth={3}
                     radius={16}
-                    className={'stroke-primary dark:text-gray-200 fill-none'}
+                    className={'stroke-black dark:text-gray-200 fill-none'}
                 />
                 </svg>
             <div className='dark:text-gray-200 block align-middle ' title={locale.POST.TOP} >

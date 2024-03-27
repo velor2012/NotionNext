@@ -8,13 +8,16 @@ import CONFIG from '../config'
 import NotionPage from '@/components/NotionPage'
 import NotionIcon from '@/components/NotionIcon'
 import TwikooCommentCount from '@/components/TwikooCommentCount'
-import { formatDateFmt } from '@/lib/formatDate'
+import { formatDateFmt } from '@/lib/utils/formatDate'
 import { motion } from 'framer-motion'
 import { siteConfig } from '@/lib/config'
-
+import { checkContainHttp, sliceUrlFromHttp } from '@/lib/utils'
 const BlogPostCard = ({ post, showSummary }) => {
   const { locale } = useGlobal()
   const showPreview = siteConfig('NEXT_POST_LIST_PREVIEW', null, CONFIG) && post.blockMap
+  
+  const url = checkContainHttp(post.slug) ? sliceUrlFromHttp(post.slug) : `${siteConfig('SUB_PATH', '')}/${post.slug}`.replace('//', '/')
+  
   const variants = {
     show: {
       x: 0,
@@ -60,7 +63,7 @@ const BlogPostCard = ({ post, showSummary }) => {
             viewport={{ once: true }}
             variants={variants}>
                 <Link
-                    href={`${siteConfig('SUB_PATH', '')}/${post.slug}`}
+                    href={url}
                     passHref
                     className={`cursor-pointer text-3xl ${
                     showPreview ? 'text-center' : ''
@@ -150,7 +153,7 @@ const BlogPostCard = ({ post, showSummary }) => {
           <motion.div
            className="flex justify-end border-t pt-8 border-dashed">
                 <Link
-                href={`${siteConfig('SUB_PATH', '')}/${post.slug}`}
+                href={url}
                 className="hover:bg-opacity-100 hover:scale-105 transform duration-500 rounded-md  p-3 text-white bg-gray-800 cursor-pointer"
             >
                 <span className="article-link">{locale.COMMON.ARTICLE_DETAIL}</span>
@@ -160,8 +163,8 @@ const BlogPostCard = ({ post, showSummary }) => {
           </motion.div>
         </div>
 
-        {CONFIG.POST_LIST_COVER && post?.pageCoverThumbnail && (
-          <Link href={`${siteConfig('SUB_PATH', '')}/${post.slug}`} passHref legacyBehavior>
+        {siteConfig('NEXT_POST_LIST_COVER', null, CONFIG) && post?.pageCoverThumbnail && (
+          <Link href={url} passHref legacyBehavior>
             <div className="h-72 w-full relative duration-200 cursor-pointer transform overflow-hidden">
               <Image
                 className={`hover:scale-105 transform duration-500 ${post.id}-img`}

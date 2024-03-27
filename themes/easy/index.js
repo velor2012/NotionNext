@@ -133,7 +133,7 @@ const LayoutBase = (props) => {
                     </motion.section>
 
                     {/* 右侧栏样式 */}
-                    {CONFIG.RIGHT_BAR && <SideAreaRight targetRef={targetRef} slot={rightAreaSlot} {...props} />}
+                    {siteConfig('NEXT_RIGHT_BAR', null, CONFIG)  && <SideAreaRight targetRef={targetRef} slot={rightAreaSlot} {...props} />}
                 </main>
 
                 {/* 右下角悬浮 */}

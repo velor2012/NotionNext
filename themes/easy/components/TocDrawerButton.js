@@ -11,7 +11,7 @@ import { siteConfig } from '@/lib/config'
  */
 const TocDrawerButton = (props) => {
   const { locale } = useGlobal()
-  if (!siteConfig('HEO_WIDGET_TOC', null, CONFIG)) {
+  if (!siteConfig('WIDGET_TOC', null, CONFIG)) {
     return <></>
   }
   if (props?.post?.toc?.length > 1) {

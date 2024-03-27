@@ -77,7 +77,7 @@ const SideAreaRight = props => {
       exit="exit"
     >
       {/* <LayoutGroup id="sideAreaRight"> */}
-        {siteConfig('RIGHT_AD', null, CONFIG) && (
+        {siteConfig('NEXT_RIGHT_AD', null, CONFIG) && (
           <Card  variants={variants} className="mb-2">
             {/* 展示广告  */}
             <ins
@@ -95,7 +95,7 @@ const SideAreaRight = props => {
               </Card>
             )}
 
-            {siteConfig('RIGHT_LATEST_POSTS', null, CONFIG) && (
+            {siteConfig('NEXT_RIGHT_LATEST_POSTS', null, CONFIG) && (
               <Card key={2}  variants={variants}>
                 <LatestPostsGroup latestPosts={latestPosts} />
               </Card>
@@ -103,7 +103,7 @@ const SideAreaRight = props => {
             {slot}
 
             {/* 分类  */}
-            {siteConfig('RIGHT_CATEGORY_LIST', null, CONFIG) &&
+            {siteConfig('NEXT_RIGHT_CATEGORY_LIST', null, CONFIG) &&
               router.asPath !== '/category' &&
               categoryOptions && (
                 <Card key={3} variants={variants} exit={variants.exit} className="mb-2">
@@ -128,7 +128,7 @@ const SideAreaRight = props => {
                 </Card>
               )}
 
-            {siteConfig('RIGHT_TAG_LIST', null, CONFIG) &&
+            {siteConfig('NEXT_RIGHT_TAG_LIST', null, CONFIG) &&
               router.asPath !== '/tag' &&
               tagOptions && (
                 <Card key={4} variants={variants} exit={variants.exit}>

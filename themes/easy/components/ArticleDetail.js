@@ -13,7 +13,7 @@ import NotionPage from '@/components/NotionPage'
 import CONFIG from '../config'
 import NotionIcon from '@/components/NotionIcon'
 import LazyImage from '@/components/LazyImage'
-import { formatDateFmt } from '@/lib/formatDate'
+import { formatDateFmt } from '@/lib/utils/formatDate'
 import { motion } from 'framer-motion'
 import { useTheme } from '../lib/themeContextProvider'
 /**
@@ -39,7 +39,7 @@ export default function ArticleDetail(props) {
 
                 {showArticleInfo && <header>
                     {/* 头图 */}
-                    {CONFIG.POST_HEADER_IMAGE_VISIBLE && post?.type && !post?.type !== 'Page' && post?.pageCover && (
+                    {CONFIG.NEXT_POST_HEADER_IMAGE_VISIBLE && post?.type && !post?.type !== 'Page' && post?.pageCover && (
                         <div className="w-full relative md:flex-shrink-0 overflow-hidden">
                             <LazyImage alt={post.title} src={post?.pageCover} className='object-center w-full' />
                         </div>

@@ -4,9 +4,9 @@ import { saveDarkModeToCookies } from '@/themes/theme'
 const DarkModeButton = (props) => {
   const { isDarkMode, updateDarkMode } = useGlobal()
   // 用户手动设置主题
-  const handleChangeDarkMode = () => {
+  function handleChangeDarkMode() {
     const newStatus = !isDarkMode
-    saveDarkModeToCookies(newStatus)
+    saveDarkModeToLocalStorage(newStatus)
     updateDarkMode(newStatus)
     const htmlElement = document.getElementsByTagName('html')[0]
     htmlElement.classList?.remove(newStatus ? 'light' : 'dark')

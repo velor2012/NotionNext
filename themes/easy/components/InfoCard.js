@@ -12,7 +12,7 @@ const InfoCard = (props) => {
   const { activeNum } = useTheme()
   const { locale } = useGlobal()
   const [isHover, setIsHover] = React.useState(false)
-  const bgUrl = CONFIG.AVATAR_BORDER_URL
+  const bgUrl = CONFIG.NEXT_AVATAR_BORDER_URL
   return <>
     <div className='flex flex-col items-center justify-center '>
         <motion.div
