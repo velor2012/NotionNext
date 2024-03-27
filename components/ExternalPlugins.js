@@ -5,7 +5,7 @@ import WebWhiz from './Webwhiz'
 import TianLiGPT from './TianliGPT'
 import { GlobalStyle } from './GlobalStyle'
 
-import { CUSTOM_EXTERNAL_CSS, CUSTOM_EXTERNAL_JS, IMG_SHADOW } from '@/blog.config'
+import { CUSTOM_EXTERNAL_CSS, CUSTOM_EXTERNAL_JS } from '@/blog.config'
 import { isBrowser, loadExternalResource } from '@/lib/utils'
 
 const TwikooCommentCounter = dynamic(() => import('@/components/TwikooCommentCounter'), { ssr: false })
@@ -71,8 +71,6 @@ const ExternalPlugin = (props) => {
   const ANALYTICS_BAIDU_ID = siteConfig('ANALYTICS_BAIDU_ID')
   const ANALYTICS_CNZZ_ID = siteConfig('ANALYTICS_CNZZ_ID')
   const ANALYTICS_GOOGLE_ID = siteConfig('ANALYTICS_GOOGLE_ID')
-  const UMAMI_SITE_ID = siteConfig('UMAMI_SITE_ID')
-  const UMAMI_HOST_URL = siteConfig('UMAMI_HOST_URL')
   const MATOMO_HOST_URL = siteConfig('MATOMO_HOST_URL')
   const MATOMO_SITE_ID = siteConfig('MATOMO_SITE_ID')
   const ANALYTICS_51LA_ID = siteConfig('ANALYTICS_51LA_ID')
@@ -81,6 +79,8 @@ const ExternalPlugin = (props) => {
   const TIANLI_KEY = siteConfig('TianliGPT_KEY')
   const GLOBAL_JS = siteConfig('GLOBAL_JS')
   const CLARITY_ID = siteConfig('CLARITY_ID')
+  const IMG_SHADOW = siteConfig('IMG_SHADOW')
+  const ANIMATE_CSS_URL = siteConfig('ANIMATE_CSS_URL')
 
   // 自定义样式css和js引入
   if (isBrowser) {
@@ -92,6 +92,10 @@ const ExternalPlugin = (props) => {
     // 自动添加图片阴影
     if (IMG_SHADOW) {
       loadExternalResource('/css/img-shadow.css', 'css')
+    }
+
+    if (ANIMATE_CSS_URL) {
+      loadExternalResource(ANIMATE_CSS_URL, 'css')
     }
 
     // 导入外部自定义脚本
@@ -284,11 +288,6 @@ const ExternalPlugin = (props) => {
               })();
             `
             }} />
-        )}
-
-        {/* umami 统计 */}
-        {UMAMI_SITE_ID && (
-            <script defer src={`${UMAMI_HOST_URL || 'https://eu.umami.is/script.js'}`} data-website-id={`${UMAMI_SITE_ID}`}></script>
         )}
 
     </>
