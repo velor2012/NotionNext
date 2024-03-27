@@ -1,5 +1,5 @@
 import { useGlobal } from '@/lib/global'
-import { saveDarkModeToCookies } from '@/themes/theme'
+import { saveDarkModeToLocalStorage } from '@/themes/theme'
 
 const DarkModeButton = (props) => {
   const { isDarkMode, updateDarkMode } = useGlobal()

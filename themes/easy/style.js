@@ -47,21 +47,6 @@ const Style = () => {
       color: white;
     }
 
-    //同上
-    .replace a{
-      text-decoration: none;
-      background-image: linear-gradient(black, black);
-      background-repeat: no-repeat;
-      background-position: bottom center;
-      background-size: 0 2px;
-      transition: background-size 100ms ease-in-out;
-      padding-bottom: 4px;
-    }
-
-    .replace a:hover {
-      background-size: 100% 2px;
-      /* color: blue; */
-    }
 
     .processBar{
         position: absolute;
