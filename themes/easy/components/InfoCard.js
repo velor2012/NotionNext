@@ -60,7 +60,7 @@ const InfoCard = (props) => {
 | <strong className='pl-1 busuanzi_value_site_pv font-medium'/>{locale.COMMON.VIEWS}</span> */}
         </div>
 
-        <div className='mt-2 ml-2 h-6 bg-red flex justify-center items-center text-xs'>
+        <div className='mt-2 ml-2 h-6 bg-red flex justify-center items-center text-xs dark:text-white'>
             <span className=' mr-2 leading-[16px] block bg-repeat bg-green-400 bg-origin-padding bg-left-top bg-clip-border rounded-b bg-auto bg-scroll w-[10px] h-[10px] rounded-t'/>
             在线人数： {activeNum}
         </div>
