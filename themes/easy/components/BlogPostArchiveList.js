@@ -82,8 +82,8 @@ const BlogPostArchiveList = props => {
     const k = keysSortDesc[0]
     setCurKey(k)
     setCurPosts(datas[k])
-    console.log("curKey: ", curKey)
-    console.log("datas[curKey]: ", datas[curKey])
+    // console.log("curKey: ", curKey)
+    // console.log("datas[curKey]: ", datas[curKey])
   }, [])
   return (
     <>
