@@ -140,7 +140,7 @@ export default function AlgoliaSearchModal({ cRef }) {
           search: query,
           target: {
             element: 'span',
-            className: 'font-bold border-b border-dashed'
+            className: 'text-blue-600 font-bold border-black dark:border-white border-b border-dashed'
           }
         })
       }, 200) // 延时高亮
@@ -222,7 +222,7 @@ export default function AlgoliaSearchModal({ cRef }) {
 
         {/* 标签组 */}
         <div className="mb-4">
-          <TagGroups />
+          <TagGroups closeModal={closeModal}/>
         </div>
         {
           searchResults.length === 0 && keyword && !isLoading && (
