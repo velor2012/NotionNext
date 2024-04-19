@@ -355,7 +355,7 @@ function Pagination(props) {
  * @param {*} selected
  */
 function getPageElement(i, selected, switchPage) {
-  return <div onClick={() => switchPage(i)} className={`${selected ? 'font-bold text-black border-t-2 border-gray-400' : 'hover:text-black hover:font-bold'} rounded-md bg-hexo-background-gray hover:border-t-2 
+  return <div key={i} onClick={() => switchPage(i)} className={`${selected ? 'font-bold text-black border-t-2 border-gray-400' : 'hover:text-black hover:font-bold'} rounded-md bg-hexo-background-gray hover:border-t-2 
   border-white  hover:border-gray-400 justify-center flex items-center cursor-pointer duration-200 transition-all hover:font-bold  w-6 h-6 `}>
     {i + 1}
   </div>
