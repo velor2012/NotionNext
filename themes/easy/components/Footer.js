@@ -1,10 +1,16 @@
 import { siteConfig } from '@/lib/config'
+import { extractDate, getRunTime } from '../lib/utils'
+import { useGlobal } from '@/lib/global'
 
 const Footer = () => {
   const d = new Date()
   const currentYear = d.getFullYear()
+  const { locale } = useGlobal()
   const since = siteConfig('SINCE')
-  const copyrightDate = parseInt(since) < currentYear ? since + '-' + currentYear : currentYear
+  // 提取日期，形如yyyy-mm-dd
+  const date = extractDate(since)
+  const runTime = getRunTime(date)
+  const copyrightDate = date.year < currentYear ? since + '-' + currentYear : currentYear
 
   return (
         <footer
@@ -19,6 +25,7 @@ const Footer = () => {
                 
                 {siteConfig('MOE_BEI') && <><i className='fas fa-star' /> <a href={`https://icp.gov.moe/?keyword=${siteConfig('MOE_BEI')}`} target="_blank">{`萌ICP备${siteConfig('MOE_BEI')}号`}</a><br /></>}
                 
+                {`${locale.COMMON.RUNSINCE_PREFIX}: ${runTime} ${locale.COMMON.RUNSINCE_POSTFIX}`} <br />
                 <span className='text-xs font-serif  text-gray-500 dark:text-gray-300 '>Powered by  <a href='https://github.com/tangly1024/NotionNext' className='underline '>NotionNext {siteConfig('VERSION')}</a>.</span>
             </span>
         </footer>
