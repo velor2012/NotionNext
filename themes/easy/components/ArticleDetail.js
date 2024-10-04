@@ -15,6 +15,7 @@ import NotionIcon from '@/components/NotionIcon'
 import LazyImage from '@/components/LazyImage'
 import { formatDateFmt } from '@/lib/utils/formatDate'
 import { motion } from 'framer-motion'
+import React from 'react'
 import { useTheme } from '../lib/themeContextProvider'
 /**
  *
@@ -115,7 +116,7 @@ export default function ArticleDetail(props) {
                                             {locale.COMMON.TAGS}：
                                         </div>
                                         {post.tagItems.map(tag => (
-                                            <TagItem key={tag.name} tag={tag} />
+                                            <TagItem selected={false} key={tag.name} tag={tag} />
                                         ))}
                                     </div>
                                 )}

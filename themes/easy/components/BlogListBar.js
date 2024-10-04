@@ -2,7 +2,7 @@
 import CategoryList from './CategoryList'
 import StickyBar from './StickyBar'
 import TagList from './TagList'
-
+import React from 'react'
 /**
  * 博客列表上方嵌入
  * @param {*} props

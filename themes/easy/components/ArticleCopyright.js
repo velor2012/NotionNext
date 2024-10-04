@@ -2,7 +2,7 @@ import { useGlobal } from '@/lib/global'
 import Link from 'next/link'
 import CONFIG from '../config'
 import { siteConfig } from '@/lib/config'
-
+import React from 'react'
 export default function ArticleCopyright ({ author, url }) {
   const { locale } = useGlobal()
   if (!siteConfig('NEXT_ARTICLE_COPYRIGHT', null, CONFIG)) {

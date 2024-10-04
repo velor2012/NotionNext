@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { siteConfig } from '@/lib/config'
 import { checkContainHttp, sliceUrlFromHttp } from '@/lib/utils'
-
+import React from 'react'
 /**
  * 博客归档列表
  * @param posts 所有文章

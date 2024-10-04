@@ -9,7 +9,6 @@ import replaceSearchResult from '@/components/Mark'
 import {   motion, AnimatePresence } from "framer-motion";
 import  * as CustomPages from './pages/pages'
 import CustomPageLayout from './pages'
-import NProgress from 'nprogress'
 import {useTheme, ThemeContextProvider } from './lib/themeContextProvider'
 import { siteConfig } from '@/lib/config'
 import dynamic from 'next/dynamic'
@@ -36,10 +35,6 @@ const TagItem = dynamic(() => import('./components/TagItem'), { ssr: false })
 const ArticleLock = dynamic(() => import('./components/ArticleLock'), { ssr: false })
 const ArticleDetail = dynamic(() => import('./components/ArticleDetail'), { ssr: false })
 
-// 关闭默认的loading样式
-NProgress.configure({
-    template: '<div class="bar" role="bar"></div>'
-  })
 const variants = {
     show: {
       opacity: 1,

@@ -4,9 +4,13 @@ import { siteConfig } from '@/lib/config'
 
 const TopNavCustomButtons = props => {
   const TopNavCustomButtonsStr = siteConfig('TopNavCustomButtons')
+  let arr = TopNavCustomButtonsStr
+  if(!TopNavCustomButtonsStr) return <></>
   try {
-    
-    let arr = JSON.parse(TopNavCustomButtonsStr)
+    if(typeof TopNavCustomButtons === 'string'){
+        arr = JSON.parse(TopNavCustomButtonsStr)
+    }
+
 
     return arr.map((item, idx) => (
       <Link
