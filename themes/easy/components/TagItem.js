@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useGlobal } from '@/lib/global'
 import { motion } from 'framer-motion'
+import React from 'react'
 const TagItem = ({ tag, selected }) => {
   const { locale } = useGlobal()
   if (!tag) {

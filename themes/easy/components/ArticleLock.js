@@ -1,6 +1,6 @@
 import { useGlobal } from '@/lib/global'
 import { useEffect, useRef } from 'react'
-
+import React from 'react'
 /**
  * 加密文章校验组件
  * @param {password, validPassword} props

@@ -34,8 +34,8 @@ export const MenuItemDrop = ({ link }) => {
     >
       {!hasSubMenu && (
         <Link
-          href={link?.to}
-          target={link?.to?.indexOf('http') === 0 ? '_blank' : '_self'}
+        href={link?.href}
+        target={link?.target}
           className="w-full my-auto items-center justify-between flex "
         >
           <div>
@@ -76,8 +76,8 @@ export const MenuItemDrop = ({ link }) => {
             return (
               <li key={sLink.id}>
                 <Link
-                  href={sLink.to}
-                  target={link?.to?.indexOf('http') === 0 ? '_blank' : '_self'}
+                  href={sLink.href}
+                  target={link?.target}
                   className="my-auto h-9 px-2 items-center justify-start flex not:last-child:border-b-0 border-b text-gray-700 dark:text-gray-200  hover:bg-gray-50 dark:hover:bg-gray-900 tracking-widest transition-all duration-200  dark:border-gray-800 "
                 >
                   {sLink.icon && (

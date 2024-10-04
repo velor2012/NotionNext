@@ -1,7 +1,7 @@
 
 import { useTheme } from '../lib/themeContextProvider'
 import { siteConfig } from '@/lib/config'
-
+import React from 'react'
 const AlgoliaSearchButton = (props) => {
   const { searchModal } = useTheme()
   const USE_ALGOLIA = siteConfig('ALGOLIA_APP_ID')

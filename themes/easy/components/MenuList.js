@@ -19,28 +19,28 @@ export const MenuList = props => {
       id: 1,
       icon: 'fas fa-home',
       name: locale.NAV.INDEX,
-      to: '/' || '/',
+      href: '/' || '/',
       show: true
     },
     {
       id: 2,
       icon: 'fas fa-th',
       name: locale.COMMON.CATEGORY,
-      to: '/category',
+      href: '/category',
       show: siteConfig('NEXT_MENU_CATEGORY', null, CONFIG)
     },
     {
       id: 3,
       icon: 'fas fa-tag',
       name: locale.COMMON.TAGS,
-      to: '/tag',
+      href: '/tag',
       show: siteConfig('NEXT_MENU_TAG', null, CONFIG)
     },
     {
       id: 4,
       icon: 'fas fa-archive',
       name: locale.NAV.ARCHIVE,
-      to: '/archive',
+      href: '/archive',
       slot: archiveSlot,
       show: siteConfig('NEXT_MENU_ARCHIVE', null, CONFIG)
     }
@@ -75,7 +75,6 @@ export const MenuList = props => {
       }
     }
   }
-
   return (
     <motion.div>
       {/* 大屏模式菜单 */}

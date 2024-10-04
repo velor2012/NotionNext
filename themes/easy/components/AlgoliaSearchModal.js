@@ -7,7 +7,7 @@ import throttle from 'lodash/throttle'
 import { siteConfig } from '@/lib/config'
 import { useHotkeys } from 'react-hotkeys-hook';
 import { motion } from 'framer-motion'
-
+import React from 'react'
 const ShortCutActions = [
   {
     key: '↑ ↓',
@@ -71,7 +71,7 @@ export default function AlgoliaSearchModal({ cRef }) {
   // enter跳转
   useHotkeys('enter', (e) => {
     if (searchResults.length > 0) {
-      onJumpSearchResult(index)
+      onJumpSearchResult()
     }
   }, { enableOnFormTags: true })
 
