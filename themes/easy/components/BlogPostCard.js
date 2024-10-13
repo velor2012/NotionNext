@@ -46,7 +46,7 @@ const BlogPostCard = ({ post, showSummary }) => {
       initial="hidden"
       whileInView="show"
       variants={variants}
-      className="w-full"
+      className="w-full overflow-hidden"
     >
       <div
         key={post.id}

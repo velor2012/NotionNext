@@ -36,7 +36,7 @@
     "next": "14.2.4",
     "notion-client": "6.15.6",
     "notion-utils": "6.15.6",
-    "framer-motion": "^10.16.4",
+    "framer-motion": "^11.11.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-facebook": "^8.1.4",
