@@ -13,6 +13,7 @@ import {useTheme, ThemeContextProvider } from './lib/themeContextProvider'
 import { siteConfig } from '@/lib/config'
 import dynamic from 'next/dynamic'
 import BlogPostArchiveList from './components/BlogPostArchiveList'
+import useTocDrawer from './lib/useTocDrawer'
 
 const _404Card = dynamic(() => import('./components/404'), { ssr: false })
 const TopNav = dynamic(() => import('./components/TopNav'), { ssr: false })
@@ -59,10 +60,11 @@ const variants = {
  * @constructor
  */
 const LayoutBase = (props) => {
-  const { children, headerSlot, rightAreaSlot, siteInfo, meta } = props
+  const { children, headerSlot, rightAreaSlot, siteInfo, post } = props
   const { onLoading } = useGlobal()
   const targetRef = useRef(null)
   const floatButtonGroup = useRef(null)
+  const {tocFloatSlot, myTocDrawer} = useTocDrawer(props)
   const [showRightFloat, switchShow] = useState(false)
   const [percent, changePercent] = useState(0) // 页面阅读百分比
   const scrollListener = () => {
@@ -91,7 +93,6 @@ const LayoutBase = (props) => {
     document.addEventListener('scroll', scrollListener)
     return () => document.removeEventListener('scroll', scrollListener)
   }, [showRightFloat])
-
   return (
     <ThemeContextProvider>
         <div id='theme-next' className='flex flex-col items-center
@@ -131,10 +132,13 @@ const LayoutBase = (props) => {
                     {siteConfig('NEXT_RIGHT_BAR', null, CONFIG)  && <SideAreaRight targetRef={targetRef} slot={rightAreaSlot} {...props} />}
                 </main>
 
+                {myTocDrawer}
+
                 {/* 右下角悬浮 */}
                 <div ref={floatButtonGroup} className='right-8 bottom-12 lg:right-8 fixed justify-end z-20 font-sans'>
                     <div className={(showRightFloat ? 'animate__animated ' : 'hidden') + ' animate__fadeInUp rounded-md justify-center duration-500  animate__faster flex space-x-2 items-center cursor-pointer '}>
                             <RightDownFloatSlot/>
+                            {tocFloatSlot}
                             <JumpToTopButton percent={percent} />
                             <JumpToBottomButton />
                     </div>
@@ -263,28 +267,12 @@ const LayoutArchive = (props) => {
  */
 const LayoutSlug = (props) => {
   const { post, lock, validPassword } = props
-  const drawerRight = useRef(null)
-  const targetRef = isBrowser ? document.getElementById('article-wrapper') : null
-  const { setFloatSlot } = useTheme()
-  useEffect(()=>{
-    const floatSlot = <div className='block lg:hidden'>
-    <TocDrawerButton {...props} onClick={() => {
-        drawerRight?.current?.handleSwitchVisible()
-        }} />
-    </div>
-      setFloatSlot(floatSlot)
-  },[])
   return (
         <motion.div >
 
             {post && !lock && <ArticleDetail {...props} />}
 
             {post && lock && <ArticleLock validPassword={validPassword} />}
-
-            {/* 悬浮目录按钮 */}
-            {post && <div className='block lg:hidden'>
-                <TocDrawer post={post} cRef={drawerRight} targetRef={targetRef} />
-            </div>}
 
         </motion.div>
   )

@@ -7,6 +7,9 @@ const Footer = () => {
   const currentYear = d.getFullYear()
   const { locale } = useGlobal()
   const since = siteConfig('SINCE')
+  const beian = siteConfig('BEI_AN')
+  const mengbei = siteConfig('MOE_BEI')
+  const link = siteConfig('LINK')
   // 提取日期，形如yyyy-mm-dd
   const date = extractDate(since)
   const runTime = getRunTime(date)
@@ -19,11 +22,11 @@ const Footer = () => {
 
             <span>
 
-                <i className='fas fa-copyright' /> {`${copyrightDate}`} <span className='mx-1 animate-pulse'><i className='fas fa-heart' /></span> <a href={siteConfig('LINK')} className='underline font-bold '>{siteConfig('AUTHOR')}</a>.<br />
+                <i className='fas fa-copyright' /> {`${copyrightDate}`} <span className='mx-1 animate-pulse'><i className='fas fa-heart' /></span> <a href={link} className='underline font-bold '>{siteConfig('AUTHOR')}</a>.<br />
 
-                {siteConfig('BEI_AN') && <><i className='fas fa-shield-alt' /> <a href='https://beian.miit.gov.cn/' className='mr-2'>{siteConfig('BEI_AN')}</a><br /></>}
+                {beian && <><i className='fas fa-shield-alt' /> <a href='https://beian.miit.gov.cn/' className='mr-2'>{beian}</a><br /></>}
                 
-                {siteConfig('MOE_BEI') && <><i className='fas fa-star' /> <a href={`https://icp.gov.moe/?keyword=${siteConfig('MOE_BEI')}`} target="_blank">{`萌ICP备${siteConfig('MOE_BEI')}号`}</a><br /></>}
+                {mengbei && <><i className='fas fa-star' /> <a href={`https://icp.gov.moe/?keyword=${mengbei}`} target="_blank">{`萌ICP备${mengbei}号`}</a><br /></>}
                 
                 {`${locale.COMMON.RUNSINCE_PREFIX}: ${runTime} ${locale.COMMON.RUNSINCE_POSTFIX}`} <br />
                 <span className='text-xs font-serif  text-gray-500 dark:text-gray-300 '>Powered by  <a href='https://github.com/tangly1024/NotionNext' className='underline '>NotionNext {siteConfig('VERSION')}</a>.</span>

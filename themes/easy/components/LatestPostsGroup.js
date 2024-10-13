@@ -13,7 +13,7 @@ const LatestPostsGroup = ({ latestPosts }) => {
   // 获取当前路径
   const currentPath = useRouter().asPath
   const { locale } = useGlobal()
-
+const subFix = siteConfig('SUB_PATH', '')
   if (!latestPosts) {
     return <></>
   }
@@ -26,12 +26,12 @@ const LatestPostsGroup = ({ latestPosts }) => {
       </div>
     </div>
     {latestPosts.map(post => {
-      const selected = currentPath === `${siteConfig('SUB_PATH', '')}/${post.slug}`
+      const selected = currentPath === `${subFix}/${post.slug}`
       return (
         (<Link
           key={post.id}
           title={post.title}
-          href={`${siteConfig('SUB_PATH', '')}/${post.slug}`}
+          href={`${subFix}/${post.slug}`}
           passHref
           className={'my-1 flex font-light'}>
 
