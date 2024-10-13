@@ -58,7 +58,7 @@ const SideAreaLeft = props => {
 
         </motion.section>
 
-        <motion.div  className='sticky top-14 hidden lg:block'>
+        <motion.div  className='sticky top-2 hidden lg:block'>
             <Card variants={variants}>
                 <Tabs>
                     {showToc && (
