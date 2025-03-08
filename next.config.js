@@ -158,11 +158,6 @@ const nextConfig = {
               source: `/:locale(${langs.join('|')})/`,
               destination: '/'
             },
-            //   如果有自己配置的umami，可以在这里配置反向代理
-            {
-                source: '/umami/:path*',
-                destination: `https://analytics.eu.umami.is/:path*`
-            },
           )
         }
 
@@ -172,7 +167,12 @@ const nextConfig = {
           {
             source: '/:path*.html',
             destination: '/:path*'
-          }
+          },
+            //   如果有自己配置的umami，可以在这里配置反向代理
+            {
+                source: '/umami/:path*',
+                destination: `https://eu.umami.is/:path*`
+            }
         ]
       },
   headers: process.env.EXPORT

@@ -90,6 +90,8 @@ const ExternalPlugin = props => {
     null,
     NOTION_CONFIG
   )
+  const UMAMI_SITE_ID = siteConfig('UMAMI_SITE_ID', null, NOTION_CONFIG)
+  const UMAMI_HOST_URL = siteConfig('UMAMI_HOST_URL', null, NOTION_CONFIG)
   const MATOMO_HOST_URL = siteConfig('MATOMO_HOST_URL', null, NOTION_CONFIG)
   const MATOMO_SITE_ID = siteConfig('MATOMO_SITE_ID', null, NOTION_CONFIG)
   const ANALYTICS_51LA_ID = siteConfig('ANALYTICS_51LA_ID', null, NOTION_CONFIG)

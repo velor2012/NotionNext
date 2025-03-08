@@ -50,3 +50,13 @@ yarn-error.log*
 # yarn
 package-lock.json
 # yarn.lock
+# 忽略父目录下的所有内容
+themes/**
+# 排除a和b目录本身
+!themes/easy/
+!themes/next/
+!themes/simple/
+# 确保a和b目录下的所有内容不被忽略
+!themes/easy/**
+!themes/next/**
+!themes/simple/**
