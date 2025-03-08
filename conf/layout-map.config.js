@@ -19,6 +19,7 @@ module.exports = {
     '/404': 'Layout404',
     '/tag': 'LayoutTagIndex',
     '/category': 'LayoutCategoryIndex',
+    '/custom/[slug]': 'CustomPageLayout',
     '/[prefix]': 'LayoutSlug',
     '/[prefix]/[slug]': 'LayoutSlug',
     '/[prefix]/[slug]/[...suffix]': 'LayoutSlug',

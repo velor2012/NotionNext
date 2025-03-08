@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
-import { getLayoutByTheme } from '@/themes/theme'
+import BLOG from '@/blog.config'
+import { DynamicLayout } from '@/themes/theme'
 import { getGlobalData } from '@/lib/db/getSiteData'
 import { siteConfig } from '@/lib/config'
 /**
@@ -8,9 +8,8 @@ import { siteConfig } from '@/lib/config'
  * @returns
  */
 const CustomPage = props => {
-  // 根据页面路径加载不同Layout文件
-  const Layout = getLayoutByTheme({ theme: siteConfig('THEME'), router: useRouter() })
-  return <Layout {...props} />
+  const theme = siteConfig('THEME', BLOG.THEME, props.NOTION_CONFIG)
+  return <DynamicLayout theme={theme} layoutName='CustomPageLayout' {...props} />
 }
 export async function getStaticPaths() {
   const paths = []
