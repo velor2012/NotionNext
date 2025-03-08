@@ -30,7 +30,7 @@ function useUmami(){
         ).then(res=>{
             if( res.data){
                 setActiveNum(res.data?.totals?.visitors || 0)
-                console.log(`在线人数：${res.data.visitors}`)
+                // console.log(`在线人数：${res.data?.totals?.visitors}`)
             }
             return res.data
         }).catch(err=>{
