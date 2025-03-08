@@ -6,31 +6,31 @@ function useUmami(){
     const UMAMI_SITE_ID = siteConfig('UMAMI_SITE_ID') || ''
     // https://analytics.eu.umami.is/api/share/{{你的分享id}}
     // 由于跨域原因，需要自己在next.config.js中配置反向代理
-    const UMAMI_SHARE_ID = siteConfig('UMAMI_SHARE_ID') || ''      
-    
-    let UMAMI_ANALYTICS_URL = siteConfig('UMAMI_HOST_URL') || 'https://analytics.eu.umami.is'
+    const UMAMI_SHARE_ID = siteConfig('UMAMI_SHARE_ID') || ''    
+
+    const isSelfHost = !!siteConfig('UMAMI_HOST_URL')
+
+    let UMAMI_ANALYTICS_URL = siteConfig('UMAMI_HOST_URL') || 'https://api.umami.is/v1'
     // 去掉最后的斜杠
     UMAMI_ANALYTICS_URL = UMAMI_ANALYTICS_URL.replace(/\/$/, "")
-    let shareToken = ""
+    let shareToken = "lUlcOdzFQTxL3FSzjOpkdis8n8qG8bn1"
     const loadStat = async ()=>{
         if(!UMAMI_SITE_ID) return
-        if(shareToken == "" || shareToken == undefined){
-            const res = await axios.get(`/umami/api/share/${UMAMI_SHARE_ID}`)
-            shareToken = res.data.token
-            // console.log(res.data.token)
-        }
         // console.log(`shareToken: ${shareToken}`)
         if(shareToken == "" || shareToken == undefined) return
-        axios.get(`${UMAMI_ANALYTICS_URL}/api/websites/${UMAMI_SITE_ID}/active`,
+        axios.get(`${isSelfHost ? UMAMI_ANALYTICS_URL + 'api' : UMAMI_ANALYTICS_URL}/realtime/${UMAMI_SITE_ID}`,
         {
             headers:{
-                'X-Umami-Share-Token': shareToken
+                'x-umami-api-key': shareToken
+            },
+            params:{
+                timezone: 'Asia/Shanghai'
             }
         }
         ).then(res=>{
             if( res.data){
-                setActiveNum(res.data.x)
-                // console.log(`在线人数：${res.data.x}`)
+                setActiveNum(res.data?.totals?.visitors || 0)
+                console.log(`在线人数：${res.data.visitors}`)
             }
             return res.data
         }).catch(err=>{
