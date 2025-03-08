@@ -9,6 +9,8 @@ const CONFIG = {
   NEXT_POST_LIST_PREVIEW: true, // 显示文章预览
   NEXT_POST_LIST_SUMMARY: false, // 显示用户自定义摘要，有预览时优先只展示预览
 
+  NEXT_PREVIEW_TAG_COUNT: 16, // 首页最多展示的标签数量，0为不限制
+  NEXT_PREVIEW_CATEGORY_COUNT: 16, // 首页最多展示的分类数量，0为不限制
   NEXT_POST_HEADER_IMAGE_VISIBLE: false, // 文章详情页是否显示封面图
 
   // 右侧组件

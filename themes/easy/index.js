@@ -284,10 +284,10 @@ const LayoutSlug = (props) => {
  * @returns
  */
 const LayoutCategoryIndex = (props) => {
-  const { categoryOptions } = props
+  const { allPosts, categoryOptions } = props
   const { locale } = useGlobal()
   return (
-        <motion.div >    
+        <motion.div totalPosts={allPosts} {...props}>
             <div className=' rounded-md  bg-white dark:bg-hexo-black-gray px-10 py-10 shadow h-full'>
                 <div className='dark:text-gray-200 mb-5'>
                     <i className='mr-4 fas faTh' />{locale.COMMON.CATEGORY}:
