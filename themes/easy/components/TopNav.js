@@ -87,7 +87,7 @@ const TopNav = (props) => {
                             <SearchInput {...props} />
                         }
                         {
-                            post && !!post.title &&
+                            USE_ALGOLIA && post && !!post.title &&
                             <motion.div
                             initial={{
                                 opacity: 0,
