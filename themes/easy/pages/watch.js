@@ -13,7 +13,7 @@ const url = 'https://watch.cwy666.eu.org'
             <Link
                 href={url}
                 passHref
-                className="text-gray-400 hover:text-black dark:text-gray-400 dark:hover:text-white hover:underline cursor-pointer"
+                className="text-gray-400 hover:text-black dark:text-gray-400 dark:hover:text-white menu-link"
             >
                 {'原始站点 '}
                 <i className="fas fa-angle-double-right text-sm" />

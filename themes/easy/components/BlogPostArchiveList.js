@@ -7,17 +7,18 @@ const variants = {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.5
+        staggerChildren: 0.1,
+        duration: 0.5,
+        staggerDirection: 1,
       }
     },
     hidden: {
         x: 100,
-    },
-    exit:{
         opacity: 0,
-        x: -100,
         transition: {
-            duration: 0.5
+            staggerChildren: 0.1,
+            duration: 0.5,
+            staggerDirection: -1,
           }
     }
   }
@@ -64,10 +65,11 @@ const BlogPostArchiveList = props => {
     const keys = Object.keys(datas)
     return keys.reverse()
   },[datas])
+
   const [curKey, setCurKey] = useState(Object.keys(datas)[0])
   const [curPosts, setCurPosts] = useState([])
+  const [curPostsKeys, setCurPostsKeys] = useState([])
   const [curVariants, setCurVariants] = useState(variants)
-
   const chageDirection = (curInterval) => {
     if(curInterval >= curKey){
         curVariants.exit.x = -Math.abs(curVariants.exit.x)
@@ -82,6 +84,7 @@ const BlogPostArchiveList = props => {
     const k = keysSortDesc[0]
     setCurKey(k)
     setCurPosts(datas[k])
+    setCurPostsKeys(Object.keys(datas[k]).reverse())
     // console.log("curKey: ", curKey)
     // console.log("datas[curKey]: ", datas[curKey])
   }, [])
@@ -100,6 +103,7 @@ const BlogPostArchiveList = props => {
                                 chageDirection(curInterval)
                                 setCurKey(curInterval)
                                 setCurPosts(datas[curInterval])
+                                setCurPostsKeys(Object.keys(datas[k]).reverse())
                             }
                         }>
                             { curKey == curInterval &&
@@ -116,22 +120,28 @@ const BlogPostArchiveList = props => {
                 }
             </div>
         </div>
-        <div className=" min-h-screen rounded-md mb-10 pb-20 bg-white md:p-12 p-3 md:pt-0 pt-0 dark:bg-hexo-black-gray shadow-md min-h-full">
-        <AnimatePresence mode='wait'>
-            {datas[curKey] && Object.keys(curPosts).reverse().map(archiveTitle => (
-                <motion.div
-                initial="hidden" animate="show" variants={variants} exit="exit"
-                key={archiveTitle}
-                >
-                    <BlogPostArchive
-                    key={archiveTitle}
-                    posts={curPosts[archiveTitle]}
-                    archiveTitle={archiveTitle}
-                    />
-                </motion.div>
-            ))}
-        </AnimatePresence>
-        </div>
+        {
+            curPostsKeys.length &&
+            <motion.div
+             initial="hidden" animate="show" 
+            variants={variants}
+             className=" min-h-screen rounded-md mb-10 pb-20 bg-white md:p-12 p-3 md:pt-0 pt-0 dark:bg-hexo-black-gray shadow-md min-h-full">
+                <AnimatePresence mode='wait'>
+                    {curPostsKeys.map(archiveTitle => (
+                        <motion.div
+                        variants={variants} 
+                        key={archiveTitle}
+                        >
+                            <BlogPostArchive
+                            key={archiveTitle}
+                            posts={curPosts[archiveTitle]}
+                            archiveTitle={archiveTitle}
+                            />
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
+            </motion.div>
+        }
     </>
   )
 }

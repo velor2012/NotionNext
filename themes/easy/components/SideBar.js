@@ -36,7 +36,7 @@ const SideBar = (props) => {
               <Link
                 href={'/category'}
                 passHref
-                className='mb-3 text-gray-400 hover:text-black dark:text-gray-400 dark:hover:text-white hover:underline cursor-pointer'>
+                className='mb-3 text-gray-400 hover:text-black dark:text-gray-400 dark:hover:text-white menu-link'>
 
                 {locale.COMMON.MORE} <i className='fas fa-angle-double-right'/>
 
@@ -54,7 +54,7 @@ const SideBar = (props) => {
               <Link
                 href={'/tag'}
                 passHref
-                className='text-gray-400 hover:text-black  dark:hover:text-white hover:underline cursor-pointer'>
+                className='text-gray-400 hover:text-black  dark:hover:text-white menu-link'>
 
                 {locale.COMMON.MORE} <i className='fas fa-angle-double-right'/>
 

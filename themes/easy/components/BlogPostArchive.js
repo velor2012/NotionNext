@@ -30,7 +30,7 @@ const BlogPostArchive = ({ posts = [], archiveTitle }) => {
                   <Link
                     href={post?.href}
                     passHref
-                    className='dark:text-gray-400  dark:hover:text-gray-300 overflow-x-hidden hover:underline cursor-pointer text-gray-600'>
+                    className='dark:text-gray-400  dark:hover:text-gray-300 overflow-x-hidden menu-link text-gray-600'>
                     {post.title}
                   </Link>
                 </div>

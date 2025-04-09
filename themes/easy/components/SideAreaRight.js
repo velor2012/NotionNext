@@ -107,24 +107,26 @@ const SideAreaRight = props => {
               router.asPath !== '/category' &&
               categoryOptions && (
                 <Card key={3} variants={variants} exit={variants.exit} className="mb-2">
-                  <div className="text-sm px-2 flex flex-nowrap justify-between font-light">
-                    <div className="pb-2 text-gray-600 dark:text-gray-300">
+                  <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
+                    <div className="text-gray-600 dark:text-gray-200">
                       <i className="mr-2 fas fa-th-list" />
                       {locale.COMMON.CATEGORY}
                     </div>
                     <Link
                       href={'/category'}
                       passHref
-                      className="text-gray-400 hover:text-black dark:text-gray-400 dark:hover:text-white hover:underline cursor-pointer"
+                      className="text-gray-400 hover:text-black  dark:hover:text-white menu-link"
                     >
                       {locale.COMMON.MORE}{' '}
                       <i className="fas fa-angle-double-right" />
                     </Link>
                   </div>
-                  <CategoryGroup
-                    currentCategory={currentCategory}
-                    categories={categoryOptions}
-                  />
+                  <div className="px-2 pt-2">
+                    <CategoryGroup
+                        currentCategory={currentCategory}
+                        categories={categoryOptions}
+                    />
+                  </div>
                 </Card>
               )}
 
@@ -140,7 +142,7 @@ const SideAreaRight = props => {
                     <Link
                       href={'/tag'}
                       passHref
-                      className="text-gray-400 hover:text-black  dark:hover:text-white hover:underline cursor-pointer"
+                      className="text-gray-400 hover:text-black  dark:hover:text-white menu-link"
                     >
                       {locale.COMMON.MORE}{' '}
                       <i className="fas fa-angle-double-right" />
