@@ -26,10 +26,10 @@ const NextRecentComments = dynamic(() => import('./NextRecentComments'))
 const SideAreaRight = props => {
   const {
     tagOptions,
-    currentTag,
+    tag: currentTag,
+    category: currentCategory,
     slot,
     categoryOptions,
-    currentCategory,
     notice,
     latestPosts
   } = props

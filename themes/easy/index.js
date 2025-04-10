@@ -14,6 +14,7 @@ import { siteConfig } from '@/lib/config'
 import dynamic from 'next/dynamic'
 import BlogPostArchiveList from './components/BlogPostArchiveList'
 import useTocDrawer from './lib/useTocDrawer'
+import { MotionGlobalConfig } from 'framer-motion';
 
 const _404Card = dynamic(() => import('./components/404'), { ssr: false })
 const TopNav = dynamic(() => import('./components/TopNav'), { ssr: false })
@@ -90,6 +91,25 @@ const LayoutBase = (props) => {
     document.addEventListener('scroll', scrollListener)
     return () => document.removeEventListener('scroll', scrollListener)
   }, [showRightFloat])
+
+  // 根据动画偏好，决定是否跳过framer-motion的动画
+  useEffect(() => {
+    // debugger
+    var motionQuery = matchMedia('(perfers-reduced-motion)');
+    
+    function handleReduceMotionChanged() {
+        if (motionQuery.matches) {
+            /*disabled animations/transitions 禁用动画或过渡*/
+            MotionGlobalConfig.skipAnimations = true;
+        }else {
+            /*enable animations/transitions 开启动画或过渡*/
+            MotionGlobalConfig.skipAnimations = false;
+        }
+    }
+    motionQuery.addEventListener('change',handleReduceMotionChanged);
+    handleReduceMotionChanged();
+  }, [])
+
   return (
     <ThemeContextProvider>
         <div id='theme-next' className='flex flex-col items-center

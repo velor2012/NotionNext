@@ -1,5 +1,5 @@
 import Link from 'next/link'
-
+import { motion } from 'framer-motion'
 const TagItemMini = ({ tag, selected = false }) => {
   return (
     <Link
@@ -12,7 +12,10 @@ const TagItemMini = ({ tag, selected = false }) => {
         ? 'text-white dark:text-gray-300 bg-black dark:bg-black dark:hover:bg-gray-100'
         : `text-gray-600 dark:hover:bg-gray-100 hover:shadow-xl dark:border-gray-400 notion-${tag.color}_background dark:bg-gray-800`}` }>
 
-      <div className='font-light dark:text-gray-400 dark:hover:text-black'>{selected && <i className='fas fa-tag mr-1'/>} {tag.name + (tag.count ? `(${tag.count})` : '')} </div>
+      <div className='font-light dark:text-gray-400 dark:hover:text-black'>{selected && <motion.i 
+       layoutId="TagItemTag2"
+       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+       className='fas fa-tag mr-1'/>} {tag.name + (tag.count ? `(${tag.count})` : '')} </div>
 
     </Link>
   );

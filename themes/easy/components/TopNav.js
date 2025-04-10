@@ -62,7 +62,7 @@ const TopNav = (props) => {
         <div id='top-nav' className={`${NEXT_NAV_TYPE !== 'normal' ? 'sticky' : 'relative'} w-full top-0 z-[25] transform duration-500`}>
             {/* 导航栏 */}
             <div id='sticky-nav'>
-                <div className='w-full flex justify-between items-center p-1 bg-black dark:bg-gray-800 text-white rounded-b-sm'>
+                <div className='w-full flex justify-between items-center p-1 bg-black dark:bg-gray-800 text-white rounded-b-md shadow-xl'>
                     {/* 左侧LOGO 标题 */}
                     <motion.div
                     initial={{
